@@ -56,6 +56,7 @@ def get_n0(text):
         data = urllib.parse.urlencode(values)
         # 将数据与url进行拼接
         req = ren_zhi_url + '?' + data
+        print(req)
         r = requests.post(req)
         # 中文编码格式打印数据
         result = r.content.decode('utf-8')
@@ -76,6 +77,7 @@ tuling_userId = props.get('tuling_userId')
 def get_n1(text_input: str):
     try:
         api_url = tuling_url
+        print(api_url)
         req = {
             "reqType": 0,  # 输入类型 0-文本, 1-图片, 2-音频
             "perception":  # 信息参数
@@ -115,6 +117,7 @@ def get_n1(text_input: str):
         print('小灵酱：', results_text)
         return str(results_text)
     except KeyError:
+        print(KeyError)
         if KeyError == '4003':
             return '今天的智能对话次数用完了呢QAQ,请输入help查看其他玩法叭'
         else:
