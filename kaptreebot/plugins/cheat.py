@@ -1,44 +1,57 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
 import json
 import requests
 import urllib
 import urllib.parse
 import urllib.request
 import random
-from nonebot import on_message,on_command
+import os
+
+from nonebot import on_message, on_command
 from nonebot.adapters.cqhttp import Bot, Event, Message, PRIVATE
+from commons import property
+
+# 要操作的properties文件的路径
+file_path = os.getcwd() + '/properties/cheat/cheat.properties'
+# 读取文件
+props = property.parse(file_path)
+
 
 def get_n(text):
-    if text.find('小知酱') != -1 :
+    if text.find('小知酱') != -1:
         return get_n0(text)
-    if text.find('小灵酱') != -1 :
+    if text.find('小灵酱') != -1:
         return get_n1(text)
-    if text.find('小思酱') != -1 :
+    if text.find('小思酱') != -1:
         return get_n2(text)
-    num = random.randint(0,2)
-    if num == 0 :
+    num = random.randint(0, 2)
+    if num == 0:
         return get_n0(text)
-    if num == 1 :
+    if num == 1:
         return get_n1(text)
-    if num == 2 :
-        return get_n2(text)  
+    if num == 2:
+        return get_n2(text)
 
-    
+
 # 认知机器人
-ren_zhi_url = 'http://www.weilaitec.com/cigirlrobot.cgr'
-ren_zhi_appid = '1622741989812'
-ren_zhi_appkey = 'HFQ25DXLHBFZKFAHU3GLX398Q2N0N4BQFDUWYZ59ZTZ8K16K6J'
-ren_zhi_ip = "119.25.36.48vec"
-ren_zhi_userid = "VectorX"
+ren_zhi_url = props.get('ren_zhi_url')
+ren_zhi_appid = props.get('ren_zhi_appid')
+ren_zhi_appkey = props.get('ren_zhi_appkey')
+ren_zhi_ip = props.get('ren_zhi_ip')
+ren_zhi_userid = props.get('ren_zhi_userid')
+
 
 def get_n0(text):
     try:
         # 定义请求数据，并且对数据进行赋值
-        values={}
-        values['key']= ren_zhi_appkey
-        values['msg']= text.encode('utf-8')
-        values['ip']= ren_zhi_ip
-        values['userid']= ren_zhi_userid
-        values['appid']= ren_zhi_appid
+        values = {}
+        values['key'] = ren_zhi_appkey
+        values['msg'] = text.encode('utf-8')
+        values['ip'] = ren_zhi_ip
+        values['userid'] = ren_zhi_userid
+        values['appid'] = ren_zhi_appid
         # 对请求数据进行编码
         data = urllib.parse.urlencode(values)
         # 将数据与url进行拼接
@@ -46,18 +59,23 @@ def get_n0(text):
         r = requests.post(req)
         # 中文编码格式打印数据
         result = r.content.decode('utf-8')
-        if result == '亲爱的用户您好。您当天的授权用量已用完(或未升级成会员)，请到平台升级会员，或者等明天可继续使用机器人大脑。有任何疑问，请您登陆官网联系客服服务。www.weilaitec.com。' :
+        if result == '亲爱的用户您好。您当天的授权用量已用完(或未升级成会员)，请到平台升级会员，或者等明天可继续使用机器人大脑。有任何疑问，请您登陆官网联系客服服务。www.weilaitec.com。':
             return get_n1(text)
-        print('小知酱：' + result)    
+        print('小知酱：' + result)
         return result
     except TypeError:
         return '完了完了，突然好难受啊，小知感觉整个人都不好了~~'
-        
 
-#图灵机器人
-def get_n1(text_input:str):
+
+# 图灵机器人
+tuling_url = props.get('tuling_url')
+tuling_apiKey = props.get('tuling_apiKey')
+tuling_userId = props.get('tuling_userId')
+
+
+def get_n1(text_input: str):
     try:
-        api_url = "http://openapi.tuling123.com/openapi/api/v2"
+        api_url = tuling_url
         req = {
             "reqType": 0,  # 输入类型 0-文本, 1-图片, 2-音频
             "perception":  # 信息参数
@@ -79,13 +97,14 @@ def get_n1(text_input:str):
             },
             "userInfo":
             {
-                "apiKey": "285364d8c0844621ac183ac615e36bd5",  # 改为自己申请的key
-                "userId": "0001"  # 用户唯一标识(随便填, 非密钥)
+                "apiKey": tuling_apiKey,  # 改为自己申请的key
+                "userId": tuling_userId  # 用户唯一标识(随便填, 非密钥)
             }
         }
         # 将字典格式的req编码为utf8
         req = json.dumps(req).encode('utf8')
-        http_post = urllib.request.Request(api_url, data=req, headers={'content-type': 'application/json'})
+        http_post = urllib.request.Request(api_url, data=req, headers={
+                                           'content-type': 'application/json'})
         response = urllib.request.urlopen(http_post)
         response_str = response.read().decode('utf8')
         response_dic = json.loads(response_str)
@@ -93,7 +112,7 @@ def get_n1(text_input:str):
         results_text = response_dic['results'][0]['values']['text']
         if str(results_text) == '请求次数超限制!':
             return get_n2(text_input)
-        print('小灵酱：', results_text)    
+        print('小灵酱：', results_text)
         return str(results_text)
     except KeyError:
         if KeyError == '4003':
@@ -101,18 +120,21 @@ def get_n1(text_input:str):
         else:
             return '来大姨妈了，不想理你~'
 
+
 # 小思机器人
-si_zhi_url = 'https://api.ownthink.com/bot'
-appid = 'c8278e2921b4bc31f8974ad58dec13ba'
+sizhi_url = props.get('sizhi_url')
+sizhi_appid = props.get('sizhi_appid')
+sizhi_userid = props.get('sizhi_userid')
+
 
 def get_n2(text):
     try:
         data = {
             "spoken": text,
-            "appid": appid,
-            "userid": "HRPVyRSl"
+            "appid": sizhi_appid,
+            "userid": sizhi_userid
         }
-        r = requests.post(si_zhi_url, data=json.dumps(data))
+        r = requests.post(sizhi_url, data=json.dumps(data))
         result = json.loads(r.content)
         message = result['data']['info']['text']
         if 'heuristic' in result['data']['info'] and result['data']['info']['heuristic']:
@@ -125,16 +147,18 @@ def get_n2(text):
     except BaseException:
         return '呸！渣男~'
 
-tuling = on_message(priority=5) # permission= PRIVATE
+
+tuling = on_message(priority=5)  # permission= PRIVATE
+
+
 @tuling.handle()
-async def cheatt_(bot:Bot,event:Event):
+async def cheatt_(bot: Bot, event: Event):
     if event.is_tome():
         print("YES")
-    if event.is_tome() and event.user_id!=event.self_id:
+    if event.is_tome() and event.user_id != event.self_id:
         mysay = event.get_message()
         mysay = get_n(str(mysay))
         await bot.send(
             event=event,
             message=mysay
         )
-
