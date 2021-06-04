@@ -1,6 +1,7 @@
 import urllib.request
 import gzip
 import json
+import re
 from nonebot import on_command
 from nonebot.rule import to_me
 from nonebot.adapters.cqhttp import Bot, Event
@@ -33,13 +34,17 @@ async def get_weather(city: str):
         return f"这个地方人家没去过呢，要不你带我去一次叭♥~"
     elif weather_dict.get('desc') =='OK' :
         forecast = weather_dict.get('data').get('forecast')
+        fengli = forecast[0].get('fengli')
+        rgx = re.compile("\<\!\[CDATA\[(.*?)\]\]\>")
+        match = rgx.search(fengli)
+        print(match.group(1))
         startoday = '城市：'+weather_dict.get('data').get('city') +'\n' \
                   +'日期：'+forecast[0].get('date') + '\n'\
                   +'温度：'+weather_dict.get('data').get('wendu') + '℃\n' \
                   +'高温：'+forecast[0].get('high') + '\n' \
                   +'低温: '+forecast[0].get('low') + '\n' \
                   +'风向：'+forecast[0].get('fengxiang') +'\n'\
-                  +'风力：'+forecast[0].get('fengli') + '\n'\
+                  +'风力：'+match.group(1) + '\n'\
                   +'天气：'+forecast[0].get('type') + '\n'\
                   +'感冒：'+weather_dict.get('data').get('ganmao') + '\n'
         return startoday

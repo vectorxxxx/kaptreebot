@@ -47,13 +47,15 @@ async def get_trans(trans: str):
     else:
         return f"{trans}的翻译内容：{transinfo}"
 
+toLangs = ['wyw','yue','kor','en','jp']
+
 async def get_baidufanyi(trans: str):
-    appid = '20210225000707766'  # 填写你的appid
-    secretKey = 'uTcrrrrtOpHHqi4sOyc6'  # 填写你的密钥
+    appid = '20190417000288999'  # 填写你的appid
+    secretKey = '0sOZGqbzw5agcdiAWlCZ'  # 填写你的密钥
     httpClient = None
     myurl = '/api/trans/vip/translate'
     fromLang = 'auto'   #原文语种
-    toLang = 'en'   #译文语种
+    toLang = toLangs[random.randint(0,len(toLangs)-1)]   #译文语种
     salt = random.randint(32768, 65536)
     q = trans
     sign = appid + q + str(salt) + secretKey
@@ -68,12 +70,13 @@ async def get_baidufanyi(trans: str):
         response = httpClient.getresponse()
         result_all = response.read().decode("utf-8")
         result = json.loads(result_all)
+        print(result)
         c='翻译结果: '+result['trans_result'][0]['dst']
         print (c)
         return c
     except Exception as e:
         print (e)
-        return '人家还翻译不了这个呢'
+        return '嗯~人家还来不了这个嘛！不要这样子说话啦，好讨厌！'
     finally:
         if httpClient:
             httpClient.close()

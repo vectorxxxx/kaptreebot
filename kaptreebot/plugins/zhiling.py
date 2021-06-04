@@ -23,7 +23,7 @@ def get_setu():
     headers = {
         'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.146 Safari/537.36'
     }
-    res = requests.get(url,headers=headers)
+    res = requests.get(url,headers=headers, verify=False)
     c = res.url
     return c
 
@@ -34,7 +34,7 @@ def get_mc():
     headers = {
         'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.146 Safari/537.36'
     }
-    res = requests.get(url,headers=headers)
+    res = requests.get(url,headers=headers, verify=False)
     c = res.url
     return c
 
@@ -45,7 +45,7 @@ def get_R18():
     headers = {
         'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.146 Safari/537.36'
     }
-    res = requests.get(url,headers=headers)
+    res = requests.get(url,headers=headers, verify=False)
     c = res.url
     return c
 
@@ -57,7 +57,7 @@ def get_dujit():
     headers = {
             'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.146 Safari/537.36'
         }
-    r = session.get(url,headers=headers)
+    r = session.get(url,headers=headers, verify=False)
     sel ='#text'
     s = r.html.find(sel)
     str1 = s[0].text
@@ -71,7 +71,7 @@ def get_wenan():
     headers = {
             'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.146 Safari/537.36'
         }
-    t = requests.get(url,headers=headers)
+    t = requests.get(url,headers=headers, verify=False)
     c = t.text
     print('朋友圈文案',c)
     return c
@@ -83,7 +83,7 @@ def get_caihongpi():
     headers = {
             'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.146 Safari/537.36'
         }
-    t = requests.get(url,headers=headers)
+    t = requests.get(url,headers=headers, verify=False)
     c = t.text
     print('彩红屁',c)
     return c
@@ -113,7 +113,7 @@ async def explainsend(bot: Bot, event: Event, state: dict):
         )
 
 
-st = on_keyword({'setu','涩图','色图','每日一图'}, priority=2)
+st = on_keyword(['setu','涩图','色图','每日一图','黄图','福利'], priority=2)
 @st.handle()
 async def st_(bot: Bot, event: Event, state: dict):
     if event.get_user_id != event.self_id:
@@ -123,7 +123,7 @@ async def st_(bot: Bot, event: Event, state: dict):
         )
 
 
-R18 = on_keyword({'R18','r18'}, priority=2)
+R18 = on_keyword(['R18','r18'], priority=2)
 @R18.handle()
 async def R18_(bot: Bot, event: Event, state: dict):
     if event.get_user_id != event.self_id:
@@ -192,7 +192,7 @@ async def pyqwenan_(bot:Bot,event:Event,state: dict):
         )
 
 
-master = on_keyword(['主人'],['你是谁的?'],priority=2)
+master = on_keyword(['主人','你是谁的?'],priority=2)
 @master.handle()
 async def master_(bot:Bot,event: Event,state: dict):
     if event.get_user_id != event.self_id:
@@ -201,7 +201,7 @@ async def master_(bot:Bot,event: Event,state: dict):
             message='我是大家的哦，请大家爱护我，不要对我说一些奇怪的话'
         )
 
-help = on_command("查看说明",aliases={'help','帮助','使用说明'},priority=2)
+help = on_command("查看说明",aliases={'help','帮助','使用说明','菜单','手册','帮助手册','你会啥','你都会啥','你会什么','你会干啥','有好玩的吗','有好玩的不','游戏','栏目'},priority=2)
 @help.handle()
 async def help_(bot:Bot,event: Event,state: dict):
     if event.get_user_id != event.self_id:
