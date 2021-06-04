@@ -18,7 +18,7 @@ poke = on_notice()
 @poke.handle()
 async def _(bot: Bot, event: Event):
     if isinstance(event, PokeNotifyEvent):
-        if event.is_tome() and event.user_id != event.self_id:
+        if event.is_tome() and event.get_user_id != event.self_id:
             l = len(a)
             k = random.randint(0, l-1)
             while pre == k:
