@@ -49,7 +49,7 @@ async def upload(bot: Bot, event: GroupUploadNoticeEvent):
     if event.get_user_id != event.self_id:
         filename = str(event.file.name)
         format = judge_file_format(filename)
-        msg = '有人上传了' + format + '文件：\n' + filename + '\n好想打开看看呀~'
+        msg = '上传了' + format + '：\n' + filename + '\n好想打开看看呀~'
         print(msg)
         await bot.send(
             event=event,
@@ -80,7 +80,7 @@ def judge_file_format(filename):
         return '音频'
     if subfix in video_format:
         return '视频'
-    return ''
+    return '文件'
 
 
 # 撤回提醒
