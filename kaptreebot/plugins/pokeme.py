@@ -30,7 +30,7 @@ async def _(bot: Bot, event: Event):
 
 ch = pd.read_csv('file:///' + os.getcwd() + '/data/pokeme/chehui.txt',
                 sep=' ', encoding='utf-8')
-print(pk)
+print(ch)
 
 chehui = on_notice()
 @chehui.handle()
