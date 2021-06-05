@@ -10,7 +10,6 @@ import os
 
 pk = pd.read_csv('file:///' + os.getcwd() + '/data/pokeme/poke.txt',
                 sep=' ', encoding='utf-8')
-print(pk)
 
 pre = 0
 poke = on_notice()
@@ -31,7 +30,6 @@ async def _(bot: Bot, event: Event):
 
 ch = pd.read_csv('file:///' + os.getcwd() + '/data/pokeme/chehui.txt',
                 sep=' ', encoding='utf-8')
-print(ch)
 
 chehui = on_notice()
 @chehui.handle()

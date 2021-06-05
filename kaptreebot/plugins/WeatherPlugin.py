@@ -3,10 +3,8 @@ import gzip
 import json
 import re
 from nonebot import on_command
-from nonebot import on_natural_language, NLPSession, IntentCommand
 from nonebot.rule import to_me
 from nonebot.adapters.cqhttp import Bot, Event
-from jieba import posseg
 
 weather = on_command("天气", priority=5)
 
@@ -52,25 +50,3 @@ async def get_weather(city: str):
             + '天气：'+forecast[0].get('type') + '\n'\
             + '感冒：'+weather_dict.get('data').get('ganmao') + '\n'
         return startoday
-
-# on_natural_language 装饰器将函数声明为一个自然语言处理器
-# keywords 表示需要响应的关键词，类型为任意可迭代对象，元素类型为 str
-# 如果不传入 keywords，则响应所有没有被当作命令处理的消息
-@on_natural_language(keywords={'天气'})
-async def _(session: NLPSession):
-    # 去掉消息首尾的空白符
-    stripped_msg = session.msg_text.strip()
-    # 对消息进行分词和词性标注
-    words = posseg.lcut(stripped_msg)
-
-    city = None
-    # 遍历 posseg.lcut 返回的列表
-    for word in words:
-        # 每个元素是一个 pair 对象，包含 word 和 flag 两个属性，分别表示词和词性
-        if word.flag == 'ns':
-            # ns 词性表示地名
-            city = word.word
-            break
-
-    # 返回意图命令，前两个参数必填，分别表示置信度和意图命令名
-    return IntentCommand(90.0, 'weather', current_arg=city or '')
