@@ -4,6 +4,7 @@ from nonebot.adapters.cqhttp import Bot, Event
 from nonebot import on_command
 import json
 import requests
+import re
 
 url = 'https://v1.hitokoto.cn/?c=j&c=k'
 res = requests.get(url)
@@ -74,25 +75,3 @@ print(ans)
 #         # print('code：' + str(intent_code))
 #     except KeyError:
 #         print('出错啦~~, 下次别问这样的问题了')
-
-
-def get_data():
-    url = 'http://www.yezishuju.com/zt/ym/'
-    res = requests.get(url)
-    print(res.text)
-    c = json.loads(res.text)
-    ans = c['data']
-    print(ans)
-    return ans
-
-
-explain = on_command("王者赛事", priority=2)
-
-
-@explain.handle()
-async def explainsend(bot: Bot, event: Event, state: dict):
-    if event.get_user_id != event.self_id:
-        await bot.send(
-            event=event,
-            message=get_data()
-        )

@@ -27,6 +27,7 @@ async def _(bot: Bot, event: PokeNotifyEvent):
             at_sender=True
         )
 
+
 regbag = on_notice()
 
 
