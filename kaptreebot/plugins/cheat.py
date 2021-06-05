@@ -63,7 +63,7 @@ def get_n(text):
         r = requests.post(req)
         # 中文编码格式打印数据
         result = r.content.decode('utf-8')
-        if result == '亲爱的用户您好。您当天的授权用量已用完(或未升级成会员)，请到平台升级会员，或者等明天可继续使用机器人大脑。有任何疑问，请您登陆官网联系客服服务。www.weilaitec.com。':
+        if '升级会员' in result or '参数有误' in result:
             return get_n1(text)
         print('知酱：' + result)
         return result
