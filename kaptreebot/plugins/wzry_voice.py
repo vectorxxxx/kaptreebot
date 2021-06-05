@@ -16,7 +16,7 @@ async def handle_first_receive(bot: Bot, event: Event, state: dict):
             state["heroname"] = args  # 如果用户发送了参数则直接赋值
 
 
-@lines.got("hero", prompt="请选择您的英雄")
+@lines.got("heroname", prompt="请选择您的英雄")
 async def handle_hero(bot: Bot, event: Event, state: dict):
     heroname = state["heroname"]
     hero_voice = await get_hero(heroname)
