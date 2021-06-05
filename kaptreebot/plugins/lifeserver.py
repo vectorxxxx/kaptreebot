@@ -20,7 +20,7 @@ def get_news():
     url = 'http://api.tianapi.com/txapi/ncov/index?key=47db9de470a633072e5c20d93860b434'
     res = requests.get(url)
     c = json.loads(res.text)
-    if c['code'] != 100:
+    if c['code'] != 200:
         return '没有查询到呢~'
     results = ''
     for result in results:
