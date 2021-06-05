@@ -8,10 +8,10 @@ from aiocqhttp import MessageSegment
 import random
 import os
 
-wzpic = on_command(['王者图片'], priority=2)
+wzpic = on_command('王者图片', priority=2)
 
 
-@wzpic.handle()
+@ wzpic.handle()
 async def wzpic_(bot: Bot, event: Event):
     if event.get_user_id != event.self_id:
         await bot.send(
@@ -23,7 +23,7 @@ async def wzpic_(bot: Bot, event: Event):
 
 
 def get_picture():
-    mypath = 'file:' + os.getcwd() + '/data/wzry/iskin'
+    mypath = 'file:' + os.getcwd() + '/data/wzry/skin'
     filename = randomFile(mypath)
     filepath = mypath + '/' + filename
     if not os.path.exiwzpics(filepath):
