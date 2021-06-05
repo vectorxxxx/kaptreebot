@@ -7,7 +7,9 @@ from nonebot.adapters.cqhttp import Bot, Event
 def get_data():
     url ='http://www.yezishuju.com/zt/ym/'
     res = requests.get(url)
+    print(res)
     c = json.loads(res.text)
+    print
     ans = c['data']
     print(ans)
     return ans
