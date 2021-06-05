@@ -123,7 +123,7 @@ async def st_(bot: Bot, event: Event, state: dict):
         )
 
 
-R18 = on_keyword(['R18','r18'], priority=2)
+R18 = on_keyword(['r18','R18','r19','R19','r28','R28'], priority=2)
 @R18.handle()
 async def R18_(bot: Bot, event: Event, state: dict):
     if event.get_user_id != event.self_id:
@@ -192,14 +192,20 @@ async def pyqwenan_(bot:Bot,event:Event,state: dict):
         )
 
 
+
+k_master = ['我的主人就是您丫~','我的主人？我就是自己的主人呀。我想说就说，想语音就语音，先发图就发图，想挂机就挂机','我的主人？远在天边，近在眼前~']
+
 master = on_keyword(['主人','你是谁的?'],priority=2)
 @master.handle()
 async def master_(bot:Bot,event: Event,state: dict):
     if event.get_user_id != event.self_id:
+        k = (random.randint(0,10000)+random.randint(0,10000))%len(k_master)
+        s = kiss[k]
         await bot.send(
             event=event,
-            message='我是大家的哦，请大家爱护我，不要对我说一些奇怪的话'
+            message=s
         )
+   
 
 help = on_command("查看说明",aliases={'help','帮助','使用说明','菜单','手册','帮助手册','你会啥','你都会啥','你会什么','你会干啥','有好玩的吗','有好玩的不','游戏','栏目'},priority=2)
 @help.handle()

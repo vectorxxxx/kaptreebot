@@ -24,7 +24,7 @@ driver.register_adapter("cqhttp", CQHTTPBot)
 
 nonebot.load_builtin_plugins()
 nonebot.load_plugins("kaptreebot/plugins")
-nonebot.load_plugin("nonebot_plugin_test")
+# nonebot.load_plugin("nonebot_plugin_test")
 
 # Modify some config / config depends on loaded configs
 #

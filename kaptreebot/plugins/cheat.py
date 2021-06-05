@@ -20,11 +20,14 @@ props = property.parse(file_path)
 
 
 def get_n(text):
-    if text.find('小知酱') != -1:
+    if text.find('知酱') != -1:
+        text = text.replace('知酱','')
         return get_n0(text)
-    if text.find('小灵酱') != -1:
+    if text.find('灵酱') != -1:
+        text = text.replace('灵酱','')        
         return get_n1(text)
-    if text.find('小思酱') != -1:
+    if text.find('思酱') != -1:
+        text = text.replace('思酱','')
         return get_n2(text)
     num = random.randint(0, 2)
     if num == 0:
@@ -41,8 +44,6 @@ ren_zhi_appid = props.get('ren_zhi_appid')
 ren_zhi_appkey = props.get('ren_zhi_appkey')
 ren_zhi_ip = props.get('ren_zhi_ip')
 ren_zhi_userid = props.get('ren_zhi_userid')
-
-
 def get_n0(text):
     try:
         # 定义请求数据，并且对数据进行赋值
@@ -62,7 +63,7 @@ def get_n0(text):
         result = r.content.decode('utf-8')
         if result == '亲爱的用户您好。您当天的授权用量已用完(或未升级成会员)，请到平台升级会员，或者等明天可继续使用机器人大脑。有任何疑问，请您登陆官网联系客服服务。www.weilaitec.com。':
             return get_n1(text)
-        print('小知酱：' + result)
+        print('知酱：' + result)
         return result
     except TypeError:
         return '完了完了，突然好难受啊，小知感觉整个人都不好了~~'
@@ -72,8 +73,6 @@ def get_n0(text):
 tuling_url = props.get('tuling_url')
 tuling_apiKey = props.get('tuling_apiKey')
 tuling_userId = props.get('tuling_userId')
-
-
 def get_n1(text_input: str):
     try:
         api_url = tuling_url
@@ -114,7 +113,7 @@ def get_n1(text_input: str):
         results_text = response_dic['results'][0]['values']['text']
         if str(results_text) == '请求次数超限制!':
             return get_n2(text_input)
-        print('小灵酱：', results_text)
+        print('灵酱：', results_text)
         return str(results_text)
     except KeyError:
         print(KeyError)
@@ -128,8 +127,6 @@ def get_n1(text_input: str):
 sizhi_url = props.get('sizhi_url')
 sizhi_appid = props.get('sizhi_appid')
 sizhi_userid = props.get('sizhi_userid')
-
-
 def get_n2(text):
     try:
         data = {
@@ -143,7 +140,7 @@ def get_n2(text):
         if 'heuristic' in result['data']['info'] and result['data']['info']['heuristic']:
             for item in result['data']['info']['heuristic']:
                 message += ',  ' + item
-        print('小思：', message)
+        print('思酱：', message)
         return message
     except KeyError:
         return '这个问题好头疼呀，问点别的叭'
@@ -152,8 +149,6 @@ def get_n2(text):
 
 
 tuling = on_message(priority=5)  # permission= PRIVATE
-
-
 @tuling.handle()
 async def cheatt_(bot: Bot, event: Event):
     if event.is_tome():

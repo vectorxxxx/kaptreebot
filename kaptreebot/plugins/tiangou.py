@@ -52,7 +52,7 @@ async def slove(bot: Bot, event: Event, state: dict):
             at_sender=True
         )
 
-qinghua = on_keyword("情话",priority=2)
+qinghua = on_command("情话",priority=2)
 @qinghua.handle()
 async def qinghua_(bot:Bot,event:Event):
     if event.get_user_id != event.self_id:
@@ -61,7 +61,7 @@ async def qinghua_(bot:Bot,event:Event):
             message=get_qinhua()
         )
 
-lvcha= on_keyword("绿茶",priority=2)
+lvcha= on_command("绿茶",priority=2)
 @lvcha.handle()
 async def lvcha_(bot:Bot,event:Event):
     if event.get_user_id != event.self_id:
