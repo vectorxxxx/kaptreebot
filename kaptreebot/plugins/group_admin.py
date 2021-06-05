@@ -47,14 +47,41 @@ upload = on_notice()
 @upload.handle()
 async def upload(bot: Bot, event: GroupUploadNoticeEvent):
     if event.get_user_id != event.self_id:
-        print(event.file.name)
-        msg = '有人上传了：' + event.file.name + '好像打开看看呢~'
+        format = judge_file_format(event.file.name)
+        msg = '有人上传了' + format + '文件：\n'
+        + event.file.name + '\n好想打开看看呀~'
         print(msg)
         await bot.send(
             event=event,
             message=msg,
             at_sender=True
         )
+
+img_format = ['bmp', 'jpg', 'png', 'tif', 'gif', 'pcx', 'tga', 'exif', 'fpx', 'svg', 'psd',
+              'cdr', 'pcd', 'dxf', 'ufo', 'eps', 'ai', 'raw', 'WMF', 'webp', 'avif']
+
+audio_format = ['cd', 'wave', 'aiff', 'mpeg', 'mp3', 'mpeg-4', 'midi',
+                'wma', 'ra', 'rm', 'rmx', 'vqf', 'amr', 'ape', 'flac', 'aac']
+
+video_format = ['mpg', 'mlv', 'mpe', 'mpeg', 'm2v', 'avi', 'navi', 'asf', 'mov', 'wmv',
+                '3gp', 'rm', 'rmvb', 'flv', 'f4v', 'mp4', 'mkv', 'mtv', 'dat', 'dmv']
+
+
+def judge_file_format(filename):
+    # 文件夹
+    dot_index = filename.rindex('.')
+    if dot_index == -1:
+        return '文件夹'
+    # 文件
+    subfix = filename[dot_index + 1:len(filename)].lower()
+    if subfix in img_format:
+        return '图片'
+    if subfix in audio_format:
+        return '音频'
+    if subfix in video_format:
+        return '视频'
+    return ''
+
 
 # 撤回提醒
 ch = pd.read_csv('file:///' + os.getcwd() + '/data/pokeme/chehui.txt',
