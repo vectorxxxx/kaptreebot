@@ -195,12 +195,12 @@ async def pyqwenan_(bot:Bot,event:Event,state: dict):
 
 k_master = ['我的主人就是您丫~','我的主人？我就是自己的主人呀。我想说就说，想语音就语音，先发图就发图，想挂机就挂机','我的主人？远在天边，近在眼前~']
 
-master = on_keyword(['主人','你是谁的?'],priority=2)
+master = on_keyword(['主人','你是谁的'],priority=2)
 @master.handle()
 async def master_(bot:Bot,event: Event,state: dict):
     if event.get_user_id != event.self_id:
         k = (random.randint(0,10000)+random.randint(0,10000))%len(k_master)
-        s = kiss[k]
+        s = k_master[k]
         await bot.send(
             event=event,
             message=s
