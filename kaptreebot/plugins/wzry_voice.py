@@ -26,7 +26,9 @@ async def handle_hero(bot: Bot, event: Event, state: dict):
 
 
 async def get_hero(hero: str):
-    mypath = os.getcwd() + '/data/wzry/voice/' + hero + '/'
+    path_ = os.getcwd()
+    path_ = path_+'\data\wzry\voice'
+    mypath = 'file:///'+path_
     filename = randomFile(mypath)
     print(filename)
     if not os.path.exists(mypath + filename):
@@ -37,7 +39,9 @@ async def get_hero(hero: str):
 
 # 深度学习过程中，需要制作训练集和验证集、测试集
 def randomFile(fileDir):
-    pathDir = os.listdir(fileDir)  # 取图片的原始路径
+    pathDir = os.listdir(fileDir.encode("utf-8"))  # 取图片的原始路径
+    for fileName in pathDir:
+        print(fileName)
     sample = random.sample(pathDir, 1)  # 随机选取picknumber数量的样本图片
     print(sample)
     return sample.name
