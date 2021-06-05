@@ -62,6 +62,7 @@ def get_epidemic():
             results += desc['generalRemark'] + '\n\n'
         if desc['abroadRemark'] != '':
             results += desc['abroadRemark'] + '\n\n'
+        results += '\n▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂\n'
         # 海外疫情
         results += '\n▶ 海外疫情\n\n'
         foreignStatistics = desc['foreignStatistics']
