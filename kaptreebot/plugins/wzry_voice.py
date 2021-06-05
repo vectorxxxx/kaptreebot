@@ -36,6 +36,6 @@ async def get_hero(heroname: str):
 
 # 深度学习过程中，需要制作训练集和验证集、测试集
 def randomFile(fileDir):
-    pathDir = os.listdir(fileDir)  # 取图片的原始路径
+    pathDir = os.listdir(fileDir.encode('utf-8'))  # 取图片的原始路径
     samples = random.sample(pathDir, 1)  # 随机选取picknumber数量的样本图片
     return samples[0]
