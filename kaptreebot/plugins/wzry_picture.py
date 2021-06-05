@@ -26,7 +26,7 @@ def get_picture():
     mypath = 'file:' + os.getcwd() + '/data/wzry/skin'
     filename = randomFile(mypath)
     filepath = mypath + '/' + filename
-    if not os.path.exiwzpics(filepath):
+    if not os.path.exists(filepath):
         return '一定要说全说对哦，不然人家不知道嘛~'
     return filepath
 
