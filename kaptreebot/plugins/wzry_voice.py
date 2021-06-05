@@ -20,7 +20,6 @@ async def handle_first_receive(bot: Bot, event: Event, state: dict):
 async def handle_hero(bot: Bot, event: Event, state: dict):
     heroname = state["heroname"]
     hero_voice = await get_hero(heroname)
-    print(hero_voice)
     await lines.finish(hero_voice)
 
 
@@ -30,13 +29,13 @@ async def get_hero(heroname: str):
         return '一定要说对说全哦，不然人家不知道哒~'
     sample = randomFile(filepath)
     resultpath = filepath + '/' + sample[0]
+    print(resultpath)
     sst = MessageSegment.record(file=str(resultpath))
     return sst
 
 
 # 深度学习过程中，需要制作训练集和验证集、测试集
 def randomFile(fileDir):
-    pathDir = os.listdir(fileDir.encode("utf-8"))  # 取图片的原始路径
+    pathDir = os.listdir(fileDir)  # 取图片的原始路径
     sample = random.sample(pathDir, 1)  # 随机选取picknumber数量的样本图片
-    print(sample)
     return sample.name
