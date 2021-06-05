@@ -26,7 +26,7 @@ async def wzpic_(bot: Bot, event: Event):
 def get_picture(heroname):
     filepath = os.getcwd()+'/data/wzry/skin'
     sample = randomFile(filepath)
-    resultpath = filepath + '/' + sample
+    resultpath = 'file:///'+filepath + '/' + sample
     print(resultpath)
     return resultpath
 

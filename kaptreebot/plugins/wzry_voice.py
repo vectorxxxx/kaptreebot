@@ -28,7 +28,8 @@ async def get_hero(heroname: str):
     if not os.path.exists(filepath):
         return '一定要说对说全哦，不然人家不知道哒~'
     sample = randomFile(filepath)
-    resultpath = filepath + '/' + sample
+    print(sample)
+    resultpath = 'file:///'+filepath + '/' + sample
     print(resultpath)
     sst = MessageSegment.record(file=str(resultpath))
     return sst
@@ -36,6 +37,6 @@ async def get_hero(heroname: str):
 
 # 深度学习过程中，需要制作训练集和验证集、测试集
 def randomFile(fileDir):
-    pathDir = os.listdir(fileDir.encode('utf-8'))  # 取图片的原始路径
+    pathDir = os.listdir(fileDir)  # 取图片的原始路径
     samples = random.sample(pathDir, 1)  # 随机选取picknumber数量的样本图片
     return samples[0]
