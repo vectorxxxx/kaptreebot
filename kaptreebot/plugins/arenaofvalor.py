@@ -5,16 +5,18 @@ from nonebot.adapters.cqhttp import Bot, Event
 
 
 def get_data():
-    url ='http://www.yezishuju.com/zt/ym/'
+    url = 'http://www.yezishuju.com/zt/ym/'
     res = requests.get(url)
     print(res)
     c = json.loads(res.text)
-    print
     ans = c['data']
     print(ans)
     return ans
 
+
 explain = on_command("王者赛事", priority=2)
+
+
 @explain.handle()
 async def explainsend(bot: Bot, event: Event, state: dict):
     if event.get_user_id != event.self_id:
@@ -22,4 +24,3 @@ async def explainsend(bot: Bot, event: Event, state: dict):
             event=event,
             message=get_data()
         )
-
