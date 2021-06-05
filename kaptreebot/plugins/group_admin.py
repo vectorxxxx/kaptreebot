@@ -47,9 +47,9 @@ upload = on_notice()
 @upload.handle()
 async def upload(bot: Bot, event: GroupUploadNoticeEvent):
     if event.get_user_id != event.self_id:
-        format = judge_file_format(event.file.name)
-        msg = '有人上传了' + str(format) + '文件：\n'
-        + str(event.file.name) + '\n好想打开看看呀~'
+        filename = str(event.file.name)
+        format = judge_file_format(filename)
+        msg = '有人上传了' + format + '文件：\n' + filename + '\n好想打开看看呀~'
         print(msg)
         await bot.send(
             event=event,
