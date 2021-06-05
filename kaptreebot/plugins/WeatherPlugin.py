@@ -2,8 +2,8 @@ import urllib.request
 import gzip
 import json
 import re
-from nonebot import on_command
-from nonebot.rule import to_me,on_natural_language, NLPSession, IntentCommand
+from nonebot import on_command,on_natural_language, NLPSession, IntentCommand
+from nonebot.rule import to_me
 from nonebot.adapters.cqhttp import Bot, Event
 from jieba import posseg
 
