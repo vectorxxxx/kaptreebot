@@ -18,7 +18,7 @@ increase = on_notice()
 @increase.handle()
 async def increase(bot: Bot, event: GroupIncreaseNoticeEvent):
     if event.get_user_id != event.self_id:
-        msg = event.operator_id + '哇~是新的rbq！'
+        msg = '哇~是新的rbq！'
         await bot.send(
             event=event,
             message=msg,
@@ -33,7 +33,7 @@ decrease = on_notice()
 @decrease.handle()
 async def decrease(bot: Bot, event: GroupDecreaseNoticeEvent):
     if event.get_user_id != event.self_id:
-        msg = event.operator_id + '离开了，好难过~'
+        msg = '离开了，好难过~'
         await bot.send(
             event=event,
             message=msg,
