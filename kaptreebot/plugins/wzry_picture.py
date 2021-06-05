@@ -16,26 +16,19 @@ async def wzpic_(bot: Bot, event: Event):
     if event.get_user_id != event.self_id:
         await bot.send(
             event=event,
-            message=MessageSegment.image(get_picture()),
+            message=MessageSegment.image(get_picture(event.message)),
         )
 
 # 深度学习过程中，需要制作训练集和验证集、测试集
 
 
-def get_picture():
-    path_ = os.getcwd()
-    path_ = path_+'\data\wzry\skin'
-    mypath = 'file:///'+path_
-    filename = randomFile(mypath)
-    filepath = mypath + '/' + filename
-    if not os.path.exists(filepath):
-        return '一定要说全说对哦，不然人家不知道嘛~'
-    return filepath
+def get_picture(heroname):
+    filepath = os.getcwd()+'/data/wzry/skin'
+    sample = randomFile(filepath)
+    return filepath + '/' + sample
 
 
 def randomFile(fileDir):
-    pathDir = os.listdir(fileDir.encode("utf-8"))  # 取图片的原始路径
-    for fileName in pathDir:
-        print(fileName)
+    pathDir = os.listdir(fileDir)  # 取图片的原始路径
     sample = random.sample(pathDir, 1)  # 随机选取picknumber数量的样本图片
-    return sample.name
+    return sample[0]
