@@ -6,6 +6,7 @@ import json
 import requests
 import os
 import random
+from prettytable import PrettyTable
 
 url = 'https://v1.hitokoto.cn/?c=j&c=k'
 res = requests.get(url)
@@ -78,7 +79,20 @@ print(ans)
 #         print('出错啦~~, 下次别问这样的问题了')
 
 
-mypath = os.getcwd()+'/data/wzry/voice/妲己'
-pathDir = os.listdir(mypath)  # 取图片的原始路径
-sample = random.sample(pathDir, 1)  # 随机选取picknumber数量的样本图片
-print(sample[0])
+# mypath = os.getcwd()+'/data/wzry/voice/妲己'
+# pathDir = os.listdir(mypath)  # 取图片的原始路径
+# sample = random.sample(pathDir, 1)  # 随机选取picknumber数量的样本图片
+# print(sample[0])
+
+table = PrettyTable(['序号', '命令', '示例'])
+table.add_row(['1', '句子', '每日一句'])
+table.add_row(['2', '天气', '天气 成都'])
+table.add_row(['3', '翻译', '翻译 中出'])
+table.add_row(['4', '戳一戳', '手机戳我头像'])
+table.add_row(['5', '图片', '每日一图，mc酱，R18...'])
+table.add_row(['6', '抱抱', '我要抱抱'])
+table.add_row(['7', '语录', '开始网抑，彩虹屁...'])
+table.add_row(['8', '王者', '王者图片，王者语音'])
+table.add_row(['9', '注意', '群聊请@我或者/'])
+table.add_row(['10', '更多', '请亲自体验触发……'])
+print(str(table))

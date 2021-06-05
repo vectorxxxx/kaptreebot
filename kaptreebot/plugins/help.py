@@ -25,8 +25,8 @@ async def help_(bot: Bot, event: Event, state: dict):
         table.add_row(['8', '王者', '王者图片，王者语音'])
         table.add_row(['9', '注意', '群聊请@我或者/'])
         table.add_row(['10', '更多', '请亲自体验触发……'])
-
+        print(table)
         await bot.send(
             event=event,
-            message=table
+            message=str(table)
         )
