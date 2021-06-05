@@ -12,11 +12,11 @@ async def epidemicsend(bot: Bot, event: Event, state: dict):
     if event.get_user_id != event.self_id:
         await bot.send(
             event=event,
-            message=get_news()
+            message=get_epidemic()
         )
 
 
-def get_news():
+def get_epidemic():
     url = 'http://api.tianapi.com/txapi/ncov/index?key=47db9de470a633072e5c20d93860b434'
     res = requests.get(url)
     c = json.loads(res.text)
@@ -27,21 +27,21 @@ def get_news():
     foreignStatistics = ''
     globalStatistics = ''
     for news in c['newslist']:
-        results += '======国内疫情======\n\n'
+        results += '▶ 国内疫情\n\n'
         for n in news['news']:
-            results += n['pubDateStr'] + '\n'
+            results += '◤' + n['pubDateStr'] + '\n'
             results += n['title'] + '\n'
             results += n['summary']+'\n'
-            results += n['infoSource'] + '\n'
-            results += '\n---------------------------\n\n'
+            results += '◣' + n['infoSource'] + '\n'
+            results += '\n▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂\n\n'
         desc = news['desc']
-        results += '[累计确诊]：' + str(desc['confirmedCount']) + '\n'
-        results += '[现存确诊]：' + str(desc['currentConfirmedCount']) + '\n'
-        results += '[疑似确诊]：' + str(desc['suspectedCount']) + '\n'
-        results += '[治愈病例]：' + str(desc['curedCount']) + '\n'
-        results += '[死亡病例]：' + str(desc['deadCount']) + '\n'
-        results += '[无症状感染]：' + str(desc['seriousCount']) + '\n'
-        results += '\n---------------------------\n\n'
+        results += '『累计确诊』 ' + str(desc['confirmedCount']) + '例\n'
+        results += '『现存确诊』 ' + str(desc['currentConfirmedCount']) + '例\n'
+        results += '『[疑似确诊』 ' + str(desc['suspectedCount']) + '例\n'
+        results += '『治愈病例』 ' + str(desc['curedCount']) + '例\n'
+        results += '『死亡病例』 ' + str(desc['deadCount']) + '例\n'
+        results += '『无症状感染』 ' + str(desc['seriousCount']) + '例\n'
+        results += '\n▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂\n\n'
         if desc['remark1'] != '':
             results += desc['remark1'] + '\n\n'
         if desc['remark2'] != '':
@@ -63,23 +63,27 @@ def get_news():
         if desc['abroadRemark'] != '':
             results += desc['abroadRemark'] + '\n\n'
         # 海外疫情
-        results += '\n======海外疫情======\n\n'
+        results += '\n▶ 海外疫情\n\n'
         foreignStatistics = desc['foreignStatistics']
-        results += '[累计确诊]：' + \
-            str(foreignStatistics['confirmedCount']) + '\n'
-        results += '[现存确诊]：' + \
-            str(foreignStatistics['currentConfirmedCount']) + '\n'
-        results += '[疑似病例]：' + \
-            str(foreignStatistics['suspectedCount']) + '\n'
-        results += '[治愈病例]：' + str(foreignStatistics['curedCount']) + '\n'
-        results += '[死亡病例]：' + str(foreignStatistics['deadCount']) + '\n'
+        results += '『累计确诊』 ' + \
+            str(foreignStatistics['confirmedCount']) + '例\n'
+        results += '『现存确诊』 ' + \
+            str(foreignStatistics['currentConfirmedCount']) + '例\n'
+        results += '『疑似病例』 ' + \
+            str(foreignStatistics['suspectedCount']) + '例\n'
+        results += '『治愈病例』 ' + str(foreignStatistics['curedCount']) + '例\n'
+        results += '『死亡病例』 ' + str(foreignStatistics['deadCount']) + '例\n'
         # 全球疫情
-        results += '\n======全球疫情======\n\n'
+        results += '\n▶ 全球疫情\n\n'
         globalStatistics = desc['globalStatistics']
-        results += '[累计确诊]：' + str(globalStatistics['confirmedCount']) + '\n'
-        results += '[现存确诊]：' + \
-            str(globalStatistics['currentConfirmedCount']) + '\n'
-        results += '[治愈病例]：' + str(globalStatistics['curedCount']) + '\n'
-        results += '[死亡病例]：' + str(globalStatistics['deadCount']) + '\n'
+        results += '『累计确诊』 ' + str(globalStatistics['confirmedCount']) + '例\n'
+        results += '『现存确诊』 ' + \
+            str(globalStatistics['currentConfirmedCount']) + '例\n'
+        results += '『治愈病例』 ' + str(globalStatistics['curedCount']) + '例\n'
+        results += '『死亡病例』 ' + str(globalStatistics['deadCount']) + '例\n'
     print(results)
     return results
+
+
+# Test
+get_epidemic()
