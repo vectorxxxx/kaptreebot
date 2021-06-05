@@ -26,14 +26,15 @@ def get_epidemic():
     desc = ''
     foreignStatistics = ''
     globalStatistics = ''
+    results += ' ░░░░░░░░░░░░░░░░░░\n'
     for news in c['newslist']:
-        results += '▶ 国内疫情\n\n'
+        results += '◎ 国内疫情\n'
         for n in news['news']:
-            results += '◤' + n['pubDateStr'] + '\n'
-            results += n['title'] + '\n'
+            results += '★' + n['pubDateStr'] + '\n'
+            results += '#' +n['title'] + '\n'
             results += n['summary']+'\n'
-            results += '◣' + n['infoSource'] + '\n'
-            results += '\n▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂\n\n'
+            results += '@' + n['infoSource'] + '\n'
+            results += '――――――――――――――――――\n'
         desc = news['desc']
         results += '『累计确诊』 ' + str(desc['confirmedCount']) + '例\n'
         results += '『现存确诊』 ' + str(desc['currentConfirmedCount']) + '例\n'
@@ -41,30 +42,30 @@ def get_epidemic():
         results += '『治愈病例』 ' + str(desc['curedCount']) + '例\n'
         results += '『死亡病例』 ' + str(desc['deadCount']) + '例\n'
         results += '『无症状感染』 ' + str(desc['seriousCount']) + '例\n'
-        results += '\n▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂\n\n'
+        results += ' ――――――――――――――――――\n'
         if desc['remark1'] != '':
-            results += desc['remark1'] + '\n\n'
+            results += desc['remark1'] + '\n'
         if desc['remark2'] != '':
-            results += desc['remark2'] + '\n\n'
+            results += desc['remark2'] + '\n'
         if desc['remark3'] != '':
-            results += desc['remark3'] + '\n\n'
+            results += desc['remark3'] + '\n'
         if desc['remark4'] != '':
-            results += desc['remark4'] + '\n\n'
+            results += desc['remark4'] + '\n'
         if desc['remark5'] != '':
-            results += desc['remark5'] + '\n\n'
+            results += desc['remark5'] + '\n'
         if desc['note1'] != '':
-            results += desc['note1'] + '\n\n'
+            results += desc['note1'] + '\n'
         if desc['note2'] != '':
-            results += desc['note2'] + '\n\n'
+            results += desc['note2'] + '\n'
         if desc['note3'] != '':
-            results += desc['note3'] + '\n\n'
+            results += desc['note3'] + '\n'
         if desc['generalRemark'] != '':
-            results += desc['generalRemark'] + '\n\n'
+            results += desc['generalRemark'] + '\n'
         if desc['abroadRemark'] != '':
-            results += desc['abroadRemark'] + '\n\n'
-        results += '\n▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂\n'
+            results += desc['abroadRemark'] + '\n'
+        results += ' ░░░░░░░░░░░░░░░░░░\n'
         # 海外疫情
-        results += '\n▶ 海外疫情\n\n'
+        results += '◎ 海外疫情\n'
         foreignStatistics = desc['foreignStatistics']
         results += '『累计确诊』 ' + \
             str(foreignStatistics['confirmedCount']) + '例\n'
@@ -74,8 +75,9 @@ def get_epidemic():
             str(foreignStatistics['suspectedCount']) + '例\n'
         results += '『治愈病例』 ' + str(foreignStatistics['curedCount']) + '例\n'
         results += '『死亡病例』 ' + str(foreignStatistics['deadCount']) + '例\n'
+        results += ' ░░░░░░░░░░░░░░░░░░\n'
         # 全球疫情
-        results += '\n▶ 全球疫情\n\n'
+        results += '◎ 全球疫情\n'
         globalStatistics = desc['globalStatistics']
         results += '『累计确诊』 ' + str(globalStatistics['confirmedCount']) + '例\n'
         results += '『现存确诊』 ' + \
