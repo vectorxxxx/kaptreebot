@@ -6,7 +6,7 @@ from nonebot import on_command
 from nonebot.rule import to_me
 from nonebot.adapters.cqhttp import Bot, Event
 
-weather = on_command("天气", priority=5)
+weather = on_command("天气", priority=2)
 
 
 @weather.handle()
