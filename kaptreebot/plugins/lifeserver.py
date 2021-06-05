@@ -34,7 +34,7 @@ def get_epidemic():
             results += '#' + n['title'] + '\n'
             results += n['summary']+'\n'
             results += '@' + n['infoSource'] + '\n'
-            results += '――――――――――――――――――――――――――\n'
+            results += '――――――――――――――――――――――――――――\n'
         desc = news['desc']
         results += '『累计确诊』 ' + str(desc['confirmedCount']) + '例\n'
         results += '『现存确诊』 ' + str(desc['currentConfirmedCount']) + '例\n'
@@ -42,7 +42,7 @@ def get_epidemic():
         results += '『治愈病例』 ' + str(desc['curedCount']) + '例\n'
         results += '『死亡病例』 ' + str(desc['deadCount']) + '例\n'
         results += '『无症状感染』 ' + str(desc['seriousCount']) + '例\n'
-        results += ' ――――――――――――――――――――――――――\n'
+        results += ' ――――――――――――――――――――――――――――\n'
         if desc['remark1'] != '':
             results += desc['remark1'] + '\n'
         if desc['remark2'] != '':
