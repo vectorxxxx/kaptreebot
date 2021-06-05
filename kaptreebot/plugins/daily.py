@@ -37,17 +37,17 @@ def get_news():
 
 
 # ============经典对联============
-duilian = on_command(['经典对联'], priority=2)
+duilian = on_command('经典对联', priority=2)
 
 
-@duilian.handle()
+@ duilian.handle()
 async def getdu_(bot: Bot, event: Event, state: dict):
     if event.get_user_id != event.self_id:
-        str1 = str(get_duilian())
+        str1= str(get_duilian())
         await bot.send(
-            event=event,
-            message=str1,
-            at_sedner=True
+            event = event,
+            message = str1,
+            at_sedner = True
         )
 
 

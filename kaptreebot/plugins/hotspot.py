@@ -103,7 +103,7 @@ def get_epidemic():
 
 # ============微信热点============
 
-wxhottopic = on_command(['微信热点'], priority=2)
+wxhottopic = on_command('微信热点', priority=2)
 
 
 @wxhottopic.handle()
