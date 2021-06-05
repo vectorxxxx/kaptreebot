@@ -26,7 +26,7 @@ async def handle_hero(bot: Bot, event: Event, state: dict):
 
 
 async def get_hero(hero: str):
-    mypath = 'file:' + os.getcwd() + '/data/wzry/voice/' + hero + '/'
+    mypath = os.getcwd() + '/data/wzry/voice/' + hero + '/'
     filename = randomFile(mypath)
     print(filename)
     if not os.path.exists(mypath + filename):

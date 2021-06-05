@@ -23,7 +23,7 @@ async def wzpic_(bot: Bot, event: Event):
 
 
 def get_picture():
-    mypath = 'file:' + os.getcwd() + '/data/wzry/skin'
+    mypath = os.getcwd() + '/data/wzry/skin'
     filename = randomFile(mypath)
     filepath = mypath + '/' + filename
     if not os.path.exists(filepath):
@@ -32,7 +32,7 @@ def get_picture():
 
 
 def randomFile(fileDir):
-    pathDir = os.liwzpicdir(fileDir)  # 取图片的原始路径
+    pathDir = os.listdir(fileDir)  # 取图片的原始路径
     filenumber = len(pathDir)
     sample = random.sample(pathDir, 1)  # 随机选取picknumber数量的样本图片
     return sample.name
