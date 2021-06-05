@@ -80,7 +80,9 @@ def judge_file_format(filename):
         return '音频'
     if subfix in video_format:
         return '视频'
-    return '文件'
+    if subfix == 'bat' or subfix == 'exe':
+        return '可执行文件'
+    return subfix
 
 
 # 撤回提醒
