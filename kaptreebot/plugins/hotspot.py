@@ -2,8 +2,21 @@ import requests
 import json
 from nonebot import on_command
 from nonebot.adapters.cqhttp import Bot, Event
+from commons import property
+import requests
+import json
+import os
 
+# 要操作的properties文件的路径
+file_path = os.getcwd() + '/properties/cheat/others.properties'
+# 读取文件
+props = property.parse(file_path)
+tianxing_api = props.get('tianxing_api')
+tianxing_key = props.get('tianxing_key')
 
+error_info = '没有查询到呢~'
+
+# ============新冠疫情============
 epidemic = on_command("新冠疫情", priority=2)
 
 
@@ -17,11 +30,11 @@ async def epidemicsend(bot: Bot, event: Event, state: dict):
 
 
 def get_epidemic():
-    url = 'http://api.tianapi.com/txapi/ncov/index?key=47db9de470a633072e5c20d93860b434'
+    url = tianxing_api + 'ncov/index?key=' + tianxing_key
     res = requests.get(url)
     c = json.loads(res.text)
     if c['code'] != 200:
-        return '没有查询到呢~'
+        return error_info
     results = ''
     desc = ''
     foreignStatistics = ''
@@ -88,5 +101,29 @@ def get_epidemic():
     return results
 
 
-# Test
-get_epidemic()
+# ============微信热点============
+
+wxhottopic = on_command(['微信热点'], priority=2)
+
+
+@wxhottopic.handle()
+async def getdu_(bot: Bot, event: Event, state: dict):
+    if event.get_user_id != event.self_id:
+        str1 = str(get_wxhottopic())
+        await bot.send(
+            event=event,
+            message=str1,
+            at_sedner=True
+        )
+
+
+def get_wxhottopic():
+    url = tianxing_api + 'wxhottopic/index?key=' + tianxing_key
+    res = requests.get(url)
+    c = json.loads(res.text)
+    if c['code'] != 200:
+        return error_info
+    result = ''
+    for news in c['newslist']:
+        result = 'Top' + str(news['index'] + 1) + '：' + news['word']
+        return result
