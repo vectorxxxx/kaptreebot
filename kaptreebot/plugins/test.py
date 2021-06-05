@@ -97,21 +97,3 @@ table.add_row(['8', '王者', '王者图片/语音'])
 table.add_row(['9', '注意', '群聊@我或/'])
 table.add_row(['10', '更多', '请体验触发'])
 print(str(table))
-
-
-# 防疫
-url = 'http://api.tianapi.com/txapi/ncov/index?key=47db9de470a633072e5c20d93860b434'
-res = requests.get(url)
-c = json.loads(res.text)
-print(c)
-if c['code'] != 200:
-    print('没有查询到呢~')
-results = ''
-for news in c['newslist']:
-    for n in news['news']:
-        results += '[glow=255,gray,1]' + n['pubDateStr'] + '[/glow]\n'
-        results += '[B][glow=255,black,3]'+n['title'] + '[/glow][/B]\n'
-        results += n['summary']+'\n'
-        results += '[glow=255,gray,1]' + n['infoSource'] + '[/glow]\n'
-        results += '---------------------------\n'
-print(results)

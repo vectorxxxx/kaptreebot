@@ -20,16 +20,66 @@ def get_news():
     url = 'http://api.tianapi.com/txapi/ncov/index?key=47db9de470a633072e5c20d93860b434'
     res = requests.get(url)
     c = json.loads(res.text)
-    print(c)
     if c['code'] != 200:
         return '没有查询到呢~'
     results = ''
+    desc = ''
+    foreignStatistics = ''
+    globalStatistics = ''
     for news in c['newslist']:
+        results += '======国内疫情======\n\n'
         for n in news['news']:
-            results += '[glow=255,gray,1]' + n['pubDateStr'] + '[/glow]\n'
-            results += '[B][glow=255,black,3]'+n['title'] + '[/glow][/B]\n'
+            results += n['pubDateStr'] + '\n'
+            results += n['title'] + '\n'
             results += n['summary']+'\n'
-            results += '[glow=255,gray,1]' + n['infoSource'] + '[/glow]\n'
-            results += '---------------------------\n'
+            results += n['infoSource'] + '\n'
+            results += '\n---------------------------\n\n'
+        desc = news['desc']
+        results += '累计确诊：' + str(desc['confirmedCount']) + '\n'
+        results += '现存确诊：' + str(desc['currentConfirmedCount']) + '\n'
+        results += '疑似确诊：' + str(desc['suspectedCount']) + '\n'
+        results += '治愈病例：' + str(desc['curedCount']) + '\n'
+        results += '死亡病例：' + str(desc['deadCount']) + '\n'
+        results += '无症状感染：' + str(desc['seriousCount']) + '\n'
+        results += '\n---------------------------\n\n'
+        if desc['remark1'] != '':
+            results += desc['remark1'] + '\n'
+        if desc['remark2'] != '':
+            results += desc['remark2'] + '\n'
+        if desc['remark3'] != '':
+            results += desc['remark3'] + '\n'
+        if desc['remark4'] != '':
+            results += desc['remark4'] + '\n'
+        if desc['remark5'] != '':
+            results += desc['remark5'] + '\n'
+        if desc['note1'] != '':
+            results += desc['note1'] + '\n'
+        if desc['note2'] != '':
+            results += desc['note2'] + '\n'
+        if desc['note3'] != '':
+            results += desc['note3'] + '\n'
+        if desc['generalRemark'] != '':
+            results += desc['generalRemark'] + '\n'
+        if desc['abroadRemark'] != '':
+            results += desc['abroadRemark'] + '\n'
+        # 海外疫情
+        results += '\n======海外疫情======\n\n'
+        foreignStatistics = desc['foreignStatistics']
+        results += '[累计确诊]：' + \
+            str(foreignStatistics['confirmedCount']) + '\n'
+        results += '现存确诊：' + \
+            str(foreignStatistics['currentConfirmedCount']) + '\n'
+        results += '疑似病例：' + \
+            str(foreignStatistics['suspectedCount']) + '\n'
+        results += '治愈病例：' + str(foreignStatistics['curedCount']) + '\n'
+        results += '死亡病例：' + str(foreignStatistics['deadCount']) + '\n'
+        # 全球疫情
+        results += '\n======全球疫情======\n\n'
+        globalStatistics = desc['globalStatistics']
+        results += '累计确诊：' + str(globalStatistics['confirmedCount']) + '\n'
+        results += '现存确诊：' + \
+            str(globalStatistics['currentConfirmedCount']) + '\n'
+        results += '治愈病例：' + str(globalStatistics['curedCount']) + '\n'
+        results += '死亡病例：' + str(globalStatistics['deadCount']) + '\n'
     print(results)
     return results
