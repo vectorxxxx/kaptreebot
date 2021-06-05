@@ -14,19 +14,16 @@ pk = pd.read_csv('file:///' + os.getcwd() + '/data/pokeme/poke.txt',
 pre = 0
 poke = on_notice()
 @poke.handle()
-async def _(bot: Bot, event: Event):
-    print("11111111111111")
-    if isinstance(event, PokeNotifyEvent):
-        print("22222222222222") 
-        if event.is_tome() and event.get_user_id != event.self_id:
-            k = (random.randint(1,10000))%len(pk)                
-            result = pk.loc[k]['poke']
-            print(result)
-            await bot.send(
-                event=event,
-                message=result,
-                at_sender=True
-            )
+async def _(bot: Bot, event: PokeNotifyEvent):
+    if event.is_tome() and event.get_user_id != event.self_id:
+        k = (random.randint(1,10000))%len(pk)                
+        result = pk.loc[k]['poke']
+        print(result)
+        await bot.send(
+            event=event,
+            message=result,
+            at_sender=True
+        )
 
 ch = pd.read_csv('file:///' + os.getcwd() + '/data/pokeme/chehui.txt',
                 sep=' ', encoding='utf-8')
@@ -34,7 +31,6 @@ ch = pd.read_csv('file:///' + os.getcwd() + '/data/pokeme/chehui.txt',
 chehui = on_notice()
 @chehui.handle()
 async def cheh(bot: Bot, event: GroupRecallNoticeEvent):
-    print(event.get_user_id + "===="+event.self_id)
     if event.get_user_id != event.self_id:
         k = (random.randint(1,10000))%len(ch)                
         result = ch.loc[k]['chehui']
