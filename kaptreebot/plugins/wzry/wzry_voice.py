@@ -13,6 +13,7 @@ async def handle_first_receive(bot: Bot, event: Event, state: dict):
     if event.get_user_id != event.self_id:
         args = str(event.message).strip()  # 首次发送命令时跟随的参数
         if args:
+            print(args)
             state["hero"] = args  # 如果用户发送了参数则直接赋值
 
 
@@ -20,6 +21,7 @@ async def handle_first_receive(bot: Bot, event: Event, state: dict):
 async def handle_hero(bot: Bot, event: Event, state: dict):
     hero = state["hero"]
     hero_voice = await get_hero(hero)
+    print(hero_voice)
     await lines.finish(hero_voice)
 
 

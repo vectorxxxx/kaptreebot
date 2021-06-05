@@ -1,7 +1,6 @@
 from ctypes import Union
 
 from nonebot.permission import SUPERUSER
-import requewzpics
 from nonebot import on_command
 from nonebot.rule import to_me
 from nonebot.adapters.cqhttp import Bot, Event
