@@ -16,8 +16,9 @@ pre = 0
 poke = on_notice()
 @poke.handle()
 async def _(bot: Bot, event: Event):
-    print(event.is_tome() + "===="+event.get_user_id + "===="+event.self_id)    
+    print("11111111111111")
     if isinstance(event, PokeNotifyEvent):
+        print("22222222222222") 
         if event.is_tome() and event.get_user_id != event.self_id:
             k = (random.randint(1,10000))%len(pk)                
             result = pk.loc[k]['poke']
