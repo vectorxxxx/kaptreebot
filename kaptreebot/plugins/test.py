@@ -4,7 +4,8 @@ from nonebot.adapters.cqhttp import Bot, Event
 from nonebot import on_command
 import json
 import requests
-import re
+import os
+import random
 
 url = 'https://v1.hitokoto.cn/?c=j&c=k'
 res = requests.get(url)
@@ -75,3 +76,9 @@ print(ans)
 #         # print('code：' + str(intent_code))
 #     except KeyError:
 #         print('出错啦~~, 下次别问这样的问题了')
+
+
+mypath = os.getcwd()+'/data/wzry/voice/妲己'
+pathDir = os.listdir(mypath)  # 取图片的原始路径
+sample = random.sample(pathDir, 1)  # 随机选取picknumber数量的样本图片
+print(sample[0])
