@@ -19,23 +19,23 @@ file_path = os.getcwd() + '/properties/cheat/cheat.properties'
 props = property.parse(file_path)
 
 
-def get_n(text):
-    if text.find('知酱') != -1:
-        text = text.replace('知酱','')
-        return get_n0(text)
-    if text.find('灵酱') != -1:
-        text = text.replace('灵酱','')        
-        return get_n1(text)
-    if text.find('思酱') != -1:
-        text = text.replace('思酱','')
-        return get_n2(text)
-    num = random.randint(0, 2)
-    if num == 0:
-        return get_n0(text)
-    if num == 1:
-        return get_n1(text)
-    if num == 2:
-        return get_n2(text)
+# def get_n(text):
+#     if text.find('知酱') != -1:
+#         text = text.replace('知酱','')
+#         return get_n0(text)
+#     if text.find('灵酱') != -1:
+#         text = text.replace('灵酱','')
+#         return get_n1(text)
+#     if text.find('思酱') != -1:
+#         text = text.replace('思酱','')
+#         return get_n2(text)
+#     num = random.randint(0, 2)
+#     if num == 0:
+#         return get_n0(text)
+#     if num == 1:
+#         return get_n1(text)
+#     if num == 2:
+#         return get_n2(text)
 
 
 # 认知机器人
@@ -44,7 +44,9 @@ ren_zhi_appid = props.get('ren_zhi_appid')
 ren_zhi_appkey = props.get('ren_zhi_appkey')
 ren_zhi_ip = props.get('ren_zhi_ip')
 ren_zhi_userid = props.get('ren_zhi_userid')
-def get_n0(text):
+
+
+def get_n(text):
     try:
         # 定义请求数据，并且对数据进行赋值
         values = {}
@@ -73,6 +75,8 @@ def get_n0(text):
 tuling_url = props.get('tuling_url')
 tuling_apiKey = props.get('tuling_apiKey')
 tuling_userId = props.get('tuling_userId')
+
+
 def get_n1(text_input: str):
     try:
         api_url = tuling_url
@@ -127,6 +131,8 @@ def get_n1(text_input: str):
 sizhi_url = props.get('sizhi_url')
 sizhi_appid = props.get('sizhi_appid')
 sizhi_userid = props.get('sizhi_userid')
+
+
 def get_n2(text):
     try:
         data = {
@@ -149,6 +155,8 @@ def get_n2(text):
 
 
 tuling = on_message(priority=5)  # permission= PRIVATE
+
+
 @tuling.handle()
 async def cheatt_(bot: Bot, event: Event):
     if event.is_tome():
