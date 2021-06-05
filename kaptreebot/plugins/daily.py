@@ -43,11 +43,11 @@ duilian = on_command('经典对联', priority=2)
 @ duilian.handle()
 async def getdu_(bot: Bot, event: Event, state: dict):
     if event.get_user_id != event.self_id:
-        str1= str(get_duilian())
+        str1 = str(get_duilian())
         await bot.send(
-            event = event,
-            message = str1,
-            at_sedner = True
+            event=event,
+            message=str1,
+            at_sedner=True
         )
 
 
@@ -65,7 +65,7 @@ def get_duilian():
 
 
 # ============古籍名句============
-gjmj = on_command(['古籍名句'], priority=2)
+gjmj = on_command('古籍名句', priority=2)
 
 
 @gjmj.handle()
@@ -93,7 +93,7 @@ def get_gjmj():
 
 
 # ============百科题库============
-baiketiku = on_command(['答题'], priority=2)
+baiketiku = on_command('答题', priority=2)
 
 
 @baiketiku.handle()
