@@ -114,13 +114,15 @@ def get_n1(text_input: str):
         response_str = response.read().decode('utf8')
         response_dic = json.loads(response_str)
         intent_code = response_dic['intent']['code']
+        intent_operateState = response_dic['intent']['operateState']
+        print(intent_code)
+        print(intent_operateState)
         results_text = response_dic['results'][0]['values']['text']
         if str(results_text) == '请求次数超限制!':
             return get_n2(text_input)
         print('灵酱：', results_text)
         return str(results_text)
     except KeyError:
-        print(KeyError)
         if KeyError == '4003':
             return '今天的智能对话次数用完了呢QAQ,请输入help查看其他玩法叭'
         else:
