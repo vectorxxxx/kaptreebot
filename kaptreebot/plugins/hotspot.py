@@ -157,4 +157,4 @@ def get_bulletin():
         result += '#' + news['title'] + '\n'
         result += ' ░░░░░░░░░░░░░░░░░░░░░░░░░░░░\n'
         print(result)
-        return result
+    return result

@@ -151,7 +151,7 @@ async def get_tenwhy(word: str):
         return error_info
     result = ''
     for news in c['newslist']:
-        result = news['title'] + '？\n' + news['content']
+        result = news.get('title') + '？ \n' + news.get('content')
         print(result)
     return result
 
