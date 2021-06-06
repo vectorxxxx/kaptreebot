@@ -113,7 +113,7 @@ async def cheh(bot: Bot, event: GroupRecallNoticeEvent):
             if 0 == coin:
                 pic = get_picture()
             result = word + '\n' + MessageSegment.image(pic)
-            if result != None and result != '':
+            if word != '' or pic != '':
                 await bot.send(
                     event=event,
                     message=result
