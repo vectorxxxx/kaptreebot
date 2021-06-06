@@ -64,11 +64,13 @@ def get_n(text):
         # 中文编码格式打印数据
         result = r.content.decode('utf-8')
         if '升级会员' in result or '参数有误' in result:
+            print(result)
             return get_n1(text)
-        print('知酱：' + result)
+        print('认知机器人：' + result)
         return result
     except (TypeError, KeyError) as e:
-        return '完了完了，突然好难受啊，小知感觉整个人都不好了~~'
+        print('认知机器人异常')
+        return get_n1(text)
 
 
 # 图灵机器人
@@ -119,14 +121,13 @@ def get_n1(text_input: str):
         print(intent_operateState)
         results_text = response_dic['results'][0]['values']['text']
         if str(results_text) == '请求次数超限制!':
+            print(str(results_text))
             return get_n2(text_input)
-        print('灵酱：', results_text)
+        print('图灵机器人：', results_text)
         return str(results_text)
     except KeyError:
-        if KeyError == '4003':
-            return '今天的智能对话次数用完了呢QAQ,请输入help查看其他玩法叭'
-        else:
-            return '来大姨妈了，不想理你~'
+        print('图灵机器人异常')
+        return get_n2(text_input)
 
 
 # 小思机器人
@@ -153,6 +154,7 @@ def get_n2(text):
     except KeyError:
         return '这个问题好头疼呀，问点别的叭'
     except BaseException:
+        print('思知机器人异常')
         return '呸！渣男~'
 
 

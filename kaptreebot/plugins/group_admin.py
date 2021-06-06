@@ -100,7 +100,7 @@ async def cheh(bot: Bot, event: GroupRecallNoticeEvent):
         pic = 'file:///' + os.getcwd() + '/data/img/chehui_tome.jpg'
         await bot.send(
             event=event,
-            message=MessageSegment.image(pic)
+            message='你是这个\n' + MessageSegment.image(pic)
         )
     else:
         k = (random.randint(1, 10000)) % len(ch)
