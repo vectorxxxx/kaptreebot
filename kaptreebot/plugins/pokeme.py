@@ -24,18 +24,3 @@ async def _(bot: Bot, event: PokeNotifyEvent):
             message=result,
             at_sender=True
         )
-
-
-# # 撤回自己的消息
-# chehui = on_command('撤回', priority=2)
-
-
-# @chehui.handle()
-# async def chehui_(bot: Bot, event: Event):
-#     if event.get_user_id != event.self_id:
-#         try:
-#             await bot.delete_msg(
-#                 message_id=event.self_id
-#             )
-#         except:
-#             await withdraw.finish('撤回失败，可能已超时')

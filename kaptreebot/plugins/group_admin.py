@@ -96,7 +96,9 @@ chehui = on_notice()
 
 @chehui.handle()
 async def cheh(bot: Bot, event: GroupRecallNoticeEvent):
-    if event.get_user_id != event.self_id:
+    print('get_user_id=' + event.get_user_id)
+    print('self_id=' + event.self_id)
+    if not event.is_tome() and event.get_user_id != event.self_id:
         k = (random.randint(1, 10000)) % len(ch)
         result = ch.loc[k]['chehui']
         print(result)

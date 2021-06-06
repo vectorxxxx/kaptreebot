@@ -1,6 +1,7 @@
 from typing import Any, Dict
 from nonebot import get_driver, on_command
 from nonebot.adapters.cqhttp import Bot, Event, GroupMessageEvent, PrivateMessageEvent
+from nonebot.plugin import on_keyword
 from nonebot.rule import to_me
 from nonebot.typing import T_State, T_CalledAPIHook
 
@@ -44,7 +45,8 @@ async def save_msg_id(bot: Bot, e: Exception, api: str, data: Dict[str, Any], re
 Bot._called_api_hook.add(save_msg_id)
 
 
-withdraw = on_command('withdraw', aliases={'撤回'}, rule=to_me(), priority=2)
+withdraw = on_command(
+    '你撤回', aliases={'你快撤回', '你给我撤回', '你赶快撤回'}, rule=to_me(), priority=2)
 
 
 @withdraw.handle()
