@@ -1,9 +1,7 @@
 
 from nonebot import on_notice, on_command
-from nonebot.adapters.cqhttp import Event, Message
 from nonebot.adapters.cqhttp.bot import Bot
 from nonebot.adapters.cqhttp.event import PokeNotifyEvent
-from nonebot_plugin_withdraw import withdraw
 import pandas as pd
 import os
 import random
