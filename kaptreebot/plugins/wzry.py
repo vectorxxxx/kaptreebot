@@ -14,6 +14,7 @@ lines = on_keyword(["王者语音", '王者台词', '王者音效', "王者荣�
 async def handle_first_receive(bot: Bot, event: Event, state: dict):
     if event.get_user_id != event.self_id:
         args = str(event.message).strip()  # 首次发送命令时跟随的参数
+        print('args=' + args)
         if args:
             state["heroname"] = args  # 如果用户发送了参数则直接赋值
 
@@ -27,11 +28,12 @@ async def handle_hero(bot: Bot, event: Event, state: dict):
 
 async def get_hero(heroname: str):
     filepath = os.getcwd()+'/data/wzry/voice/' + heroname
+    print('filepath=' + filepath)
     if not os.path.exists(filepath):
         return '一定要说对说全哦，不然人家不知道哒~'
     sample = randomFile(filepath)
     resultpath = 'file:///'+filepath + '/' + sample
-    print(resultpath)
+    print('resultpath=' + resultpath)
     sst = MessageSegment.record(file=str(resultpath))
     return sst
 
