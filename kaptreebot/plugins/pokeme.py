@@ -1,8 +1,7 @@
 
 from nonebot import on_notice
 from nonebot.adapters.cqhttp.bot import Bot
-from nonebot.adapters.cqhttp.event import PokeNotifyEvent, LuckyKingNotifyEvent
-from aiocqhttp import MessageSegment
+from nonebot.adapters.cqhttp.event import PokeNotifyEvent
 
 import pandas as pd
 import os
@@ -26,15 +25,3 @@ async def _(bot: Bot, event: PokeNotifyEvent):
             message=result,
             at_sender=True
         )
-
-
-regbag = on_notice()
-
-
-@regbag.handle()
-async def redb(bot: Bot, event: LuckyKingNotifyEvent):
-    atmsg = MessageSegment.at(event.target_id)
-    await bot.send(
-        event=event,
-        message=atmsg+'恭喜你是运气王',
-    )

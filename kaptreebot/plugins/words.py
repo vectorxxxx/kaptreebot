@@ -1,14 +1,9 @@
-from ctypes import Union
-
-from nonebot.permission import SUPERUSER
 from requests_html import HTMLSession
+from nonebot import on_command, on_keyword
+from nonebot.permission import SUPERUSER
+from nonebot.adapters.cqhttp import Bot, Event
 import requests
-from nonebot import on_command
-from nonebot import on_keyword, on_message
-from nonebot.rule import to_me
-from nonebot.adapters.cqhttp import Bot, Event, Message
 import random
-from aiocqhttp import MessageSegment
 import json
 
 kiss = ['么么哒', '不要这样嘛!', '你好讨厌哦!', '你好坏哦，欺负人家，哼！', '不要酱紫嘛', '一天没和你聊天，就觉得哪里不对劲！', '快亲亲人家啦!!', '不理你了，真讨厌。', '人家不要了啦!', '你今天有没有想念人家呀!',

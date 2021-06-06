@@ -4,6 +4,8 @@ from nonebot.adapters.cqhttp.event import GroupIncreaseNoticeEvent
 from nonebot.adapters.cqhttp.event import GroupUploadNoticeEvent
 from nonebot.adapters.cqhttp.event import GroupDecreaseNoticeEvent
 from nonebot.adapters.cqhttp.event import GroupRecallNoticeEvent
+from nonebot.adapters.cqhttp.event import LuckyKingNotifyEvent
+from aiocqhttp import MessageSegment
 
 import pandas as pd
 import os
@@ -103,3 +105,15 @@ async def cheh(bot: Bot, event: GroupRecallNoticeEvent):
             message=result,
             at_sender=True
         )
+
+
+regbag = on_notice()
+
+
+@regbag.handle()
+async def redb(bot: Bot, event: LuckyKingNotifyEvent):
+    atmsg = MessageSegment.at(event.target_id)
+    await bot.send(
+        event=event,
+        message=atmsg+'恭喜你是运气王',
+    )

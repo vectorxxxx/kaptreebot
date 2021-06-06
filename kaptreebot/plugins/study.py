@@ -38,7 +38,7 @@ def get_news():
 
 
 # ============经典对联============
-duilian = on_command('经典对联', priority=2)
+duilian = on_command('经典对联', aliases={'对联'} priority=2)
 
 
 @ duilian.handle()
@@ -94,7 +94,7 @@ def get_gjmj():
 
 
 # ============经典台词============
-dialogue = on_command('经典台词', priority=2)
+dialogue = on_command('经典台词', aliases={'台词'}, priority=2)
 
 
 @dialogue.handle()
@@ -185,7 +185,7 @@ def get_mgjuzi():
 
 
 # ============文化谚语============
-proverb = on_command('文化谚语', priority=2)
+proverb = on_command('文化谚语', aliases={'谚语'}, priority=2)
 
 
 @proverb.handle()
@@ -213,7 +213,8 @@ def get_proverb():
 
 
 # ============健康小提示============
-healthtip = on_command('健康小提示', priority=2)
+healthtip = on_command(
+    '健康小提示', aliases={'健康知识', '健康提示', '健康提醒', '健康小知识'}, priority=2)
 
 
 @healthtip.handle()
@@ -241,7 +242,7 @@ def get_healthtip():
 
 
 # ============故事大全============
-story = on_command('故事大全', priority=2)
+story = on_command('故事大全', aliases={'讲故事', '讲个故事', '故事会'}, priority=2)
 
 
 @story.handle()

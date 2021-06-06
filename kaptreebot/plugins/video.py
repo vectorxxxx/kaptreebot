@@ -5,6 +5,7 @@ from nonebot.adapters.cqhttp import Bot, Event
 from aiocqhttp import MessageSegment
 from commons import property
 from lxml import etree
+from urllib import request, parse
 import requests
 import json
 import os
@@ -46,17 +47,19 @@ def get_tiktok():
     for news in c['newslist']:
         url_list.append(news['shareurl'])
     url_random = url_list[random.randint(0, len(url_list))]
-    print('url_randomw=' + url_random)
-    url_video = parse_video(url_random)
-    return url_video
+    src_video = parse_video(url_random)
+    print(src_video)
+    return src_video
 
 
 def parse_video(url):
-    header = {}
-    text = requests.get(url, headers=header).text
-    dom = etree.HTML(text)
-    url_video = dom.xpath('//*[@id="pageletReflowVideo"]//video/@src')
-    print(url_video)
-    str_video = requests.get(url_video).text
-    print('str_video=' + str_video)
-    return str_video
+    # 模拟浏览器
+    header = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.85 Safari/537.36"}
+    req = request.Request(url=url, headers=header)
+    res = request.urlopen(req)
+    str_json = res.read().decode('utf-8')
+    print('str_json=================================' + str_json)
+    # src_video = str_json.xpath('//*[@id="pageletReflowVideo"]//video/@src')
+    # str_video = requests.get(src_video).text
+    return str_json
