@@ -127,6 +127,7 @@ def get_wxhottopic():
     result = ''
     for news in c['newslist']:
         result += 'Top' + str(10 - news['index']) + '：' + news['word'] + '\n'
+    print(result)
     return result
 
 
@@ -155,5 +156,5 @@ def get_bulletin():
     for news in c['newslist']:
         result += '@' + news['mtime'] + '\n'
         result += '#' + news['title'] + '\n'
-        print(result)
+    print(result)
     return result
