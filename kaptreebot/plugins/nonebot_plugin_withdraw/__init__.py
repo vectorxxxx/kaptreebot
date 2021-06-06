@@ -46,7 +46,7 @@ Bot._called_api_hook.add(save_msg_id)
 
 
 withdraw = on_command(
-    '你撤回', aliases={'你快撤回', '你给我撤回', '你赶快撤回','撤回'}, rule=to_me(), priority=2)
+    '你撤回', aliases={'你快撤回', '你给我撤回', '你赶快撤回', '撤回'}, rule=to_me(), priority=2)
 
 
 @withdraw.handle()

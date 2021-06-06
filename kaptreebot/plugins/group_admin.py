@@ -96,7 +96,13 @@ chehui = on_notice()
 
 @chehui.handle()
 async def cheh(bot: Bot, event: GroupRecallNoticeEvent):
-    if not event.is_tome():
+    if event.is_tome():
+        pic = 'file:///' + os.getcwd() + '/data/img/tome_chehui.jpg'
+        await bot.send(
+            event=event,
+            message=MessageSegment.image(pic)
+        )
+    else:
         k = (random.randint(1, 10000)) % len(ch)
         result = ch.loc[k]['chehui']
         print(result)
