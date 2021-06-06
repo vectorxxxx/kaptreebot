@@ -4,9 +4,11 @@ from nonebot.permission import SUPERUSER
 from nonebot.adapters.cqhttp import Bot, Event
 from aiocqhttp import MessageSegment
 from commons import property
+from lxml import etree
 import requests
 import json
 import os
+import re
 
 # 要操作的properties文件的路径
 file_path = os.getcwd() + '/properties/cheat/others.properties'
@@ -40,8 +42,18 @@ def get_tiktok():
     c = json.loads(res.text)
     if c['code'] != 200:
         return error_info
-    result = ''
+    url = ''
     for news in c['newslist']:
-        result = news['shareurl']
-        print(result)
-        return result
+        url = news['shareurl']
+        print(url)
+    url_video = parse_video(url)
+    return url_video
+
+
+def parse_video(url):
+    header = {}
+    text = requests.get(url, headers=header).text
+    dom = etree.HTML(text)
+    url_video = dom.xpath('//div[@id="pageletReflowVideo"]/video/@src')
+    print(url_video)
+    return url_video
