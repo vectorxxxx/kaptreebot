@@ -59,7 +59,7 @@ exlpain = on_command("情感语录", aliases={'舔狗日记'}, priority=2)
 async def slove(bot: Bot, event: Event, state: dict):
     if event.get_user_id != event.self_id:
         str1 = ''
-        if(random.randint(0, 1)):
+        if random.randint(0, 2) == 0:
             str1 = get_new2()
         else:
             str1 = get_news()

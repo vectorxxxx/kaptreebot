@@ -18,7 +18,7 @@ import json
 def get_setu():
     urls = ['https://api.ixiaowai.cn/api/api.php',
             'http://api.mtyqx.cn/api/random.php']
-    url = urls[random.randint(0, len(urls))]
+    url = urls[random.randint(0, len(urls) - 1)]
     print(url)
     headers = {
         'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.146 Safari/537.36'
@@ -71,7 +71,7 @@ async def R18_(bot: Bot, event: Event, state: dict):
     if event.get_user_id != event.self_id:
         await bot.send(
             event=event,
-            message=MessageSegment.image(get_setu()),
+            message=MessageSegment.image(get_R18()),
         )
 
 
