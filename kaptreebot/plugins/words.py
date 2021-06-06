@@ -146,3 +146,11 @@ async def master_(bot: Bot, event: Event, state: dict):
             event=event,
             message=s
         )
+
+
+master = on_keyword(['闭嘴', '别说话了', '少说话多做事', '别说废话', '别跟我说话'], priority=2)
+
+
+@master.handle()
+async def master_(bot: Bot, event: Event, state: dict):
+    pass
