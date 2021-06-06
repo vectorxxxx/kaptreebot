@@ -24,8 +24,6 @@ driver.register_adapter("cqhttp", CQHTTPBot)
 
 nonebot.load_builtin_plugins()
 # nonebot.load_plugin("nonebot_plugin_test")
-# 自动撤回
-nonebot.load_plugin("nonebot_plugin_withdraw")
 # 订阅推送
 nonebot.load_plugin("nonebot_plugin_apscheduler")
 # 搜图
