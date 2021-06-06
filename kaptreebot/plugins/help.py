@@ -23,8 +23,8 @@ async def help_(bot: Bot, event: Event, state: dict):
         str1 += '6、亲亲抱抱：我要亲亲，我要抱抱\n'
         str1 += '7、语录：毒鸡汤，开始网抑，彩虹屁，朋友圈文案\n'
         str1 += '8、注意：群聊需要@我或者开头加上/\n'
-        str1 += '9、学习功能：健康知识，名句，谚语\n'
-        str1 += '10、隐藏功能：༼ つ ◕_◕ ༽つ'
+        str1 += '9、其他功能：健康知识，名句，谚语等，需输入指令：其他菜单\n'
+        str1 += '10、隐藏功能：你懂的༼ つ ◕_◕ ༽つ'
         await bot.send(
             event=event,
             message=str1
@@ -36,18 +36,21 @@ help_hide = on_command('其他菜单', aliases={'其他帮助', '其他功能'},
 @help_hide.handle()
 async def hhelp_hide_(bot: Bot, event: Event, state: dict):
     if event.get_user_id != event.self_id:
-        table = PrettyTable(['序号', '命令', '示例'])
-        table.add_row(['1', '疫情', '新冠疫情'])
-        table.add_row(['2', '热点', '微信热点，每日简报'])
-        table.add_row(['3', '健康', '健康知识'])
-        table.add_row(['4', '对联', '经典对联'])
-        table.add_row(['5', '台词', '经典台词'])
-        table.add_row(['6', '名句', '古籍名句，民国句子'])
-        table.add_row(['7', '十万个为什么', '十万个为什么'])
-        table.add_row(['8', '谚语', '文化谚语'])
-        table.add_row(['9', '故事', '讲个故事'])
-        table.add_row(['10', '占卜', '手机号占卜'])
-        table.add_row(['11', '王者', '王者图片，王者语音'])
+        table = PrettyTable(['指令'])
+        table.add_row(['新冠疫情'])
+        table.add_row(['微信热点'])
+        table.add_row(['每日简报'])
+        table.add_row(['健康知识'])
+        table.add_row(['经典对联'])
+        table.add_row(['经典台词'])
+        table.add_row(['古籍名句'])
+        table.add_row(['民国句子'])
+        table.add_row(['十万个为什么'])
+        table.add_row(['文化谚语'])
+        table.add_row(['讲个故事'])
+        table.add_row(['手机号占卜'])
+        table.add_row(['王者图片'])
+        table.add_row(['王者语音'])
         await bot.send(
             event=event,
             message=str(table)
