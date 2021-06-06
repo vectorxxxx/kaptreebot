@@ -14,20 +14,20 @@ help = on_command(
 @help.handle()
 async def help_(bot: Bot, event: Event, state: dict):
     if event.get_user_id != event.self_id:
-        table = PrettyTable(['命令'])
-        table.add_row(['1、句子：每日一句'])
-        table.add_row(['2、天气查询：天气 成都'])
-        table.add_row(['3、翻译：翻译 什么他妈的叫他妈的惊喜'])
-        table.add_row(['4、戳一戳：手机上双击戳我头像'])
-        table.add_row(['5、精彩图片：setu，R18，MC酱'])
-        table.add_row(['6、亲亲抱抱：我要亲亲，我要抱抱'])
-        table.add_row(['7、语录：毒鸡汤，开始网抑，彩虹屁，朋友圈文案'])
-        table.add_row(['8、注意：群聊需要@我或者开头加上/'])
-        table.add_row(['9、学习功能：健康知识，名句，谚语'])
-        table.add_row(['10、隐藏功能：༼ つ ◕_◕ ༽つ'])
+        str1 = ''
+        str1 += '1、句子：每日一句'
+        str1 += '2、天气查询：天气 成都'
+        str1 += '3、翻译：翻译 什么他妈的叫他妈的惊喜'
+        str1 += '4、戳一戳：手机上双击戳我头像'
+        str1 += '5、精彩图片：setu，R18，MC酱'
+        str1 += '6、亲亲抱抱：我要亲亲，我要抱抱'
+        str1 += '7、语录：毒鸡汤，开始网抑，彩虹屁，朋友圈文案'
+        str1 += '8、注意：群聊需要@我或者开头加上/'
+        str1 += '9、学习功能：健康知识，名句，谚语'
+        str1 += '10、隐藏功能：༼ つ ◕_◕ ༽つ'
         await bot.send(
             event=event,
-            message=str(table)
+            message=str1
         )
 
 help_hide = on_command('其他菜单', aliases={'其他帮助', '其他功能'}, priority=2)
