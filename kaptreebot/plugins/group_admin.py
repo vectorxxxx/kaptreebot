@@ -11,6 +11,9 @@ import pandas as pd
 import os
 import random
 
+chehui_tome = pd.read_csv('file:///' + os.getcwd() + '/data/pokeme/chehui_tome.txt',
+                          sep=' ', encoding='utf-8')
+
 # 将函数注册为群成员增加通知处理器
 
 # 入群提醒
@@ -97,11 +100,24 @@ chehui = on_notice()
 @chehui.handle()
 async def cheh(bot: Bot, event: GroupRecallNoticeEvent):
     if event.is_tome():
-        pic = 'file:///' + os.getcwd() + '/data/img/chehui_tome.jpg'
-        await bot.send(
-            event=event,
-            message='你是这个\n' + MessageSegment.image(pic)
-        )
+        coin = random.randint(0, 1)
+        if 0 == coin:
+            k = (random.randint(1, 10000)) % len(chehui_tome)
+            coin = random.randint(0, 1)
+            word = ''
+            if 0 == coin:
+                word = chehui_tome.loc[k]['chehui_tome']
+                print(word)
+            coin = random.randint(0, 1)
+            pic = ''
+            if 0 == coin:
+                pic = get_picture()
+            result = word + '\n' + MessageSegment.image(pic)
+            if result != None and result != '':
+                await bot.send(
+                    event=event,
+                    message=result
+                )
     else:
         k = (random.randint(1, 10000)) % len(ch)
         result = ch.loc[k]['chehui']
@@ -111,6 +127,22 @@ async def cheh(bot: Bot, event: GroupRecallNoticeEvent):
             message=result,
             at_sender=True
         )
+
+
+def get_picture():
+    filepath = os.getcwd()+'/data/img/chehui_tome'
+    sample = randomFile(filepath)
+    resultpath = 'file:///'+filepath + '/' + sample
+    print(resultpath)
+    return resultpath
+
+# 深度学习过程中，需要制作训练集和验证集、测试集
+
+
+def randomFile(fileDir):
+    pathDir = os.listdir(fileDir)  # 取图片的原始路径
+    samples = random.sample(pathDir, 1)  # 随机选取picknumber数量的样本图片
+    return samples[0]
 
 
 regbag = on_notice()

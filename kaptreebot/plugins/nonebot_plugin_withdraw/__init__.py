@@ -15,8 +15,8 @@ withdraw_config = Config(**global_config.dict())
 msg_ids = {}
 max_size = withdraw_config.withdraw_max_size
 
-ch_tome = pd.read_csv('file:///' + os.getcwd() + '/data/pokeme/chehui_tome.txt',
-                      sep=' ', encoding='utf-8')
+chehui_tome_exception = pd.read_csv('file:///' + os.getcwd() + '/data/pokeme/chehui_tome_exception.txt',
+                                    sep=' ', encoding='utf-8')
 
 
 def get_key(msg_type, id):
@@ -80,7 +80,7 @@ async def _(bot: Bot, event: Event, state: T_State):
         await bot.delete_msg(message_id=msg_ids[key][idx])
         msg_ids[key].pop(idx)
     except:
-        k = (random.randint(1, 10000)) % len(ch_tome)
-        result = ch_tome.loc[k]['chehui_tome']
+        k = (random.randint(1, 10000)) % len(chehui_tome_exception)
+        result = chehui_tome_exception.loc[k]['chehui_tome_exception']
         print(result)
         await withdraw.finish(result)

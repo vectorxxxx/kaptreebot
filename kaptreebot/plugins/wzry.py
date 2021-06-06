@@ -58,8 +58,6 @@ async def wzpic_(bot: Bot, event: Event):
             message=MessageSegment.image(pic),
         )
 
-# 深度学习过程中，需要制作训练集和验证集、测试集
-
 
 def get_picture(heroname):
     filepath = os.getcwd()+'/data/wzry/skin'
