@@ -8,7 +8,7 @@ from lxml import etree
 import requests
 import json
 import os
-import re
+import random
 
 # 要操作的properties文件的路径
 file_path = os.getcwd() + '/properties/cheat/others.properties'
@@ -42,11 +42,12 @@ def get_tiktok():
     c = json.loads(res.text)
     if c['code'] != 200:
         return error_info
-    url = ''
+    url_list = ''
     for news in c['newslist']:
-        url = news['shareurl']
-        print(url)
-    url_video = parse_video(url)
+        url_list.append(news['shareurl'])
+    url_random = url_list[random.randint(0, len(url_list))]
+    print('url_randomw=' + url_random)
+    url_video = parse_video(url_random)
     return url_video
 
 
@@ -56,5 +57,5 @@ def parse_video(url):
     dom = etree.HTML(text)
     url_video = dom.xpath(
         '//*[@id="pageletReflowVideo"]/div/div[2]/div[1]/div[1]/video/@src')
-    print(url_video)
+    print('url_video=' + url_video)
     return url_video
