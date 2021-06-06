@@ -57,5 +57,6 @@ def parse_video(url):
     dom = etree.HTML(text)
     url_video = dom.xpath(
         '//*[@id="pageletReflowVideo"]/div/div[2]/div[1]/div[1]/video/@src')
-    print('url_video=' + url_video)
-    return url_video
+    str_video = requests.get(url_video).text
+    print('str_video=' + str_video)
+    return str_video
