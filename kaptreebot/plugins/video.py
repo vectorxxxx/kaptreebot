@@ -28,8 +28,7 @@ async def wzpic_(bot: Bot, event: Event):
         video = str(get_tiktok())
         await bot.send(
             event=event,
-            message=MessageSegment.image(video),
-            at_sedner=True
+            message=MessageSegment.image(video)
         )
 
 # 深度学习过程中，需要制作训练集和验证集、测试集
@@ -43,6 +42,6 @@ def get_tiktok():
         return error_info
     result = ''
     for news in c['newslist']:
-        result = news['coverurl']
+        result = news['shareurl']
         print(result)
         return result

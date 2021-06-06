@@ -12,6 +12,7 @@ file_path = os.getcwd() + '/properties/cheat/others.properties'
 # 读取文件
 props = property.parse(file_path)
 tianxing_api = props.get('tianxing_api')
+tianxing_api2 = props.get('tianxing_api2')
 tianxing_key = props.get('tianxing_key')
 
 error_info = '没有查询到呢~'
@@ -127,3 +128,33 @@ def get_wxhottopic():
     for news in c['newslist']:
         result += 'Top' + str(news['index'] + 1) + '：' + news['word'] + '\n'
     return result
+
+
+# ============每日简报============
+bulletin = on_command('每日简报', priority=2)
+
+
+@bulletin.handle()
+async def getdu_(bot: Bot, event: Event, state: dict):
+    if event.get_user_id != event.self_id:
+        str1 = str(get_bulletin())
+        await bot.send(
+            event=event,
+            message=str1,
+            at_sedner=True
+        )
+
+
+def get_bulletin():
+    url = tianxing_api2 + 'bulletin/index?key=' + tianxing_key
+    res = requests.get(url)
+    c = json.loads(res.text)
+    if c['code'] != 200:
+        return error_info
+    result = ''
+    for news in c['newslist']:
+        result += '@' + news['mtime'] + '\n'
+        result += '#' + news['title'] + '\n'
+        result += ' ░░░░░░░░░░░░░░░░░░░░░░░░░░░░\n'
+        print(result)
+        return result
