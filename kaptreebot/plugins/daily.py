@@ -14,7 +14,7 @@ tianxing_key = props.get('tianxing_key')
 
 error_info = '没有查询到呢~'
 
-# ============新冠疫情============
+# ============每日一句============
 explain = on_command("每日一句", priority=2)
 
 
@@ -65,7 +65,7 @@ def get_duilian():
 
 
 # ============古籍名句============
-gjmj = on_command('古籍名句', priority=2)
+gjmj = on_command('经典名句', priority=2)
 
 
 @gjmj.handle()
@@ -93,7 +93,7 @@ def get_gjmj():
 
 
 # ============百科题库============
-baiketiku = on_command('答题', priority=2)
+baiketiku = on_command('每日一题', priority=2)
 
 
 @baiketiku.handle()
@@ -102,7 +102,7 @@ async def handle_baiketiku_first_receive(bot: Bot, event: Event, state: dict):
         args = str(event.message).strip()  # 首次发送命令时跟随的参数
 
 
-@baiketiku.got("answer", prompt=get_baiketiku())
+@baiketiku.got("answer", args_parser='get_baiketiku')
 async def handle_baiketiku(bot: Bot, event: Event, state: dict):
     answer = ''
     answer_check = await get_check(answer)
@@ -141,3 +141,33 @@ def get_check(answer):
     result = '正确答案是：'+answerReal + '\n' + analyticReal
     print(result)
     return result
+
+
+# ============经典台词============
+dialogue = on_command('经典台词', priority=2)
+
+
+@dialogue.handle()
+async def getdu_(bot: Bot, event: Event, state: dict):
+    if event.get_user_id != event.self_id:
+        str1 = str(get_dialogue())
+        await bot.send(
+            event=event,
+            message=str1,
+            at_sedner=True
+        )
+
+
+def get_dialogue():
+    url = tianxing_api + 'dialogue/index?key=' + tianxing_key
+    res = requests.get(url)
+    c = json.loads(res.text)
+    if c['code'] != 200:
+        return error_info
+    result = ''
+    for news in c['newslist']:
+        result = news['dialogue'] + '\n'
+        result += news['english'] + '\n'
+        result += '------' + news['source']
+        print(result)
+        return result

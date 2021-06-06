@@ -125,5 +125,5 @@ def get_wxhottopic():
         return error_info
     result = ''
     for news in c['newslist']:
-        result = 'Top' + str(news['index'] + 1) + '：' + news['word']
-        return result
+        result += 'Top' + str(news['index'] + 1) + '：' + news['word'] + '\n'
+    return result
