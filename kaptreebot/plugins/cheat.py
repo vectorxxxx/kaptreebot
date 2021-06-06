@@ -67,7 +67,7 @@ def get_n(text):
             return get_n1(text)
         print('知酱：' + result)
         return result
-    except TypeError:
+    except (TypeError, KeyError) as e:
         return '完了完了，突然好难受啊，小知感觉整个人都不好了~~'
 
 
