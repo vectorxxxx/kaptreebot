@@ -92,59 +92,6 @@ def get_gjmj():
         return result
 
 
-# ============百科题库============
-baiketiku = on_command('每日一题', priority=2)
-
-
-@baiketiku.handle()
-async def handle_baiketiku_first_receive(bot: Bot, event: Event, state: dict):
-    if event.get_user_id != event.self_id:
-        args = str(event.message).strip()  # 首次发送命令时跟随的参数
-
-
-@baiketiku.got("answer", args_parser='get_baiketiku')
-async def handle_baiketiku(bot: Bot, event: Event, state: dict):
-    answer = ''
-    answer_check = await get_check(answer)
-    print(answer_check)
-    await baiketiku.finish(answer_check)
-
-
-answerReal = ''
-analyticReal = ''
-
-# 出题
-
-
-def get_baiketiku():
-    url = tianxing_api + 'baiketiku/index?key=' + tianxing_key
-    res = requests.get(url)
-    c = json.loads(res.text)
-    if c['code'] != 200:
-        return error_info
-    result = ''
-    for news in c['newslist']:
-        result += '请听题：' + news['title'] + '\n'
-        result += 'A.' + news['answerA'] + '\n'
-        result += 'B.' + news['answerB'] + '\n'
-        result += 'C.' + news['answerC'] + '\n'
-        result += 'D.' + news['answerD'] + '\n'
-        answerReal = news['answer']
-        analyticReal = news['analytic']
-        print(result)
-        return result
-
-# 回答
-
-
-def get_check(answer):
-    if answer != answerReal:
-        return '回答错误'
-    result = '正确答案是：'+answerReal + '\n' + analyticReal
-    print(result)
-    return result
-
-
 # ============经典台词============
 dialogue = on_command('经典台词', priority=2)
 
