@@ -106,6 +106,7 @@ async def handle_baiketiku_first_receive(bot: Bot, event: Event, state: dict):
 async def handle_baiketiku(bot: Bot, event: Event, state: dict):
     answer = ''
     answer_check = await get_check(answer)
+    print(answer_check)
     await baiketiku.finish(answer_check)
 
 
@@ -130,6 +131,7 @@ def get_baiketiku():
         result += 'D.' + news['answerD'] + '\n'
         answerReal = news['answer']
         analyticReal = news['analytic']
+        print(result)
         return result
 
 # 回答
