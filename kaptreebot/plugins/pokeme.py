@@ -1,8 +1,9 @@
 
-from nonebot import on_notice
+from nonebot import on_notice, on_command
+from nonebot.adapters.cqhttp import Event, Message
 from nonebot.adapters.cqhttp.bot import Bot
 from nonebot.adapters.cqhttp.event import PokeNotifyEvent
-
+from nonebot_plugin_withdraw import withdraw
 import pandas as pd
 import os
 import random
@@ -25,3 +26,13 @@ async def _(bot: Bot, event: PokeNotifyEvent):
             message=result,
             at_sender=True
         )
+
+
+# 撤回自己的消息
+chehui = on_command('撤回', priority=2)
+
+
+@chehui.handle()
+async def chehui_(bot: Bot, event: Event):
+    if event.get_user_id != event.self_id:
+        withdraw()
