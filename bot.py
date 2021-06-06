@@ -3,8 +3,8 @@
 
 import nonebot
 from nonebot.adapters.cqhttp import Bot as CQHTTPBot
-
-
+from nonebot.log import default_format, logger
+from os import path
 # Custom your logger
 #
 # from nonebot.log import logger, default_format
@@ -33,6 +33,14 @@ nonebot.load_plugins("kaptreebot/plugins")
 # config = driver.config
 # do something...
 
+logger.add(path.join('log', "error.log"),
+           rotation="00:00",
+           retention='1 week',
+           diagnose=False,
+           level="ERROR",
+           format=default_format,
+           encoding='utf-8'
+           )
 
 if __name__ == "__main__":
     nonebot.run(app="bot:app")
