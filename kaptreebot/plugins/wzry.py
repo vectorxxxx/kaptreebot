@@ -6,8 +6,8 @@ from nonebot.rule import to_me
 from nonebot.adapters.cqhttp import Bot, Event
 from aiocqhttp import MessageSegment
 
-lines = on_command(["王者语音", '王者台词', '王者音效', "王者荣耀语音", '王者荣耀台词',
-                   '王者荣耀音效', "农药语音", '农药台词', '农药音效'], priority=2)
+lines = on_command("王者语音", aliases={'王者台词', '王者音效', "王者荣耀语音", '王者荣耀台词',
+                   '王者荣耀音效', "农药语音", '农药台词', '农药音效'}, priority=2)
 
 
 @lines.handle()
@@ -45,8 +45,8 @@ def randomFile(fileDir):
     return samples[0]
 
 
-wzpic = on_command(['王者图片', '王者荣耀图片', '农药图片', '王者皮肤',
-                   '王者荣耀皮肤', '农药皮肤'], priority=2)
+wzpic = on_command('王者图片', aliases={'王者荣耀图片', '农药图片', '王者皮肤',
+                   '王者荣耀皮肤', '农药皮肤'}, priority=2)
 
 
 @wzpic.handle()
