@@ -123,9 +123,9 @@ def get_dialogue():
         return result
 
 
-# ============十万为什么============
+# ============十万个为什么============
 
-tenwhy = on_command("十万为什么", priority=2)
+tenwhy = on_command("十万个为什么", priority=2)
 
 
 @tenwhy.handle()

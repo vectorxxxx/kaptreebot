@@ -46,15 +46,15 @@ async def get_jixiong(phone: str):
     result = ''
     for news in c['newslist']:
         result += news['conclusion'] + '\n'
-        result += '        坤        ' + '\n'
-        result += '        ￣        ' + '\n'
-        result += '   兑/        \巽   ' + '\n'
+        result += '            坤            ' + '\n'
+        result += '            ▔            ' + '\n'
+        result += '   兑╱              ╲巽   ' + '\n'
         result += '\n'
-        result += '离|     ' + news['result'] + '      |坎' + '\n'
+        result += '离▏         ' + news['result'] + '          ▕坎' + '\n'
         result += '\n'
-        result += '   震\        /艮   ' + '\n'
-        result += '        __        ' + '\n'
-        result += '        乾        ' + '\n'
+        result += '   震╲              ╱艮   ' + '\n'
+        result += '            ▁            ' + '\n'
+        result += '            乾            ' + '\n'
         result += '★★★' + news['score'] + '分'
         print(result)
         return result

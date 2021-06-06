@@ -29,7 +29,6 @@ async def get_hero(heroname: str):
     if not os.path.exists(filepath):
         return '一定要说对说全哦，不然人家不知道哒~'
     sample = randomFile(filepath)
-    print(sample)
     resultpath = 'file:///'+filepath + '/' + sample
     print(resultpath)
     sst = MessageSegment.record(file=str(resultpath))
