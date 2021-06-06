@@ -104,7 +104,7 @@ def get_epidemic():
 
 # ============微信热点============
 
-wxhottopic = on_command('微信热点', priority=2)
+wxhottopic = on_command('微信热点', aliases={'今日热点', '每日热点'}, priority=2)
 
 
 @wxhottopic.handle()
@@ -131,7 +131,7 @@ def get_wxhottopic():
 
 
 # ============每日简报============
-bulletin = on_command('每日简报', priority=2)
+bulletin = on_command('每日简报', aliases={'今日简报'}, priority=2)
 
 
 @bulletin.handle()
