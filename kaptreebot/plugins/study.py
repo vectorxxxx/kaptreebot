@@ -136,7 +136,7 @@ async def handle_first_receive(bot: Bot, event: Event, state: dict):
             state["word"] = args  # 如果用户发送了参数则直接赋值
 
 
-@tenwhy.got("word", prompt="你想了解什么知识呢~")
+@tenwhy.got("word", prompt="你想了解什么知识呢，请输入关键字哦~")
 async def handle_city(bot: Bot, event: Event, state: dict):
     word = state["word"]
     result = await get_tenwhy(word)
@@ -144,7 +144,7 @@ async def handle_city(bot: Bot, event: Event, state: dict):
 
 
 async def get_tenwhy(word: str):
-    url = tianxing_api + 'dyvideohot/index?key=' + tianxing_key
+    url = tianxing_api + 'dyvideohot/index?key=' + tianxing_key + '&word=' + word
     res = requests.get(url)
     c = json.loads(res.text)
     if c['code'] != 200:
