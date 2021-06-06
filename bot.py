@@ -23,8 +23,9 @@ driver.register_adapter("cqhttp", CQHTTPBot)
 
 
 nonebot.load_builtin_plugins()
-nonebot.load_plugin("nonebot_plugin_withdraw")
+# nonebot.load_plugin("nonebot_plugin_withdraw")
 nonebot.load_plugin("nonebot_plugin_apscheduler")  # 加上此行代码
+nonebot.load_plugin('nonebot_plugin_picsearcher')
 nonebot.load_plugins("kaptreebot/plugins")
 
 # Modify some config / config depends on loaded configs
