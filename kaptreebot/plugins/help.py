@@ -16,21 +16,21 @@ async def help_(bot: Bot, event: Event, state: dict):
     if event.get_user_id != event.self_id:
         table = PrettyTable(['序号', '命令', '示例'])
         table.add_row(['1', '句子', '每日一句'])
-        table.add_row(['2', '天气', '天气 成都'])
-        table.add_row(['3', '翻译', '翻译 中出'])
-        table.add_row(['4', '戳一戳', '戳头像'])
-        table.add_row(['5', '图片', 'R18'])
-        table.add_row(['6', '抱抱', '我要抱抱'])
-        table.add_row(['7', '语录', '开始网抑'])
-        table.add_row(['8', '注意', '群聊@我或/'])
-        table.add_row(['9', '更多', '请体验触发'])
+        table.add_row(['2', '天气查询', '天气 成都'])
+        table.add_row(['3', '翻译', '翻译 什么他妈的叫他妈的惊喜'])
+        table.add_row(['4', '戳一戳', '手机上双击戳我头像'])
+        table.add_row(['5', '精彩图片', 'setu，R18，MC酱'])
+        table.add_row(['6', '亲亲抱抱', '我要亲亲，我要抱抱'])
+        table.add_row(['7', '语录', '毒鸡汤，开始网抑，彩虹屁，朋友圈文案'])
+        table.add_row(['8', '注意', '群聊需要@我或者开头加上/'])
+        table.add_row(['9', '更多功能', '可以亲自体验触发或输入指令：其他功能'])
         await bot.send(
             event=event,
             message=str(table)
         )
 
-help_hide = on_command(
-    "隐藏菜单", aliases={'隐藏帮助', '隐藏功能', '其他菜单',  '其他帮助', '其他功能'}, priority=2)
+help_hide = on_command("隐藏菜单", aliases={
+                       '隐藏帮助', '隐藏功能', '其他菜单',  '其他帮助', '其他功能', '更多菜单',  '更多帮助', '更多功能'}, priority=2)
 
 
 @help_hide.handle()
