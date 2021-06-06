@@ -155,6 +155,5 @@ def get_bulletin():
     for news in c['newslist']:
         result += '@' + news['mtime'] + '\n'
         result += '#' + news['title'] + '\n'
-        result += ' ░░░░░░░░░░░░░░░░░░░░░░░░░░░░\n'
         print(result)
     return result
