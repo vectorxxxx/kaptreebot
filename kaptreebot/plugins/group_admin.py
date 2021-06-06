@@ -100,15 +100,15 @@ chehui = on_notice()
 @chehui.handle()
 async def cheh(bot: Bot, event: GroupRecallNoticeEvent):
     if event.is_tome():
-        coin = random.randint(0, 1)
+        coin = random.randint(0, 2)
         if 0 == coin:
             k = (random.randint(1, 10000)) % len(chehui_tome)
-            coin = random.randint(0, 1)
+            coin = random.randint(0, 2)
             word = ''
             if 0 == coin:
                 word = chehui_tome.loc[k]['chehui_tome']
                 print(word)
-            coin = random.randint(0, 1)
+            coin = random.randint(0, 2)
             pic = ''
             if 0 == coin:
                 pic = get_picture()
