@@ -18,7 +18,8 @@ error_info = '没有查询到呢~'
 
 
 # ============手机号占卜============
-jixiong = on_command("手机号占卜", aliases={'手机号算卦', '手机号占卦', '手机号算命', '手机号占星'} priority=2)
+jixiong = on_command(
+    '手机号占卜', aliases={'手机号算卦', '手机号占卦', '手机号算命', '手机号占星'}, priority=2)
 
 
 @jixiong.handle()
