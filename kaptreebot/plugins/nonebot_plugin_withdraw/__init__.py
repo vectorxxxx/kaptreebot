@@ -76,23 +76,11 @@ async def _(bot: Bot, event: Event, state: T_State):
         return
 
     try:
-        coin = random.randint(0, 2)
-        if 0 == coin:
-            del_msg(num, bot, key)
-        else:
-            del_excp()
+        idx = -num - 1
+        await bot.delete_msg(message_id=msg_ids[key][idx])
+        msg_ids[key].pop(idx)
     except:
-        del_excp()
-
-
-async def del_msg(num, bot: Bot, key):
-    idx = -num - 1
-    await bot.delete_msg(message_id=msg_ids[key][idx])
-    msg_ids[key].pop(idx)
-
-
-async def del_excp():
-    k = (random.randint(1, 10000)) % len(chehui_tome_exception)
-    result = chehui_tome_exception.loc[k]['chehui_tome_exception']
-    print(result)
-    await withdraw.finish(result)
+        k = (random.randint(1, 10000)) % len(chehui_tome_exception)
+        result = chehui_tome_exception.loc[k]['chehui_tome_exception']
+        print(result)
+        await withdraw.finish(result)
