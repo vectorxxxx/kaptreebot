@@ -42,7 +42,7 @@ def get_tiktok():
     c = json.loads(res.text)
     if c['code'] != 200:
         return error_info
-    url_list = ''
+    url_list = []
     for news in c['newslist']:
         url_list.append(news['shareurl'])
     url_random = url_list[random.randint(0, len(url_list))]
