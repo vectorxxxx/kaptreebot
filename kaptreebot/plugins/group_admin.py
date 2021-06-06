@@ -103,21 +103,14 @@ async def cheh(bot: Bot, event: GroupRecallNoticeEvent):
         coin = random.randint(0, 2)
         if 0 == coin:
             k = (random.randint(1, 10000)) % len(chehui_tome)
-            coin = random.randint(0, 2)
-            word = ''
-            if 0 == coin:
-                word = chehui_tome.loc[k]['chehui_tome']
-                print(word)
-            coin = random.randint(0, 2)
-            pic = ''
-            if 0 == coin:
-                pic = get_picture()
+            word = chehui_tome.loc[k]['chehui_tome']
+            print(word)
+            pic = get_picture()
             result = word + '\n' + MessageSegment.image(pic)
-            if word != '' or pic != '':
-                await bot.send(
-                    event=event,
-                    message=result
-                )
+            await bot.send(
+                event=event,
+                message=result
+            )
     else:
         k = (random.randint(1, 10000)) % len(ch)
         result = ch.loc[k]['chehui']

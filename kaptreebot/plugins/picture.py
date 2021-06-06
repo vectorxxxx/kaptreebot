@@ -16,7 +16,10 @@ import json
 
 # se图
 def get_setu():
-    url = 'https://api.ixiaowai.cn/api/api.php'
+    urls = ['https://api.ixiaowai.cn/api/api.php',
+            'http://api.mtyqx.cn/api/random.php']
+    url = urls[random.randint(0, len(urls))]
+    print(url)
     headers = {
         'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.146 Safari/537.36'
     }
@@ -47,7 +50,8 @@ def get_R18():
     return c
 
 
-st = on_keyword(['setu', '涩图', '色图', '每日一图', '黄图', '福利'], priority=2)
+st = on_keyword(['setu', '涩图', '色图', '每日一图', '黄图',
+                '福利', '富婆', '老婆', '萝莉'], priority=2)
 
 
 @st.handle()
@@ -59,7 +63,7 @@ async def st_(bot: Bot, event: Event, state: dict):
         )
 
 
-R18 = on_keyword(['r18', 'R18', 'r19', 'R19', 'r28', 'R28'], priority=2)
+R18 = on_keyword(['r18', 'R18', 'r19', 'R19', 'r28', 'R28', '二次元'], priority=2)
 
 
 @R18.handle()
