@@ -23,9 +23,14 @@ driver.register_adapter("cqhttp", CQHTTPBot)
 
 
 nonebot.load_builtin_plugins()
-# nonebot.load_plugin("nonebot_plugin_withdraw")
-nonebot.load_plugin("nonebot_plugin_apscheduler")  # 加上此行代码
+nonebot.load_plugin("nonebot_plugin_test")
+# 订阅推送
+nonebot.load_plugin("nonebot_plugin_apscheduler")
+# 搜图
 nonebot.load_plugin('nonebot_plugin_picsearcher')
+# 点歌
+nonebot.load_plugin('nonebot_plugin_songpicker2')
+# 个性化模块
 nonebot.load_plugins("kaptreebot/plugins")
 
 # Modify some config / config depends on loaded configs
@@ -33,6 +38,7 @@ nonebot.load_plugins("kaptreebot/plugins")
 # config = driver.config
 # do something...
 
+# 日志信息
 logger.add(path.join('log', "error.log"),
            rotation="00:00",
            retention='1 week',

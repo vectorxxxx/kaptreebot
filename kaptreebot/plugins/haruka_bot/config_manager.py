@@ -211,7 +211,7 @@ async def _(bot: Bot, event: Event, state: dict):
     await permission_on.finish("权限不足，目前只有管理员才能使用")
 
 
-help = on_command('b站帮助', rule=to_me(), priority=5)
+help = on_command('b站帮助', rule=to_me(), priority=2)
 
 
 @help.handle()
