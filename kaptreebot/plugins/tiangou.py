@@ -52,7 +52,7 @@ def get_new2():
     return str1
 
 
-exlpain = on_keyword(["情感语录", '舔狗日记'], priority=2)
+exlpain = on_command("情感语录", aliases={'舔狗日记'}, priority=2)
 
 
 @exlpain.handle()
@@ -69,7 +69,7 @@ async def slove(bot: Bot, event: Event, state: dict):
             at_sender=True
         )
 
-qinghua = on_keyword("情话", priority=2)
+qinghua = on_command("情话", priority=2)
 
 
 @qinghua.handle()
@@ -95,7 +95,7 @@ async def lvcha_(bot: Bot, event: Event):
 # ============古代情诗============
 error_info = '没有查询到呢~'
 
-qingshi = on_keyword('情诗', priority=2)
+qingshi = on_command('情诗', priority=2)
 
 
 @qingshi.handle()
