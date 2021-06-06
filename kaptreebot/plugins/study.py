@@ -38,7 +38,7 @@ def get_news():
 
 
 # ============经典对联============
-duilian = on_command('经典对联', aliases={'对联'} priority=2)
+duilian = on_command('经典对联', aliases={'对联'}, priority=2)
 
 
 @ duilian.handle()
