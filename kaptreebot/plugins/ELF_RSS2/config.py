@@ -11,7 +11,7 @@ class ELFConfig(BaseConfig):
         extra = Extra.allow
 
     rss_proxy: str = ""
-    rsshub: AnyHttpUrl = "https://rsshub.app"
+    rsshub: AnyHttpUrl = "https://rsshub.rssforever.com"
     rsshub_backup: List[AnyHttpUrl] = []
     db_cache_expire = 30
     limit = 50
