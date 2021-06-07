@@ -158,7 +158,7 @@ def get_n2(text):
         return '呸！渣男~'
 
 
-tuling = on_message(priority=5)  # permission= PRIVATE
+tuling = on_message(priority=10)  # permission= PRIVATE
 
 
 @tuling.handle()
