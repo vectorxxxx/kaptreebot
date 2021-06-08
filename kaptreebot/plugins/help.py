@@ -36,11 +36,12 @@ news_hide = on_command('新闻菜单', priority=2)
 @news_hide.handle()
 async def news_(bot: Bot, event: Event, state: dict):
     if event.get_user_id != event.self_id:
-        table = PrettyTable(['新闻菜单'])
-        table.add_row(['今日疫情'])
-        table.add_row(['今日热点'])
-        table.add_row(['今日简报'])
-        table.add_row(['今日IT'])
+        table = PrettyTable(['序号','新闻菜单'])
+        table.align['新闻菜单'] = 'l'
+        table.add_row(['1','今日疫情'])
+        table.add_row(['2','今日热点'])
+        table.add_row(['3','今日简报'])
+        table.add_row(['4','今日IT'])
         await bot.send(
             event=event,
             message=str(table)
@@ -78,13 +79,14 @@ help_hide = on_command('娱乐菜单', priority=2)
 @help_hide.handle()
 async def hhelp_hide_(bot: Bot, event: Event, state: dict):
     if event.get_user_id != event.self_id:
-        table = PrettyTable(['娱乐菜单'])
-        table.add_row(['点歌'])
-        table.add_row(['王者图片/语音'])
-        table.add_row(['召唤妲己'])
-        table.add_row(['周公解梦'])
-        table.add_row(['绕口令'])
-        table.add_row(['占卜'])
+        table = PrettyTable(['序号','娱乐菜单'])
+        table.align['娱乐菜单'] = 'l'
+        table.add_row(['1','点歌'])
+        table.add_row(['2','王者图片/语音'])
+        table.add_row(['3','召唤妲己'])
+        table.add_row(['4','周公解梦'])
+        table.add_row(['5','绕口令'])
+        table.add_row(['6','占卜'])
         await bot.send(
             event=event,
             message=str(table)
@@ -97,12 +99,13 @@ help_hide = on_command('舔狗菜单', priority=2)
 @help_hide.handle()
 async def hhelp_hide_(bot: Bot, event: Event, state: dict):
     if event.get_user_id != event.self_id:
-        table = PrettyTable(['舔狗菜单'])
-        table.add_row(['每日必舔'])
-        table.add_row(['每日绿茶'])
-        table.add_row(['每日情话'])
-        table.add_row(['每日情诗'])
-        table.add_row(['每日土味'])
+        table = PrettyTable(['序号','舔狗菜单'])
+        table.align['舔狗菜单'] = 'l'
+        table.add_row(['1','每日必舔'])
+        table.add_row(['2','每日绿茶'])
+        table.add_row(['3','每日情话'])
+        table.add_row(['4','每日情诗'])
+        table.add_row(['5','每日土味'])
         await bot.send(
             event=event,
             message=str(table)
