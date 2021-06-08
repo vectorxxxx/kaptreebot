@@ -73,7 +73,7 @@ async def handle_first_receive(bot: Bot, event: Event, state: dict):
 
 
 @zgjm.got("text", prompt="你梦见了什么？")
-async def handle_hero(bot: Bot, event: Event, state: dict):
+async def handle_zgjm(bot: Bot, event: Event, state: dict):
     text = state["text"]
     result = await get_zgjm(text)
     await zgjm.finish(result)
@@ -95,3 +95,30 @@ async def get_zgjm(text: str):
     res = '梦见' + text + '：\n' + result
     return res
    
+
+# ============绕口令============
+rkl = on_command('绕口令', priority=2)
+
+
+@rkl.handle()
+async def getrkl_(bot: Bot, event: Event, state: dict):
+    if event.get_user_id != event.self_id:
+        str1 = str(get_rkl())
+        await bot.send(
+            event=event,
+            message=str1,
+            at_sedner=True
+        )
+
+
+def get_rkl():
+    url = tianxing_api + 'rkl/index?key=' + tianxing_key2
+    res = requests.get(url)
+    c = json.loads(res.text)
+    if c['code'] != 200:
+        return error_info
+    result = ''
+    for news in c['newslist']:
+        result = news['content']
+        print(result)
+        return result

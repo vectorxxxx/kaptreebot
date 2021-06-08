@@ -5,6 +5,7 @@ from aiocqhttp import MessageSegment
 import requests
 import json
 import os
+import random
 
 # 要操作的properties文件的路径
 file_path = os.getcwd() + '/properties/cheat/others.properties'
@@ -12,6 +13,7 @@ file_path = os.getcwd() + '/properties/cheat/others.properties'
 props = property.parse(file_path)
 tianxing_api = props.get('tianxing_api')
 tianxing_key = props.get('tianxing_key')
+tianxing_key2 = props.get('tianxing_key2')
 
 error_info = '没有查询到呢~'
 
@@ -38,7 +40,7 @@ def get_news():
 
 
 # ============经典对联============
-duilian = on_command('经典对联', aliases={'对联'}, priority=2)
+duilian = on_command('经典对联', aliases={'对联','每日对联','今日对联'}, priority=2)
 
 
 @ duilian.handle()
@@ -66,7 +68,7 @@ def get_duilian():
 
 
 # ============古籍名句============
-gjmj = on_command('古籍名句', priority=2)
+gjmj = on_command('古籍名句',  aliases={'每日名句','今日名句'},priority=2)
 
 
 @gjmj.handle()
@@ -94,7 +96,7 @@ def get_gjmj():
 
 
 # ============经典台词============
-dialogue = on_command('经典台词', aliases={'台词'}, priority=2)
+dialogue = on_command('经典台词', aliases={'台词','每日台词','今日台词'}, priority=2)
 
 
 @dialogue.handle()
@@ -157,7 +159,7 @@ async def get_tenwhy(word: str):
 
 
 # ============民国句子============
-mgjuzi = on_command('民国句子', priority=2)
+mgjuzi = on_command('民国句子',aliases={'今日句子','每日句子'} priority=2)
 
 
 @mgjuzi.handle()
@@ -185,7 +187,7 @@ def get_mgjuzi():
 
 
 # ============文化谚语============
-proverb = on_command('文化谚语', aliases={'谚语'}, priority=2)
+proverb = on_command('文化谚语', aliases={'谚语','今日谚语','每日谚语'}, priority=2)
 
 
 @proverb.handle()
@@ -242,7 +244,7 @@ def get_healthtip():
 
 
 # ============故事大全============
-story = on_command('故事大全', aliases={'讲故事', '讲个故事', '故事会'}, priority=2)
+story = on_command('故事大全', aliases={'讲故事', '讲个故事', '故事会','今日故事','每日故事'}, priority=2)
 
 
 @story.handle()
@@ -265,5 +267,86 @@ def get_story():
     result = ''
     for news in c['newslist']:
         result = '『' + news['title'] + '』\n' + news['content']
+        print(result)
+        return result
+
+# ============歇后语============
+xiehou = on_command('歇后语', priority=2)
+
+
+@xiehou.handle()
+async def getxiehou_(bot: Bot, event: Event, state: dict):
+    if event.get_user_id != event.self_id:
+        str1 = str(get_xiehou())
+        await bot.send(
+            event=event,
+            message=str1,
+            at_sedner=True
+        )
+
+
+def get_xiehou():
+    url = tianxing_api + 'xiehou/index?key=' + tianxing_key2
+    res = requests.get(url)
+    c = json.loads(res.text)
+    if c['code'] != 200:
+        return error_info
+    result = ''
+    for news in c['newslist']:
+        result = news['quest'] + '——' + news['result']
+        print(result)
+        return result
+
+# ============简说历史============
+pitlishi = on_command('简说历史', aliases={'每日历史','历史小知识'} priority=2)
+
+
+@pitlishi.handle()
+async def getpitlishi_(bot: Bot, event: Event, state: dict):
+    if event.get_user_id != event.self_id:
+        str1 = str(get_pitlishi())
+        await bot.send(
+            event=event,
+            message=str1,
+            at_sedner=True
+        )
+
+
+def get_pitlishi():
+    url = tianxing_api + 'pitlishi/index?key=' + tianxing_key2
+    res = requests.get(url)
+    c = json.loads(res.text)
+    if c['code'] != 200:
+        return error_info
+    result = ''
+    for news in c['newslist']:
+        result = news['content']
+        print(result)
+        return result
+
+# ============唐诗大全============
+poetries = on_command('唐诗大全', aliases={'每日唐诗'} priority=2)
+
+
+@poetries.handle()
+async def getpoetries_(bot: Bot, event: Event, state: dict):
+    if event.get_user_id != event.self_id:
+        str1 = str(get_poetries())
+        await bot.send(
+            event=event,
+            message=str1,
+            at_sedner=True
+        )
+
+
+def get_poetries():
+    url = tianxing_api + 'poetries/index?key=' + tianxing_key2 + '&num=1&page=' + random.randint(0, 40000)
+    res = requests.get(url)
+    c = json.loads(res.text)
+    if c['code'] != 200:
+        return error_info
+    result = ''
+    for news in c['newslist']:
+        result = news['content']
         print(result)
         return result
