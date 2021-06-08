@@ -14,6 +14,7 @@ file_path = os.getcwd() + '/properties/cheat/others.properties'
 props = property.parse(file_path)
 tianxing_api = props.get('tianxing_api')
 tianxing_key = props.get('tianxing_key')
+tianxing_key2 = props.get('tianxing_key2')
 error_info = '没有查询到呢~'
 
 
