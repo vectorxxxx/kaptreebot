@@ -340,7 +340,7 @@ async def getpoetries_(bot: Bot, event: Event, state: dict):
 
 
 def get_poetries():
-    url = tianxing_api + 'poetries/index?key=' + tianxing_key2 + '&num=1&page=' + random.randint(0, 40000)
+    url = tianxing_api + 'poetries/index?key=' + tianxing_key2 + '&num=1&page=' + str(random.randint(0, 40000))
     res = requests.get(url)
     c = json.loads(res.text)
     if c['code'] != 200:
