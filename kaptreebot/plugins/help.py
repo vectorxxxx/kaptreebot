@@ -36,7 +36,7 @@ news_hide = on_command('新闻菜单', priority=2)
 @news_hide.handle()
 async def news_(bot: Bot, event: Event, state: dict):
     if event.get_user_id != event.self_id:
-        table = PrettyTable('新闻菜单')
+        table = PrettyTable(['新闻菜单'])
         table.add_row(['今日疫情'])
         table.add_row(['今日热点'])
         table.add_row(['今日简报'])
@@ -54,7 +54,7 @@ literature_hide = on_command('文艺菜单', priority=2)
 @literature_hide.handle()
 async def literature_hide_(bot: Bot, event: Event, state: dict):
     if event.get_user_id != event.self_id:
-        table = PrettyTable('文艺菜单')
+        table = PrettyTable(['文艺菜单'])
         table.add_row(['每日一句'])
         table.add_row(['每日百科'])
         table.add_row(['每日历史'])
@@ -77,7 +77,7 @@ help_hide = on_command('娱乐菜单', priority=2)
 @help_hide.handle()
 async def hhelp_hide_(bot: Bot, event: Event, state: dict):
     if event.get_user_id != event.self_id:
-        table = PrettyTable('娱乐菜单')
+        table = PrettyTable(['娱乐菜单'])
         table.add_row(['点歌'])
         table.add_row(['王者图片/语音'])
         table.add_row(['召唤妲己'])
@@ -96,7 +96,7 @@ help_hide = on_command('舔狗菜单', priority=2)
 @help_hide.handle()
 async def hhelp_hide_(bot: Bot, event: Event, state: dict):
     if event.get_user_id != event.self_id:
-        table = PrettyTable('舔狗菜单')
+        table = PrettyTable(['舔狗菜单'])
         table.add_row(['每日必舔'])
         table.add_row(['每日绿茶'])
         table.add_row(['每日情话'])
