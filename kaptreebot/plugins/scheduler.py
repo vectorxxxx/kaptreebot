@@ -6,7 +6,7 @@ import nonebot
 
 
 async def day_limits():
-    (bot,) = nonebot.get_bots().values()
+    bot = nonebot.get_bots()['2849980255']
     await bot.send_msg(
         message_type="private", user_id='1402758731', message='好困啊~'
     )
