@@ -23,7 +23,7 @@ increase = on_notice()
 @increase.handle()
 async def increase(bot: Bot, event: GroupIncreaseNoticeEvent):
     if event.get_user_id != event.self_id:
-        msg = '哇~是新的rbq！'
+        msg = '哇~是新的rbq！欢迎呀，很高兴为您服务呦~\n如果有什么问题，可以对我说“help”'
         await bot.send(
             event=event,
             message=msg,
