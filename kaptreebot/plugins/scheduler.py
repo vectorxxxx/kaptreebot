@@ -13,7 +13,7 @@ async def day_limits():
 
 
 scheduler = AsyncIOScheduler()
-scheduler.add_job(day_limits, 'cron', hour=2, minute=5,
+scheduler.add_job(day_limits, 'cron', hour=2, minute=8,
                   misfire_grace_time=3600, timezone='Asia/Shanghai')
 
 scheduler.start()
