@@ -6,7 +6,7 @@ import os
 scheduler = require('nonebot_plugin_apscheduler').scheduler
 
 
-@scheduler.scheduled_job('cron', hour='3', minute='6', id='goodm')
+@scheduler.scheduled_job('cron', hour='3', minute='8', id='goodm')
 async def day_limits():
     (bot,) = nonebot.get_bots().values()
     if bot is not None:
