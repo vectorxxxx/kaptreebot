@@ -54,7 +54,8 @@ literature_hide = on_command('文艺菜单', priority=2)
 @literature_hide.handle()
 async def literature_hide_(bot: Bot, event: Event, state: dict):
     if event.get_user_id != event.self_id:
-        table = PrettyTable(['序号','文艺菜单'])
+        table = PrettyTable()
+        table.field_names = [['序号','文艺菜单']]
         table.align['文艺菜单'] = 'l'
         table.add_row(['1','每日一句'])
         table.add_row(['2','每日百科'])
