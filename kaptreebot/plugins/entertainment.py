@@ -18,9 +18,8 @@ tianxing_key2 = props.get('tianxing_key2')
 error_info = '没有查询到呢~'
 
 
-# ============手机号占卜============
-jixiong = on_command('手机号占卜', aliases={'手机号算卦', '手机号占卦', '手机号算命', '手机号占星',
-                     '手机算卦', '手机占卦', '手机算命', '手机占星', '占卜', '算卦', '占卦', '算命', '占星'}, priority=2)
+# ============占卜============
+jixiong = on_command('占卜', aliases={'算卦', '占卦', '算命', '占星'},rule=to_me, priority=2)
 
 
 @jixiong.handle()
@@ -61,7 +60,7 @@ async def get_jixiong(phone: str):
         return result
 
 # 周公解梦
-zgjm = on_command('周公解梦', priority=2)
+zgjm = on_command('周公解梦',rule=to_me, priority=2)
 
 
 @zgjm.handle()
@@ -97,7 +96,7 @@ async def get_zgjm(text: str):
    
 
 # ============绕口令============
-rkl = on_command('绕口令', priority=2)
+rkl = on_command('绕口令', rule=to_me,priority=2)
 
 
 @rkl.handle()

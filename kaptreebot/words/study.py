@@ -1,5 +1,6 @@
 from commons import property
 from nonebot import on_command
+from nonebot.rule import to_me
 from nonebot.adapters.cqhttp import Bot, Event
 from aiocqhttp import MessageSegment
 import requests
@@ -17,30 +18,8 @@ tianxing_key2 = props.get('tianxing_key2')
 
 error_info = '没有查询到呢~'
 
-# ============每日一句============
-explain = on_command("每日一句", priority=2)
-
-
-@explain.handle()
-async def explainsend(bot: Bot, event: Event, state: dict):
-    if event.get_user_id != event.self_id:
-        await bot.send(
-            event=event,
-            message=get_news()
-        )
-
-
-def get_news():
-    url = 'https://v1.hitokoto.cn/'
-    res = requests.get(url)
-    c = json.loads(res.text)
-    ans = c['hitokoto']+'---->'+c['from']
-    print(ans)
-    return ans
-
-
 # ============经典对联============
-duilian = on_command('经典对联', aliases={'对联','每日对联','今日对联'}, priority=2)
+duilian = on_command('对联', aliases={'每日对联'}, rule=to_me,priority=2)
 
 
 @ duilian.handle()
@@ -66,37 +45,8 @@ def get_duilian():
         print(result)
         return result
 
-
-# ============古籍名句============
-gjmj = on_command('古籍名句',  aliases={'每日名句','今日名句','名句'},priority=2)
-
-
-@gjmj.handle()
-async def getdu_(bot: Bot, event: Event, state: dict):
-    if event.get_user_id != event.self_id:
-        str1 = str(get_gjmj())
-        await bot.send(
-            event=event,
-            message=str1,
-            at_sedner=True
-        )
-
-
-def get_gjmj():
-    url = tianxing_api + 'gjmj/index?key=' + tianxing_key
-    res = requests.get(url)
-    c = json.loads(res.text)
-    if c['code'] != 200:
-        return error_info
-    result = ''
-    for news in c['newslist']:
-        result = news['content'] + '\n------' + news['source']
-        print(result)
-        return result
-
-
 # ============经典台词============
-dialogue = on_command('经典台词', aliases={'台词','每日台词','今日台词'}, priority=2)
+dialogue = on_command('台词', aliases={'每日台词'}, rule=to_me,priority=2)
 
 
 @dialogue.handle()
@@ -127,7 +77,7 @@ def get_dialogue():
 
 # ============十万个为什么============
 
-tenwhy = on_command("十万个为什么", priority=2)
+tenwhy = on_command("每日百科", rule=to_me,priority=2)
 
 
 @tenwhy.handle()
@@ -158,36 +108,8 @@ async def get_tenwhy(word: str):
     return result
 
 
-# ============民国句子============
-mgjuzi = on_command('民国句子',aliases={'今日句子','每日句子','句子'}, priority=2)
-
-
-@mgjuzi.handle()
-async def getdu_(bot: Bot, event: Event, state: dict):
-    if event.get_user_id != event.self_id:
-        str1 = str(get_mgjuzi())
-        await bot.send(
-            event=event,
-            message=str1,
-            at_sedner=True
-        )
-
-
-def get_mgjuzi():
-    url = tianxing_api + 'mgjuzi/index?key=' + tianxing_key
-    res = requests.get(url)
-    c = json.loads(res.text)
-    if c['code'] != 200:
-        return error_info
-    result = ''
-    for news in c['newslist']:
-        result = news['content'] + '\n------' + news['author']
-        print(result)
-        return result
-
-
 # ============文化谚语============
-proverb = on_command('文化谚语', aliases={'谚语','今日谚语','每日谚语'}, priority=2)
+proverb = on_command('谚语', aliases={'每日谚语'},rule=to_me, priority=2)
 
 
 @proverb.handle()
@@ -213,38 +135,8 @@ def get_proverb():
         print(result)
         return result
 
-
-# ============健康小提示============
-healthtip = on_command(
-    '健康小提示', aliases={'健康知识', '健康提示', '健康提醒', '健康小知识'}, priority=2)
-
-
-@healthtip.handle()
-async def getdu_(bot: Bot, event: Event, state: dict):
-    if event.get_user_id != event.self_id:
-        str1 = str(get_healthtip())
-        await bot.send(
-            event=event,
-            message=str1,
-            at_sedner=True
-        )
-
-
-def get_healthtip():
-    url = tianxing_api + 'healthtip/index?key=' + tianxing_key
-    res = requests.get(url)
-    c = json.loads(res.text)
-    if c['code'] != 200:
-        return error_info
-    result = ''
-    for news in c['newslist']:
-        result = news['content']
-        print(result)
-        return result
-
-
 # ============故事大全============
-story = on_command('故事大全', aliases={'讲故事', '讲个故事', '故事会','今日故事','每日故事','故事'}, priority=2)
+story = on_command('故事', aliases={'每日故事'},rule=to_me, priority=2)
 
 
 @story.handle()
@@ -271,7 +163,7 @@ def get_story():
         return result
 
 # ============歇后语============
-xiehou = on_command('歇后语', priority=2)
+xiehou = on_command('歇后语', rule=to_me,priority=2)
 
 
 @xiehou.handle()
@@ -298,7 +190,7 @@ def get_xiehou():
         return result
 
 # ============简说历史============
-pitlishi = on_command('简说历史', aliases={'每日历史','历史小知识','讲段历史','说段历史'}, priority=2)
+pitlishi = on_command('历史', aliases={'每日历史'},rule=to_me, priority=2)
 
 
 @pitlishi.handle()
@@ -326,7 +218,7 @@ def get_pitlishi():
     return res
 
 # ============唐诗大全============
-poetries = on_command('唐诗大全', aliases={'每日唐诗','唐诗'}, priority=2)
+poetries = on_command('唐诗', aliases={'每日唐诗'},rule=to_me, priority=2)
 
 
 @poetries.handle()
@@ -353,14 +245,16 @@ def get_poetries():
     print(res)
     return res
 
-# ============英语一句话============
-ensentence = on_command('英语一句话', aliases={'每日英语','今日英语'}, priority=2)
 
 
-@ensentence.handle()
-async def getensentence_(bot: Bot, event: Event, state: dict):
+# ============健康小提示============
+healthtip = on_command('健康', aliases={'每日健康'},rule=to_me, priority=2)
+
+
+@healthtip.handle()
+async def getdu_(bot: Bot, event: Event, state: dict):
     if event.get_user_id != event.self_id:
-        str1 = str(get_ensentence())
+        str1 = str(get_healthtip())
         await bot.send(
             event=event,
             message=str1,
@@ -368,15 +262,14 @@ async def getensentence_(bot: Bot, event: Event, state: dict):
         )
 
 
-def get_ensentence():
-    url = tianxing_api + 'ensentence/index?key=' + tianxing_key2
+def get_healthtip():
+    url = tianxing_api + 'healthtip/index?key=' + tianxing_key
     res = requests.get(url)
     c = json.loads(res.text)
     if c['code'] != 200:
         return error_info
     result = ''
     for news in c['newslist']:
-        result += news['en'] +'\n' + news['zh'] 
-    res = result.replace('<br>','\n').replace('<br/>','\n')
-    print(res)
-    return res
+        result = news['content']
+        print(result)
+        return result

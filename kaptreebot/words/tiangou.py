@@ -1,4 +1,6 @@
 from nonebot import on_command, on_keyword
+from nonebot import rule
+from nonebot.rule import to_me
 from nonebot.adapters.cqhttp import Bot, Event
 from requests_html import HTMLSession
 from commons import property
@@ -13,6 +15,7 @@ file_path = os.getcwd() + '/properties/cheat/others.properties'
 props = property.parse(file_path)
 tianxing_api = props.get('tianxing_api')
 tianxing_key = props.get('tianxing_key')
+tianxing_key2 = props.get('tianxing_key2')
 
 
 def get_qinhua():
@@ -52,7 +55,7 @@ def get_new2():
     return str1
 
 
-exlpain = on_command("情感语录", aliases={'舔狗日记'}, priority=2)
+exlpain = on_command("舔狗", aliases={'每日舔狗'}, rule=to_me,priority=2)
 
 
 @exlpain.handle()
@@ -69,7 +72,7 @@ async def slove(bot: Bot, event: Event, state: dict):
             at_sender=True
         )
 
-qinghua = on_command("情话", priority=2)
+qinghua = on_command("情话", aliases={'每日情话'}, rule=to_me,priority=2)
 
 
 @qinghua.handle()
@@ -80,7 +83,7 @@ async def qinghua_(bot: Bot, event: Event):
             message=get_qinhua()
         )
 
-lvcha = on_command("绿茶", priority=2)
+lvcha = on_command("绿茶", aliases={'每日绿茶'}, rule=to_me,priority=2)
 
 
 @lvcha.handle()
@@ -95,7 +98,7 @@ async def lvcha_(bot: Bot, event: Event):
 # ============古代情诗============
 error_info = '没有查询到呢~'
 
-qingshi = on_command('情诗', priority=2)
+qingshi = on_command('情诗', aliases={'每日情诗'},rule=to_me, priority=2)
 
 
 @qingshi.handle()
@@ -121,3 +124,32 @@ def get_qingshi():
         result += '---《' + news['source'] + '》' + news['author']
         print(result)
         return result
+
+# ============土味情话============
+
+saylove = on_command('土味', aliases={'每日土味'},rule=to_me, priority=2)
+
+
+@saylove.handle()
+async def getdu_(bot: Bot, event: Event, state: dict):
+    if event.get_user_id != event.self_id:
+        str1 = str(get_saylove())
+        await bot.send(
+            event=event,
+            message=str1,
+            at_sedner=True
+        )
+
+
+def get_saylove():
+    url = tianxing_api + 'saylove/index?key=' + tianxing_key2
+    res = requests.get(url)
+    c = json.loads(res.text)
+    if c['code'] != 200:
+        return error_info
+    result = ''
+    for news in c['newslist']:
+        result += news['content']
+        res = result.replace('<br>','\n').replace('<br/>','\n')
+        print(res)
+        return res
