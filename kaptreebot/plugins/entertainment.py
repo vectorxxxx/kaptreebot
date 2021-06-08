@@ -79,11 +79,10 @@ async def handle_zgjm(bot: Bot, event: Event, state: dict):
 
 
 async def get_zgjm(text: str):
-    url = tianxing_api + 'dream/index?key=' + tianxing_key2 + '&word=' + text
+    url = tianxing_api + 'dream/index?key=' + tianxing_key2 + '&word=' + text + '&num=10'
     print(url)
     res = requests.get(url)
     c = json.loads(res.text)
-    print(str(c))
     if c['code'] != 200 or c['msg'] !='success':
         print('code: '+str(c['code']))
         print('msg: '+c['msg'])
@@ -91,7 +90,8 @@ async def get_zgjm(text: str):
     result = ''
     for news in c['newslist']:
         result += '#' + news['title'] + '\n' + news['result'] + '\n\n'
-    res = result.replace('<br>','\n').replace('<br/>','\n')[:-4]        
+    res = result.replace('<br>','\n').replace('<br/>','\n')[:-4]
+    print(res)       
     return res
    
 
