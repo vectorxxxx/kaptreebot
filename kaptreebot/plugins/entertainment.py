@@ -88,9 +88,9 @@ async def get_zgjm(text: str):
         print('code: '+str(c['code']))
         print('msg: '+c['msg'])
         return '天机不可泄露~'
-    result = ''    
-    for news,i in c['newslist']:
-        result += str(i+1) + '、' + news['result'] + '\n'
+    result = ''
+    for news in c['newslist']:
+        result += '#' + news['result'] + '\n'
     print('梦见' + text + '：\n' + result)
     return result
    
