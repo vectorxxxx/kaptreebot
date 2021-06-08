@@ -91,7 +91,7 @@ async def get_zgjm(text: str):
     result = ''
     for news in c['newslist']:
         result += '#' + news['result'] + '\n\n'
-    result = result.replace('<br>','\n').replace('<br/>','\n')    
+    result = result.replace('<br>','\n').replace('<br/>','\n').str[0:len(result) -3]        
     res = '梦见' + text + '：\n' + result
     return res
    
@@ -120,6 +120,6 @@ def get_rkl():
     result = ''
     for news in c['newslist']:
         result += news['content'] +'\n'
-    result = result.replace('<br>','\n').replace('<br/>','\n')    
+    result = result.replace('<br>','\n').replace('<br/>','\n').str[0:len(result) -3]        
     print(result)
     return result
