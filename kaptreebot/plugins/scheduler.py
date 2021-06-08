@@ -1,37 +1,15 @@
-from concurrent.futures import ProcessPoolExecutor
-from apscheduler.schedulers.asyncio import AsyncIOScheduler
-from nonebot.adapters.cqhttp import Bot, Event
-import asyncio
+from nonebot import require
 import nonebot
 
+scheduler = require('nonebot_plugin_apscheduler').scheduler
 
+
+@scheduler.scheduled_job('cron', hour='2', minute='25', id='drink_tea')
 async def day_limits():
-    bots = nonebot.get_bots()
-    print(str(bots))
-    bot = bots['2849980255']
-    print(str(bot))
-    try:
+    (bot,) = nonebot.get_bots().values()
+    if bot is not None:
         await bot.send_msg(
             message_type="private", user_id='1402758731', message='好困啊~'
         )
-    except (KeyError, Exception):
-        print('KeyError')
 
-
-scheduler = AsyncIOScheduler()
-scheduler.add_job(day_limits, 'cron', hour=2, minute=19,
-                  misfire_grace_time=3600, timezone='Asia/Shanghai')
-
-scheduler.start()
-
-scheduler.print_jobs()
-
-executor = ProcessPoolExecutor(1)
-loop = asyncio.get_event_loop()
-
-try:
-    loop.run_forever()
-
-except (KeyboardInterrupt, Exception):
-    loop.stop()
-    scheduler.shutdown()
+scheduler.add_job(day_limits,  "interval", days=1, id="xxx")
