@@ -6,7 +6,7 @@ import os
 
 scheduler = require('nonebot_plugin_apscheduler').scheduler
 
-@scheduler.scheduled_job('cron', hour='* 26 18 * * ?', id='drink_tea', args=[1])
+@scheduler.scheduled_job('cron', hour='* 30 18 * * ?', id='drink_tea', args=[1])
 async def run_at_3pm(bot: Bot, event: Event):
     if event.get_user_id != event.self_id:
         pic = get_picture()
