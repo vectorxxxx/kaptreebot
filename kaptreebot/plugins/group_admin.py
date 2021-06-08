@@ -23,7 +23,8 @@ increase = on_notice()
 async def increase(bot: Bot, event: GroupIncreaseNoticeEvent):
     if event.get_user_id != event.self_id:
         hello_img_path = 'file:///'+os.getcwd()+'/data/img/hello.gif'
-        msg = '哇~是新的rbq！欢迎呀，很高兴为您服务呦~\n'
+        msg = '哇~是新的rbq！\n'
+        msg += '欢迎呀，很高兴为您服务呦~\n'
         msg += '博客皮肤有什么问题，可以先查看查看手册：\n'
         msg += 'https://www.yuque.com/awescnb/user/tmpomo\n'
         msg += '另外，如果需要其他的服务，可以对我说“help”\n'
