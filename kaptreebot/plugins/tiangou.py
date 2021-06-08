@@ -18,83 +18,6 @@ tianxing_key = props.get('tianxing_key')
 tianxing_key2 = props.get('tianxing_key2')
 
 
-def get_qinhua():
-    url = 'https://api.lovelive.tools/api/SweetNothings/1/Serialization/Text?genderType=M'
-    res = requests.get(url)
-    print('情话:', res.text)
-    return str(res.text)
-
-
-def get_lvcha():
-    url = 'https://api.lovelive.tools/api/SweetNothings/1/Serialization/Text?genderType=F'
-    res = requests.get(url)
-    print('绿茶:', res.text)
-    return str(res.text)
-
-
-def get_news():
-    url = 'https://api.ixiaowai.cn/tgrj/index.php'
-    res = requests.get(url)
-    b = res.text
-    c = b.replace('*', '')
-    print('情感语录1:', c)
-    return c
-
-
-def get_new2():
-    url = 'https://du.liuzhijin.cn/dog.php'
-    session = HTMLSession()
-    headers = {
-        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.146 Safari/537.36'
-    }
-    r = session.get(url, headers=headers)
-    sel = '#text'
-    s = r.html.find(sel)
-    str1 = s[0].text
-    print('情感语录2:', str1)
-    return str1
-
-
-exlpain = on_command('每日必舔', priority=2)
-
-
-@exlpain.handle()
-async def slove(bot: Bot, event: Event, state: dict):
-    if event.get_user_id != event.self_id:
-        str1 = ''
-        if random.randint(0, 2) == 0:
-            str1 = get_new2()
-        else:
-            str1 = get_news()
-        await bot.send(
-            event=event,
-            message=str1,
-            at_sender=True
-        )
-
-qinghua = on_command('每日情话', priority=2)
-
-
-@qinghua.handle()
-async def qinghua_(bot: Bot, event: Event):
-    if event.get_user_id != event.self_id:
-        await bot.send(
-            event=event,
-            message=get_qinhua()
-        )
-
-lvcha = on_command('每日绿茶', priority=2)
-
-
-@lvcha.handle()
-async def lvcha_(bot: Bot, event: Event):
-    if event.get_user_id != event.self_id:
-        await bot.send(
-            event=event,
-            message=get_lvcha()
-        )
-
-
 # ============古代情诗============
 error_info = '没有查询到呢~'
 
@@ -125,22 +48,30 @@ def get_qingshi():
         print(result)
         return result
 
-# ============土味情话============
 
-saylove = on_command('每日土味', priority=2)
+# ============每日情话============
+qinghua = on_command('每日情话', priority=2)
 
-
-@saylove.handle()
-async def getdu_(bot: Bot, event: Event, state: dict):
+@qinghua.handle()
+async def qinghua_(bot: Bot, event: Event):
     if event.get_user_id != event.self_id:
-        str1 = str(get_saylove())
+        str1 = ''
+        if random.randint(0, 2) == 0:
+            str1 = get_qinhua()
+        else:
+            str1 = get_saylove()
         await bot.send(
             event=event,
-            message=str1,
-            at_sedner=True
+            message=str1
         )
 
-
+# 情话
+def get_qinhua():
+    url = 'https://api.lovelive.tools/api/SweetNothings/1/Serialization/Text?genderType=M'
+    res = requests.get(url)
+    print('情话:', res.text)
+    return str(res.text)
+# 土味
 def get_saylove():
     url = tianxing_api + 'saylove/index?key=' + tianxing_key2
     res = requests.get(url)
@@ -153,3 +84,64 @@ def get_saylove():
         res = result.replace('<br>','\n').replace('<br/>','\n')
         print(res)
         return res
+
+
+# ============绿茶============
+lvcha = on_command('每日绿茶', priority=2)
+
+
+@lvcha.handle()
+async def lvcha_(bot: Bot, event: Event):
+    if event.get_user_id != event.self_id:
+        await bot.send(
+            event=event,
+            message=get_lvcha()
+        )
+
+def get_lvcha():
+    url = 'https://api.lovelive.tools/api/SweetNothings/1/Serialization/Text?genderType=F'
+    res = requests.get(url)
+    print('绿茶:', res.text)
+    return str(res.text)
+
+
+# ============舔狗============
+exlpain = on_command('每日舔狗', priority=2)
+
+
+@exlpain.handle()
+async def slove(bot: Bot, event: Event, state: dict):
+    if event.get_user_id != event.self_id:
+        str1 = ''
+        if random.randint(0, 2) == 0:
+            str1 = get_new2()
+        else:
+            str1 = get_news()
+        await bot.send(
+            event=event,
+            message=str1,
+            at_sender=True
+        )
+
+
+def get_news():
+    url = 'https://api.ixiaowai.cn/tgrj/index.php'
+    res = requests.get(url)
+    b = res.text
+    c = b.replace('*', '')
+    print('情感语录1:', c)
+    return c
+
+
+def get_new2():
+    url = 'https://du.liuzhijin.cn/dog.php'
+    session = HTMLSession()
+    headers = {
+        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.146 Safari/537.36'
+    }
+    r = session.get(url, headers=headers)
+    sel = '#text'
+    s = r.html.find(sel)
+    str1 = s[0].text
+    print('情感语录2:', str1)
+    return str1        

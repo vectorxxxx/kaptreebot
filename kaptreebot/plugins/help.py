@@ -105,7 +105,6 @@ async def hhelp_hide_(bot: Bot, event: Event, state: dict):
         table.add_row(['2','每日绿茶'])
         table.add_row(['3','每日情话'])
         table.add_row(['4','每日情诗'])
-        table.add_row(['5','每日土味'])
         await bot.send(
             event=event,
             message=str(table)

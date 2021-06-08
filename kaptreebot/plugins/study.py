@@ -241,7 +241,7 @@ def get_poetries():
     result = ''
     for news in c['newslist']:
         result += news['content'] +'\n'
-    res = result.replace('<br>','\n').replace('<br/>','\n')[:-2]    
+    res = result.replace('<br>','\n').replace('<br/>','\n').replace('。','。\n')[:-2]    
     print(res)
     return res
 

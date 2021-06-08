@@ -45,7 +45,7 @@ def get_news():
     url = 'https://v1.hitokoto.cn/'
     res = requests.get(url)
     c = json.loads(res.text)
-    ans = c['hitokoto']+'---->'+c['from']
+    ans = c['hitokoto']+'------'+c['from']
     print(ans)
     return ans
 
@@ -86,7 +86,7 @@ def get_mingyan():
         return error_info
     result = ''
     for news in c['newslist']:
-        result += news['content'] +'——' + news['author'] 
+        result += news['content'] +'------' + news['author'] 
     res = result.replace('<br>','\n').replace('<br/>','\n')
     print(res)
     return res
