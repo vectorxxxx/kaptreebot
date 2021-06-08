@@ -120,6 +120,6 @@ def get_rkl():
     result = ''
     for news in c['newslist']:
         result += news['content'] +'\n'
-    result = result.replace('<br>','\n').replace('<br/>','\n')[0:len(result) -3]        
-    print(result)
-    return result
+    res = result.replace('<br>','\n').replace('<br/>','\n')[:-2]    
+    print(res)
+    return res
