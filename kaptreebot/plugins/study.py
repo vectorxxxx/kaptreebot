@@ -352,3 +352,31 @@ def get_poetries():
     res = result.replace('<br>','\n').replace('<br/>','\n')[:-2]    
     print(res)
     return res
+
+# ============英语一句话============
+ensentence = on_command('英语一句话', aliases={'每日英语','今日英语'}, priority=2)
+
+
+@ensentence.handle()
+async def getensentence_(bot: Bot, event: Event, state: dict):
+    if event.get_user_id != event.self_id:
+        str1 = str(get_ensentence())
+        await bot.send(
+            event=event,
+            message=str1,
+            at_sedner=True
+        )
+
+
+def get_ensentence():
+    url = tianxing_api + 'ensentence/index?key=' + tianxing_key2
+    res = requests.get(url)
+    c = json.loads(res.text)
+    if c['code'] != 200:
+        return error_info
+    result = ''
+    for news in c['newslist']:
+        result += news['en'] +'\n' + news['zh'] 
+    res = result.replace('<br>','\n').replace('<br/>','\n')
+    print(res)
+    return res

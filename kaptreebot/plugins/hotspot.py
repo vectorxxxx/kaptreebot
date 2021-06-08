@@ -14,6 +14,7 @@ props = property.parse(file_path)
 tianxing_api = props.get('tianxing_api')
 tianxing_api2 = props.get('tianxing_api2')
 tianxing_key = props.get('tianxing_key')
+tianxing_key2 = props.get('tianxing_key2')
 
 error_info = '没有查询到呢~'
 
@@ -130,7 +131,6 @@ def get_wxhottopic():
     print(result)
     return result
 
-
 # ============每日简报============
 bulletin = on_command('每日简报', aliases={'今日简报'}, priority=2)
 
@@ -147,7 +147,7 @@ async def getdu_(bot: Bot, event: Event, state: dict):
 
 
 def get_bulletin():
-    url = tianxing_api2 + 'bulletin/index?key=' + tianxing_key
+    url = tianxing_api2 + 'bulletin/index?key=' + tianxing_key2
     res = requests.get(url)
     c = json.loads(res.text)
     if c['code'] != 200:
@@ -156,5 +156,37 @@ def get_bulletin():
     for news in c['newslist']:
         result += '@' + news['mtime'] + '\n'
         result += '#' + news['title'] + '\n'
-    print(result)
+    res = result.replace('<br>','\n').replace('<br/>','\n')[:-2]
+    print(res)
+    return result
+
+
+
+# ============互联网资讯============
+internet = on_command('互联网资讯', aliases={'IT简报','IT资讯'}, priority=2)
+
+
+@internet.handle()
+async def getinternet_(bot: Bot, event: Event, state: dict):
+    if event.get_user_id != event.self_id:
+        str1 = str(get_internet())
+        await bot.send(
+            event=event,
+            message=str1,
+            at_sedner=True
+        )
+
+
+def get_internet():
+    url = tianxing_api2 + 'internet/index?key=' + tianxing_key
+    res = requests.get(url)
+    c = json.loads(res.text)
+    if c['code'] != 200:
+        return error_info
+    result = ''
+    for news in c['newslist']:
+        result += '@' + news['ctime'] + '\n'
+        result += '#' + news['title'] + '\n'
+    res = result.replace('<br>','\n').replace('<br/>','\n')[:-2]
+    print(res)
     return result
