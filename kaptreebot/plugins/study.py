@@ -68,7 +68,7 @@ def get_duilian():
 
 
 # ============古籍名句============
-gjmj = on_command('古籍名句',  aliases={'每日名句','今日名句'},priority=2)
+gjmj = on_command('古籍名句',  aliases={'每日名句','今日名句','名句'},priority=2)
 
 
 @gjmj.handle()
@@ -159,7 +159,7 @@ async def get_tenwhy(word: str):
 
 
 # ============民国句子============
-mgjuzi = on_command('民国句子',aliases={'今日句子','每日句子'} priority=2)
+mgjuzi = on_command('民国句子',aliases={'今日句子','每日句子','句子'} priority=2)
 
 
 @mgjuzi.handle()
@@ -244,7 +244,7 @@ def get_healthtip():
 
 
 # ============故事大全============
-story = on_command('故事大全', aliases={'讲故事', '讲个故事', '故事会','今日故事','每日故事'}, priority=2)
+story = on_command('故事大全', aliases={'讲故事', '讲个故事', '故事会','今日故事','每日故事','故事'}, priority=2)
 
 
 @story.handle()
@@ -298,7 +298,7 @@ def get_xiehou():
         return result
 
 # ============简说历史============
-pitlishi = on_command('简说历史', aliases={'每日历史','历史小知识'} priority=2)
+pitlishi = on_command('简说历史', aliases={'每日历史','历史小知识','讲段历史','说段历史'}, priority=2)
 
 
 @pitlishi.handle()
@@ -325,7 +325,7 @@ def get_pitlishi():
         return result
 
 # ============唐诗大全============
-poetries = on_command('唐诗大全', aliases={'每日唐诗'} priority=2)
+poetries = on_command('唐诗大全', aliases={'每日唐诗','唐诗'}, priority=2)
 
 
 @poetries.handle()
