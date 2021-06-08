@@ -83,13 +83,13 @@ async def get_zgjm(text: str):
     print(url)
     res = requests.get(url)
     c = json.loads(res.text)
+    print(str(c))
     if c['code'] != 200 or c['msg'] !='success':
         print('code: '+str(c['code']))
         print('msg: '+c['msg'])
         return '天机不可泄露~'
     result = ''
     for news in c['newslist']:
-        print(news)
         result += '#' + news['title'] + '\n' + news['result'] + '\n\n'
     res = result.replace('<br>','\n').replace('<br/>','\n')[:-4]        
     return res
