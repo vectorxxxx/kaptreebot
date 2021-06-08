@@ -6,8 +6,8 @@ import os
 scheduler = require('nonebot_plugin_apscheduler').scheduler
 
 
-@scheduler.scheduled_job('cron', hour='2', minute='41', id='goodmorning')
-async def good_morning():
+@scheduler.scheduled_job('cron', hour='2', minute='42', id='goodm')
+async def day_limits():
     (bot,) = nonebot.get_bots().values()
     if bot is not None:
         imgpath = 'file:///'+os.getcwd()+'/data/img/hello.gif'
@@ -19,4 +19,4 @@ async def good_morning():
         )
 
 
-scheduler.add_job(good_morning,  "interval", days=1, id="goodmorning")
+scheduler.add_job(day_limits,  "interval", days=1, id="goodm")
