@@ -22,7 +22,9 @@ async def dy_sched():
     name = push_list[0]['name']
     logger.debug(f'爬取动态 {name}（{uid}）')
     b = BiliReq()
-    dynamics = (await b.get_user_dynamics(uid)).get('cards', []) # 获取最近十二条动态
+    user_dynamics = (await b.get_user_dynamics(uid))
+    if user_dynamics is not None :
+        dynamics = user_dynamics.get('cards', []) # 获取最近十二条动态
     # config['uid'][uid]['name'] = dynamics[0]['desc']['user_profile']['info']['uname']
     # await update_config(config)
 
