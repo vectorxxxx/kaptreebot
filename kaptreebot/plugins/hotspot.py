@@ -20,7 +20,7 @@ tianxing_key2 = props.get('tianxing_key2')
 error_info = '没有查询到呢~'
 
 # ============新冠疫情============
-epidemic = on_command('今日疫情',priority=2)
+epidemic = on_command('今日疫情', priority=2)
 
 
 @epidemic.handle()
@@ -132,6 +132,7 @@ def get_wxhottopic():
     print(result)
     return result
 
+
 # ============每日简报============
 bulletin = on_command('今日简报', priority=2)
 
@@ -154,13 +155,11 @@ def get_bulletin():
     if c['code'] != 200:
         return error_info
     result = ''
-    for news in c['newslist']:
-        result += '@' + news['mtime'] + '\n'
-        result += '#' + news['title'] + '\n'
-    res = result.replace('<br>','\n').replace('<br/>','\n')[:-2]
+    for news, index in c['newslist']:
+        result += 'Top ' + str(index + 1) + '：' + news['title'] + '\n'
+    res = result.replace('<br>', '\n').replace('<br/>', '\n')[:-2]
     print(res)
     return result
-
 
 
 # ============互联网资讯============
@@ -185,9 +184,8 @@ def get_internet():
     if c['code'] != 200:
         return error_info
     result = ''
-    for news in c['newslist']:
-        result += '@' + news['ctime'] + '\n'
-        result += '#' + news['title'] + '\n'
-    res = result.replace('<br>','\n').replace('<br/>','\n')[:-2]
+    for news, index in c['newslist']:
+        result += 'Top ' + str(index + 1) + '：' + news['title'] + '\n'
+    res = result.replace('<br>', '\n').replace('<br/>', '\n')[:-2]
     print(res)
     return result

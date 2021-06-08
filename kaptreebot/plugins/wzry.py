@@ -6,6 +6,15 @@ from nonebot.rule import to_me
 from nonebot.adapters.cqhttp import Bot, Event
 from aiocqhttp import MessageSegment
 
+
+# 深度学习过程中，需要制作训练集和验证集、测试集
+def randomFile(fileDir):
+    pathDir = os.listdir(fileDir)  # 取图片的原始路径
+    samples = random.sample(pathDir, 1)  # 随机选取picknumber数量的样本图片
+    return samples[0]
+
+
+# ===========王者语音===========
 lines = on_command("王者语音", aliases={'王者台词', '王者音效'}, priority=2)
 
 
@@ -36,14 +45,21 @@ async def get_hero(heroname: str):
     sst = MessageSegment.record(file=str(resultpath))
     return sst
 
-
-# 深度学习过程中，需要制作训练集和验证集、测试集
-def randomFile(fileDir):
-    pathDir = os.listdir(fileDir)  # 取图片的原始路径
-    samples = random.sample(pathDir, 1)  # 随机选取picknumber数量的样本图片
-    return samples[0]
+# 召唤妲己
+daji = on_command('召唤妲己', priority=2)
 
 
+@daji.handle()
+async def daji_(bot: Bot, event: Event):
+    if event.get_user_id != event.self_id:
+        daji_voice = get_hero('妲己')
+        await bot.send(
+            event=event,
+            message=MessageSegment.record(daji_voice),
+        )
+
+
+# ===========王者图片===========
 wzpic = on_command('王者图片', aliases={'王者皮肤'},  priority=2)
 
 
@@ -59,28 +75,6 @@ async def wzpic_(bot: Bot, event: Event):
 
 def get_picture(heroname):
     filepath = os.getcwd()+'/data/wzry/skin'
-    sample = randomFile(filepath)
-    resultpath = 'file:///'+filepath + '/' + sample
-    print(resultpath)
-    return resultpath
-
-
-
-daji = on_command('召唤妲己', priority=2)
-
-
-@daji.handle()
-async def daji_(bot: Bot, event: Event):
-    if event.get_user_id != event.self_id:
-        daji_voice = get_daji_voice(event.message)
-        await bot.send(
-            event=event,
-            message=MessageSegment.record(daji_voice),
-        )
-
-
-def get_daji_voice(heroname):
-    filepath = os.getcwd()+'/data/wzry/voice/妲己'
     sample = randomFile(filepath)
     resultpath = 'file:///'+filepath + '/' + sample
     print(resultpath)
