@@ -22,7 +22,9 @@ async def dy_sched():
     name = push_list[0]['name']
     logger.debug(f'爬取动态 {name}（{uid}）')
     b = BiliReq()
-    user_dynamics = (await b.get_user_dynamics(uid))
+    user_dynamics = None
+    if b is not None :
+        user_dynamics = (await b.get_user_dynamics(uid))
     
     dynamics = []
     if user_dynamics is not None :
@@ -30,7 +32,7 @@ async def dy_sched():
     # config['uid'][uid]['name'] = dynamics[0]['desc']['user_profile']['info']['uname']
     # await update_config(config)
 
-    if len(dynamics) == 0: # 没有发过动态或者动态全删的直接结束
+    if dynamics is None or len(dynamics) == 0: # 没有发过动态或者动态全删的直接结束
         return
 
     if uid not in last_time: # 没有爬取过这位主播就把最新一条动态时间为 last_time

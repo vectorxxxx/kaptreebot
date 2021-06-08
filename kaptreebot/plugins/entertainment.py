@@ -58,3 +58,35 @@ async def get_jixiong(phone: str):
         result += '★★★' + news['score'] + '分'
         print(result)
         return result
+
+# 周公解梦
+zgjm = on_command('周公解梦', priority=2)
+
+
+@zgjm.handle()
+async def handle_first_receive(bot: Bot, event: Event, state: dict):
+    if event.get_user_id != event.self_id:
+        args = str(event.message).strip()  # 首次发送命令时跟随的参数
+        if args:
+            state["text"] = args  # 如果用户发送了参数则直接赋值
+
+
+@zgjm.got("text", prompt="你梦见了什么？")
+async def handle_hero(bot: Bot, event: Event, state: dict):
+    text = state["text"]
+    result = await get_zgjm(text)
+    await zgjm.finish(result)
+
+
+async def get_zgjm(text: str):
+    url = tianxing_api + 'dream/index?key=' + tianxing_key + '&word=' + text
+    res = requests.get(url)
+    c = json.loads(res.text)
+    if c['code'] != 200:
+        return '天机不可泄露~'
+    result = ''    
+    for news,i in c['newslist']:
+        result += str(i+1) + '、' + news['result'] + '\n'
+    print('梦见' + text + '：\n' + result)
+    return result
+   

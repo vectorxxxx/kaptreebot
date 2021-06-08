@@ -65,3 +65,25 @@ def get_picture(heroname):
     resultpath = 'file:///'+filepath + '/' + sample
     print(resultpath)
     return resultpath
+
+
+
+daji = on_command('召唤妲己', aliases={'妲己'}, priority=2)
+
+
+@daji.handle()
+async def daji_(bot: Bot, event: Event):
+    if event.get_user_id != event.self_id:
+        daji_voice = get_daji_voice(event.message)
+        await bot.send(
+            event=event,
+            message=MessageSegment.record(daji_voice),
+        )
+
+
+def get_daji_voice(heroname):
+    filepath = os.getcwd()+'/data/wzry/voice'
+    sample = randomFile(filepath)
+    resultpath = 'file:///'+filepath + '/' + sample
+    print(resultpath)
+    return resultpath

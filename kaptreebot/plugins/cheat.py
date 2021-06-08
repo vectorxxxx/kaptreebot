@@ -6,12 +6,13 @@ import requests
 import urllib
 import urllib.parse
 import urllib.request
-import random
 import os
 
 from nonebot import on_message, on_command
 from nonebot.adapters.cqhttp import Bot, Event, Message, PRIVATE
 from commons import property
+from aiocqhttp import MessageSegment
+
 
 # 要操作的properties文件的路径
 file_path = os.getcwd() + '/properties/cheat/cheat.properties'
@@ -19,23 +20,41 @@ file_path = os.getcwd() + '/properties/cheat/cheat.properties'
 props = property.parse(file_path)
 
 
-# def get_n(text):
-#     if text.find('知酱') != -1:
-#         text = text.replace('知酱','')
-#         return get_n0(text)
-#     if text.find('灵酱') != -1:
-#         text = text.replace('灵酱','')
-#         return get_n1(text)
-#     if text.find('思酱') != -1:
-#         text = text.replace('思酱','')
-#         return get_n2(text)
-#     num = random.randint(0, 2)
-#     if num == 0:
-#         return get_n0(text)
-#     if num == 1:
-#         return get_n1(text)
-#     if num == 2:
-#         return get_n2(text)
+tuling = on_message(priority=10)  # permission= PRIVATE
+
+
+@tuling.handle()
+async def cheatt_(bot: Bot, event: Event):
+    if event.is_tome():
+        print("YES")
+    if event.is_tome() and event.user_id != event.self_id:
+        mysay = event.get_message()
+        mysay = get_n(str(mysay))
+        await bot.send(
+            event=event,
+            message=mysay
+        )
+
+def get_n(text):
+    flag = False
+    if not flag:
+        result = get_ren_zhi(text)
+        if '升级会员' in result or '参数有误' in result:
+            flag = True
+    if flag:
+        flag = False
+        result = get_tuling(text)
+        if str(result) == '请求次数超限制!':
+            flag = True
+    if flag:
+        flag = False
+        result = get_tianxing(text)
+        if str(result) == '请求次数超限制!':
+            flag = True
+    if flag:
+        result = get_sizhi(text)
+    return result    
+    
 
 
 # 认知机器人
@@ -46,7 +65,7 @@ ren_zhi_ip = props.get('ren_zhi_ip')
 ren_zhi_userid = props.get('ren_zhi_userid')
 
 
-def get_n(text):
+def get_ren_zhi(text):
     try:
         # 定义请求数据，并且对数据进行赋值
         values = {}
@@ -63,14 +82,11 @@ def get_n(text):
         r = requests.post(req)
         # 中文编码格式打印数据
         result = r.content.decode('utf-8')
-        if '升级会员' in result or '参数有误' in result:
-            print(result)
-            return get_n1(text)
         print('认知机器人：' + result)
         return result
     except (TypeError, KeyError) as e:
         print('认知机器人异常')
-        return get_n1(text)
+        return get_tuling(text)
 
 
 # 图灵机器人
@@ -79,7 +95,7 @@ tuling_apiKey = props.get('tuling_apiKey')
 tuling_userId = props.get('tuling_userId')
 
 
-def get_n1(text_input: str):
+def get_tuling(text_input: str):
     try:
         api_url = tuling_url
         print(api_url)
@@ -120,14 +136,11 @@ def get_n1(text_input: str):
         print(intent_code)
         print(intent_operateState)
         results_text = response_dic['results'][0]['values']['text']
-        if str(results_text) == '请求次数超限制!':
-            print(str(results_text))
-            return get_n2(text_input)
         print('图灵机器人：', results_text)
         return str(results_text)
     except KeyError:
         print('图灵机器人异常')
-        return get_n2(text_input)
+        return get_sizhi(text_input)
 
 
 # 小思机器人
@@ -136,7 +149,7 @@ sizhi_appid = props.get('sizhi_appid')
 sizhi_userid = props.get('sizhi_userid')
 
 
-def get_n2(text):
+def get_sizhi(text):
     try:
         data = {
             "spoken": text,
@@ -149,7 +162,7 @@ def get_n2(text):
         if 'heuristic' in result['data']['info'] and result['data']['info']['heuristic']:
             for item in result['data']['info']['heuristic']:
                 message += ',  ' + item
-        print('思酱：', message)
+        print('思知机器人：', message)
         return message
     except KeyError:
         return '这个问题好头疼呀，问点别的叭'
@@ -157,18 +170,34 @@ def get_n2(text):
         print('思知机器人异常')
         return '呸！渣男~'
 
+# 天行机器人
+file_path = os.getcwd() + '/properties/cheat/others.properties'
+props = property.parse(file_path)
+tianxing_api = props.get('tianxing_api')
+tianxing_key2 = props.get('tianxing_key2')
 
-tuling = on_message(priority=10)  # permission= PRIVATE
 
+def get_tianxing(text):
+    try:
+        url = tianxing_api + '?key=' + tianxing_key2 + '&question=' + text
+        r = requests.get(url)
+        result = json.loads(r.text)
+        data = result['newslist']
+        datatype = data['datatype']
+        reply = data['reply']
+        print('思酱：', reply)
+        # 返回类型判断
+        if datatype == 'text':
+            return reply
+        elif datatype == 'image':
+            return MessageSegment.image(reply)
+        elif datatype == 'video':
+            return MessageSegment.video(reply)
+        elif datatype == 'sound':
+            return MessageSegment.record(reply)     
+    except KeyError:
+        return '人家不想回答~'
+    except BaseException:
+        print('天行机器人异常')
+        return '呸！渣男~'
 
-@tuling.handle()
-async def cheatt_(bot: Bot, event: Event):
-    if event.is_tome():
-        print("YES")
-    if event.is_tome() and event.user_id != event.self_id:
-        mysay = event.get_message()
-        mysay = get_n(str(mysay))
-        await bot.send(
-            event=event,
-            message=mysay
-        )
