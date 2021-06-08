@@ -320,9 +320,9 @@ def get_pitlishi():
         return error_info
     result = ''
     for news in c['newslist']:
-        result = news['content']
-        print(result)
-        return result
+        result += news['content'] +'\n'
+    result = result.replace('<br>','\n').replace('<br/>','\n')    
+    print(result)
 
 # ============唐诗大全============
 poetries = on_command('唐诗大全', aliases={'每日唐诗','唐诗'}, priority=2)
@@ -347,6 +347,6 @@ def get_poetries():
         return error_info
     result = ''
     for news in c['newslist']:
-        result = news['content']
-        print(result)
-        return result
+        result += news['content'] +'\n'
+    result = result.replace('<br>','\n').replace('<br/>','\n')    
+    print(result)
