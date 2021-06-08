@@ -83,7 +83,7 @@ async def get_zgjm(text: str):
     res = requests.get(url)
     c = json.loads(res.text)
     if c['code'] != 200 or c['msg'] !='success':
-        print('code: '+c['code'])
+        print('code: '+str(c['code']))
         print('msg: '+c['msg'])
         return '天机不可泄露~'
     result = ''    
