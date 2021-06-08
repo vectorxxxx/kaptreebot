@@ -88,9 +88,9 @@ async def get_zgjm(text: str):
         print('msg: '+c['msg'])
         return '天机不可泄露~'
     result = ''
+    print(c['resultlist'])
     for news in c['newslist']:
-        result += '#' + news['title'] + '\n'
-        result += news['result'] + '\n\n'
+        result += '#' + news['title'] + '\n' + news['result'] + '\n\n'
     print(result)        
     res = result.replace('<br>','\n').replace('<br/>','\n')[:-4]        
     print(res)
