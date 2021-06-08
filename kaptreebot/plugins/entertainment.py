@@ -82,7 +82,9 @@ async def get_zgjm(text: str):
     url = tianxing_api + 'dream/index?key=' + tianxing_key + '&word=' + text
     res = requests.get(url)
     c = json.loads(res.text)
-    if c['code'] != 200:
+    if c['code'] != 200 or c['msg'] !='success':
+        print('code: '+c['code'])
+        print('msg: '+c['msg'])
         return '天机不可泄露~'
     result = ''    
     for news,i in c['newslist']:

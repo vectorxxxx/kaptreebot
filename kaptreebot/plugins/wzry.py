@@ -82,7 +82,7 @@ async def daji_(bot: Bot, event: Event):
 
 
 def get_daji_voice(heroname):
-    filepath = os.getcwd()+'/data/wzry/voice'
+    filepath = os.getcwd()+'/data/wzry/voice/妲己'
     sample = randomFile(filepath)
     resultpath = 'file:///'+filepath + '/' + sample
     print(resultpath)
