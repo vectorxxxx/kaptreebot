@@ -20,7 +20,7 @@ tianxing_key2 = props.get('tianxing_key2')
 error_info = '没有查询到呢~'
 
 # ============新冠疫情============
-epidemic = on_command("疫情", aliases={'今日疫情'},rule=to_me,priority=2)
+epidemic = on_command('今日疫情',priority=2)
 
 
 @epidemic.handle()
@@ -106,7 +106,7 @@ def get_epidemic():
 
 # ============微信热点============
 
-wxhottopic = on_command('热点', aliases={'今日热点'}, rule=to_me,priority=2)
+wxhottopic = on_command('今日热点', priority=2)
 
 
 @wxhottopic.handle()
@@ -133,7 +133,7 @@ def get_wxhottopic():
     return result
 
 # ============每日简报============
-bulletin = on_command('简报', aliases={'今日简报'}, rule=to_me,priority=2)
+bulletin = on_command('今日简报', priority=2)
 
 
 @bulletin.handle()
@@ -164,7 +164,7 @@ def get_bulletin():
 
 
 # ============互联网资讯============
-internet = on_command('IT', aliases={'今日IT'}, priority=2)
+internet = on_command('今日IT', priority=2)
 
 
 @internet.handle()

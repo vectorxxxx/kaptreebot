@@ -19,7 +19,7 @@ tianxing_key2 = props.get('tianxing_key2')
 error_info = '没有查询到呢~'
 
 # ============经典对联============
-duilian = on_command('对联', aliases={'每日对联'}, rule=to_me,priority=2)
+duilian = on_command('每日对联', priority=2)
 
 
 @ duilian.handle()
@@ -46,7 +46,7 @@ def get_duilian():
         return result
 
 # ============经典台词============
-dialogue = on_command('台词', aliases={'每日台词'}, rule=to_me,priority=2)
+dialogue = on_command('每日台词', priority=2)
 
 
 @dialogue.handle()
@@ -77,7 +77,7 @@ def get_dialogue():
 
 # ============十万个为什么============
 
-tenwhy = on_command("每日百科", rule=to_me,priority=2)
+tenwhy = on_command("每日百科", priority=2)
 
 
 @tenwhy.handle()
@@ -109,7 +109,7 @@ async def get_tenwhy(word: str):
 
 
 # ============文化谚语============
-proverb = on_command('谚语', aliases={'每日谚语'},rule=to_me, priority=2)
+proverb = on_command('每日谚语', priority=2)
 
 
 @proverb.handle()
@@ -136,7 +136,7 @@ def get_proverb():
         return result
 
 # ============故事大全============
-story = on_command('故事', aliases={'每日故事'},rule=to_me, priority=2)
+story = on_command('每日故事', priority=2)
 
 
 @story.handle()
@@ -163,7 +163,7 @@ def get_story():
         return result
 
 # ============歇后语============
-xiehou = on_command('歇后语', rule=to_me,priority=2)
+xiehou = on_command('歇后语', priority=2)
 
 
 @xiehou.handle()
@@ -190,7 +190,7 @@ def get_xiehou():
         return result
 
 # ============简说历史============
-pitlishi = on_command('历史', aliases={'每日历史'},rule=to_me, priority=2)
+pitlishi = on_command('每日历史', priority=2)
 
 
 @pitlishi.handle()
@@ -218,7 +218,7 @@ def get_pitlishi():
     return res
 
 # ============唐诗大全============
-poetries = on_command('唐诗', aliases={'每日唐诗'},rule=to_me, priority=2)
+poetries = on_command('每日唐诗', priority=2)
 
 
 @poetries.handle()
@@ -248,7 +248,7 @@ def get_poetries():
 
 
 # ============健康小提示============
-healthtip = on_command('健康', aliases={'每日健康'},rule=to_me, priority=2)
+healthtip = on_command('每日健康', priority=2)
 
 
 @healthtip.handle()

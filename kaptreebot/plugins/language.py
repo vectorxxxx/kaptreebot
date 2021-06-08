@@ -18,7 +18,7 @@ tianxing_key2 = props.get('tianxing_key2')
 error_info = '没有查询到呢~'
 
 # ============每日一句============
-explain = on_command("每日一句", rule=to_me,priority=2)
+explain = on_command("每日一句", priority=2)
 
 
 @explain.handle()
@@ -93,7 +93,7 @@ def get_mingyan():
 
 
 # ============英语一句话============
-ensentence = on_command('英语', aliases={'每日英语'}, rule=to_me,priority=2)
+ensentence = on_command('每日英语', priority=2)
 
 
 @ensentence.handle()

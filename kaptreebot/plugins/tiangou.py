@@ -55,7 +55,7 @@ def get_new2():
     return str1
 
 
-exlpain = on_command("舔狗", aliases={'每日舔狗'}, rule=to_me,priority=2)
+exlpain = on_command('每日必舔', priority=2)
 
 
 @exlpain.handle()
@@ -72,7 +72,7 @@ async def slove(bot: Bot, event: Event, state: dict):
             at_sender=True
         )
 
-qinghua = on_command("情话", aliases={'每日情话'}, rule=to_me,priority=2)
+qinghua = on_command('每日情话', priority=2)
 
 
 @qinghua.handle()
@@ -83,7 +83,7 @@ async def qinghua_(bot: Bot, event: Event):
             message=get_qinhua()
         )
 
-lvcha = on_command("绿茶", aliases={'每日绿茶'}, rule=to_me,priority=2)
+lvcha = on_command('每日绿茶', priority=2)
 
 
 @lvcha.handle()
@@ -98,7 +98,7 @@ async def lvcha_(bot: Bot, event: Event):
 # ============古代情诗============
 error_info = '没有查询到呢~'
 
-qingshi = on_command('情诗', aliases={'每日情诗'},rule=to_me, priority=2)
+qingshi = on_command('每日情诗', priority=2)
 
 
 @qingshi.handle()
@@ -127,7 +127,7 @@ def get_qingshi():
 
 # ============土味情话============
 
-saylove = on_command('土味', aliases={'每日土味'},rule=to_me, priority=2)
+saylove = on_command('每日土味', priority=2)
 
 
 @saylove.handle()

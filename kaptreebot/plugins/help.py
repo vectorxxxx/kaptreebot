@@ -21,7 +21,7 @@ async def help_(bot: Bot, event: Event, state: dict):
         str1 += '3、戳一戳：手机上双击戳我头像\n'
         str1 += '4、亲亲抱抱：我要亲亲，我要抱抱\n'
         str1 += '5、注意：群聊需要@我或者开头加上/\n'
-        str1 += '6、更多功能：详见新闻菜单、文艺菜单、娱乐菜单\n'
+        str1 += '6、更多功能：详见新闻菜单、文艺菜单、娱乐菜单、舔狗菜单\n'
         str1 += '7、隐藏功能：༼ つ ◕_◕ ༽つ你懂的'
         await bot.send(
             event=event,
@@ -80,9 +80,28 @@ async def hhelp_hide_(bot: Bot, event: Event, state: dict):
         table = PrettyTable('娱乐菜单')
         table.add_row(['点歌'])
         table.add_row(['王者图片/语音'])
+        table.add_row(['召唤妲己'])
         table.add_row(['周公解梦'])
         table.add_row(['绕口令'])
         table.add_row(['占卜'])
+        await bot.send(
+            event=event,
+            message=str(table)
+        )
+
+# 舔狗菜单
+help_hide = on_command('舔狗菜单', priority=2)
+
+
+@help_hide.handle()
+async def hhelp_hide_(bot: Bot, event: Event, state: dict):
+    if event.get_user_id != event.self_id:
+        table = PrettyTable('舔狗菜单')
+        table.add_row(['每日必舔'])
+        table.add_row(['每日绿茶'])
+        table.add_row(['每日情话'])
+        table.add_row(['每日情诗'])
+        table.add_row(['每日土味'])
         await bot.send(
             event=event,
             message=str(table)
