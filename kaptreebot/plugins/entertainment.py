@@ -91,8 +91,10 @@ async def get_zgjm(text: str):
     for news in c['newslist']:
         result += '#' + news['title'] + '\n'
         result += news['result'] + '\n\n'
-    result = result.replace('<br>','\n').replace('<br/>','\n')[:-4]        
-    return result
+    print(result)        
+    res = result.replace('<br>','\n').replace('<br/>','\n')[:-4]        
+    print(res)
+    return res
    
 
 # ============绕口令============
