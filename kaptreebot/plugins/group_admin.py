@@ -28,7 +28,7 @@ async def increase(bot: Bot, event: GroupIncreaseNoticeEvent):
         msg += '博客皮肤有什么问题，可以先查看查看手册：\n'
         msg += 'https://www.yuque.com/awescnb/user/tmpomo\n'
         msg += '另外，如果需要其他的服务，可以对我说“help”\n'
-        msg += MessageSegment.image(hello_img_path)
+        msg += str(MessageSegment.image(hello_img_path))
         await bot.send(
             event=event,
             message=msg,
