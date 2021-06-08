@@ -52,7 +52,8 @@ daji = on_command('召唤妲己', priority=2)
 @daji.handle()
 async def daji_(bot: Bot, event: Event):
     if event.get_user_id != event.self_id:
-        daji_voice = get_hero('妲己')
+        daji_voice = get_hero("妲己")
+        print(str(daji_voice))
         await bot.send(
             event=event,
             message=MessageSegment.record(daji_voice),
