@@ -6,14 +6,20 @@ import nonebot
 
 
 async def day_limits():
-    bot = nonebot.get_bots()['2849980255']
-    await bot.send_msg(
-        message_type="private", user_id='1402758731', message='好困啊~'
-    )
+    bots = nonebot.get_bots()
+    print(str(bots))
+    bot = bots['2849980255']
+    print(str(bot))
+    try:
+        await bot.send_msg(
+            message_type="private", user_id='1402758731', message='好困啊~'
+        )
+    except (KeyError, Exception):
+        print('KeyError')
 
 
 scheduler = AsyncIOScheduler()
-scheduler.add_job(day_limits, 'cron', hour=2, minute=15,
+scheduler.add_job(day_limits, 'cron', hour=2, minute=19,
                   misfire_grace_time=3600, timezone='Asia/Shanghai')
 
 scheduler.start()
