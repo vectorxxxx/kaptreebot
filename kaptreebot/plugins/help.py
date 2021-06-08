@@ -54,19 +54,18 @@ literature_hide = on_command('文艺菜单', priority=2)
 @literature_hide.handle()
 async def literature_hide_(bot: Bot, event: Event, state: dict):
     if event.get_user_id != event.self_id:
-        table = PrettyTable()
-        table.field_names = [['序号','文艺菜单']]
+        table = PrettyTable(['序号','文艺菜单'])
         table.align['文艺菜单'] = 'l'
-        table.add_row(['1','每日一句'])
-        table.add_row(['2','每日百科'])
-        table.add_row(['3','每日历史'])
-        table.add_row(['4','每日唐诗'])
-        table.add_row(['5','每日谚语'])
-        table.add_row(['6','每日对联'])
-        table.add_row(['7','每日台词'])
-        table.add_row(['8','每日故事'])
-        table.add_row(['9','每日健康'])
-        table.add_row(['10','歇后语'])
+        table.add_row(['每日一句'])
+        table.add_row(['每日百科'])
+        table.add_row(['每日历史'])
+        table.add_row(['每日唐诗'])
+        table.add_row(['每日谚语'])
+        table.add_row(['每日对联'])
+        table.add_row(['每日台词'])
+        table.add_row(['每日故事'])
+        table.add_row(['每日健康'])
+        table.add_row(['歇后语'])
         await bot.send(
             event=event,
             message=str(table)
