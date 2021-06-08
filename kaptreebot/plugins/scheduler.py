@@ -15,7 +15,7 @@ async def day_limits():
         await bot.send_msg(
             message_type="group",
             group_id=582597352,
-            message='好困啊~'
+            message=msg
         )
 
 
