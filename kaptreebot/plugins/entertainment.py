@@ -80,7 +80,7 @@ async def handle_hero(bot: Bot, event: Event, state: dict):
 
 
 async def get_zgjm(text: str):
-    url = tianxing_api + 'dream/index?key=' + tianxing_key + '&word=' + text
+    url = tianxing_api + 'dream/index?key=' + tianxing_key2 + '&word=' + text
     res = requests.get(url)
     c = json.loads(res.text)
     if c['code'] != 200 or c['msg'] !='success':
