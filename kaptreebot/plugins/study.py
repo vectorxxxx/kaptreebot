@@ -159,7 +159,7 @@ async def get_tenwhy(word: str):
 
 
 # ============民国句子============
-mgjuzi = on_command('民国句子',aliases={'今日句子','每日句子','句子'} priority=2)
+mgjuzi = on_command('民国句子',aliases={'今日句子','每日句子','句子'}, priority=2)
 
 
 @mgjuzi.handle()
