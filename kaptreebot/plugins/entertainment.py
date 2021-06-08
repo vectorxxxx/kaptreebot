@@ -90,7 +90,7 @@ async def get_zgjm(text: str):
         return '天机不可泄露~'
     result = ''
     for news in c['newslist']:
-        result += '#' + news['result'] + '\n'
-    print('梦见' + text + '：\n' + result)
+        result += '#' + news['result'] + '\n\n'
+    print('梦见' + text + '：\n' + result.replace('<br>','\n'))
     return result
    
