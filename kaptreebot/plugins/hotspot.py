@@ -149,7 +149,7 @@ async def getdu_(bot: Bot, event: Event, state: dict):
 
 
 def get_bulletin():
-    url = tianxing_api2 + 'bulletin/index?key=' + tianxing_key2
+    url = tianxing_api2 + 'bulletin/index?key=' + tianxing_key
     res = requests.get(url)
     c = json.loads(res.text)
     print(str(c))
@@ -180,7 +180,7 @@ async def getinternet_(bot: Bot, event: Event, state: dict):
 
 
 def get_internet():
-    url = tianxing_api2 + 'internet/index?key=' + tianxing_key
+    url = tianxing_api2 + 'internet/index?key=' + tianxing_key2
     res = requests.get(url)
     c = json.loads(res.text)
     print(str(c))
