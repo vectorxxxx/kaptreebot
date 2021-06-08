@@ -1,26 +1,35 @@
-# from nonebot import require
-# from nonebot.permission import SUPERUSER
-# from nonebot.adapters.cqhttp import Bot, Event
-# from aiocqhttp import MessageSegment
-# import os
-
-# scheduler = require('nonebot_plugin_apscheduler').scheduler
-
-# @scheduler.scheduled_job('cron', hour='* 30 18 * * ?', id='drink_tea', args=[1])
-# async def run_at_3pm(bot: Bot, event: Event):
-#     if event.get_user_id != event.self_id:
-#         pic = get_picture()
-#         await bot.send(
-#             event=event,
-#             message=MessageSegment.image(pic),
-#         )
-
-# def get_picture():
-#     filepath = os.getcwd()+'/data/wzry/skin'
-#     resultpath = 'file:///'+filepath + '/drink_tea.jpb'
-#     print(resultpath)
-#     return resultpath
+import asyncio
+from concurrent.futures import ProcessPoolExecutor
+from apscheduler.schedulers.asyncio import AsyncIOScheduler
+from nonebot.adapters.cqhttp import Bot, Event
 
 
-# scheduler.add_job('饮茶', "interval", days=1, id="drink_tea")
+async def day_limits(bot: Bot, event: Event):
+    await bot.send(
+        event=event,
+        message='好困啊',
+        kwargs={'user_id','1402758731'}
+    )
 
+
+if __name__ == "__main__":
+
+    variable = 60
+
+    scheduler = AsyncIOScheduler()
+    scheduler.add_job(day_limits, 'cron', hour=1, minute=10,
+                      misfire_grace_time=3600, timezone='Asia/Shanghai', kwargs={Bot, Event})
+
+    scheduler.start()
+
+    scheduler.print_jobs()
+
+    executor = ProcessPoolExecutor(1)
+    loop = asyncio.get_event_loop()
+
+    try:
+        loop.run_forever()
+
+    except (KeyboardInterrupt, Exception):
+        loop.stop()
+        scheduler.shutdown()
