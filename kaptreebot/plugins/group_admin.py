@@ -38,7 +38,7 @@ def get_tx(qq):
 # 获取昵称
 def get_name(qq):
     print('qq=',qq)
-    url = 'https://api.ghser.com/qq/?get==%s' % qq
+    url = 'https://api.ghser.com/qq/?get=%s' % qq
     res = requests.get(url,verify=False)
     print('res.content='+str(res.content))
     c = json.loads(res.content)
