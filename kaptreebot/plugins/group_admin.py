@@ -21,13 +21,13 @@ chehui_tome = pd.read_csv('file:///' + os.getcwd() + '/data/pokeme/chehui_tome.t
 
 # 获取头像
 def get_tx(qq):
-    url = 'https://api.ghser.com/tx?qq=' + qq
+    url = 'https://api.ghser.com/tx?qq=' + str(qq)
     res = requests.get(url)
     return res
 
 # 获取昵称
 def get_name(qq):
-    url = 'https://api.ghser.com/qq/?get=' + qq
+    url = 'https://api.ghser.com/qq/?get=' + str(qq)
     res = requests.get(url)
     c = json.loads(res.text)
     if not c['success']:
