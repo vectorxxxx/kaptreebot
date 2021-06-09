@@ -13,6 +13,8 @@ import random
 import requests
 import json
 import urllib3
+from urllib import quote
+from urllib import unquote
 
 chehui_tome = pd.read_csv('file:///' + os.getcwd() + '/data/pokeme/chehui_tome.txt',
                           sep=' ', encoding='utf-8')
@@ -41,7 +43,7 @@ def get_name(qq):
     c = json.loads(res.content)
     if not c['success']:
         return ''
-    name = c['name']
+    name = unquote(c['name'])
     print(name)
     return name
 
@@ -77,7 +79,7 @@ async def decrease(bot: Bot, event: GroupDecreaseNoticeEvent):
         if name != '':
             msg += '[CQ:at,qq="' + name + '"]'
         else:
-            msg += '[CQ:at,qq="' + event.user_id + '"]'
+            msg += '[CQ:at,qq="' + int(event.user_id) + '"]'
         msg += '离开了，好难过~\n'
         msg += get_tx(event.get_user_id) + '\n'        
         await bot.send(
