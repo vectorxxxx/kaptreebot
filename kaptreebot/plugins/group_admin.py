@@ -77,10 +77,12 @@ async def decrease(bot: Bot, event: GroupDecreaseNoticeEvent):
     if event.get_user_id != event.self_id:
         msg = ''
         name = get_name(str(event.user_id))
+        print('name='+name)
         if name != '':
             msg += '[CQ:at,qq="' + name + '"]'
         else:
             msg += '[CQ:at,qq="' + str(event.user_id) + '"]'
+        print('msg='+msg)
         msg += '离开了，好难过~\n'
         msg += get_tx(str(event.user_id)) + '\n'        
         await bot.send(
