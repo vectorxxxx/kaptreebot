@@ -12,6 +12,7 @@ import os
 import random
 import requests
 import json
+import urllib3
 
 chehui_tome = pd.read_csv('file:///' + os.getcwd() + '/data/pokeme/chehui_tome.txt',
                           sep=' ', encoding='utf-8')
@@ -21,8 +22,9 @@ chehui_tome = pd.read_csv('file:///' + os.getcwd() + '/data/pokeme/chehui_tome.t
 
 # 获取头像
 def get_tx(qq):
+    urllib3.disable_warnings()
     url = 'https://api.ghser.com/qq/?get=' + str(qq)
-    res = requests.get(url,verify=True)
+    res = requests.get(url, verify=False)
     print('res.text='+res.text)
     c = json.loads(res.text)
     if not c['success']:
@@ -33,6 +35,7 @@ def get_tx(qq):
 
 # 获取昵称
 def get_name(qq):
+    urllib3.disable_warnings()
     url = 'https://api.ghser.com/qq/?get=' + str(qq)
     res = requests.get(url,verify=True)
     print('res.text='+res.text)
