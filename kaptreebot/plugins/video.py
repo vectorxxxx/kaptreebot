@@ -5,7 +5,6 @@ from aiocqhttp import MessageSegment
 from requests_html import HTMLSession
 import random
 import urllib3
-import json
 
 # 将函数注册为群成员增加通知处理器
 
