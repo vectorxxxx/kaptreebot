@@ -35,7 +35,8 @@ def get_kuaishou():
         'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.146 Safari/537.36'
     }
     r = session.get(url, headers=headers, verify=False)
-    video_url = json.loads(r.text)
+    video_url = r.text
+    print(video_url)
     return MessageSegment.video(file=str(video_url))
 
 
@@ -63,5 +64,6 @@ def get_sister():
         'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.146 Safari/537.36'
     }
     r = session.get(url, headers=headers, verify=False)
-    video_url = json.loads(r.text)
+    video_url = r.text
+    print(video_url)
     return MessageSegment.video(file=str(video_url))
