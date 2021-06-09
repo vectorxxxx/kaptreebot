@@ -100,6 +100,31 @@ def get_daily_news():
     print(res)
     return result
 
+
+# ===========干饭===========
+@scheduler.scheduled_job('cron', hour='12', minute='00', id='eatlunch')
+async def eat_lunch():
+    (bot,) = nonebot.get_bots().values()
+    if bot is not None:
+        lunchimg = get_lunch_img()
+        if lunchimg == '':
+            return
+        msg = '[CQ:at,qq="全体人员"]\n' + lunchimg
+        for group_id in group_id_greetings_list.split(','):
+            await bot.send_msg(
+                message_type="group",
+                group_id=int(group_id),
+                message=msg
+            )
+
+
+def get_lunch_img():
+    filepath = os.getcwd()+'/data/img/lunch'
+    sample = randomFile(filepath)
+    resultpath = 'file:///'+filepath + '/' + sample
+    print(resultpath)
+    return resultpath
+
 # ===========饮茶===========
 
 
@@ -120,6 +145,33 @@ async def drink_tea():
 
 def get_drink_tea_img():
     filepath = os.getcwd()+'/data/drinktea'
+    if not os.path.exists(filepath):
+        return ''
+    sample = randomFile(filepath)
+    resultpath = 'file:///'+filepath + '/' + sample
+    print('resultpath=' + resultpath)
+    sst = MessageSegment.image(file=str(resultpath))
+    return sst
+
+
+# ===========放工===========
+
+
+@scheduler.scheduled_job('cron', hour='17', minute='30', id='offduty')
+async def off_duty():
+    (bot,) = nonebot.get_bots().values()
+    if bot is not None:
+        msg = '[CQ:at,qq="全体人员"] \n' + get_offduty_img() 
+        for group_id in group_id_greetings_list.split(','):
+            await bot.send_msg(
+                message_type="group",
+                group_id=int(group_id),
+                message=msg
+            )
+
+
+def get_offduty_img():
+    filepath = os.getcwd()+'/data/offduty'
     if not os.path.exists(filepath):
         return ''
     sample = randomFile(filepath)
