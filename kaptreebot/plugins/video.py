@@ -5,6 +5,7 @@ from aiocqhttp import MessageSegment
 from requests_html import HTMLSession
 import random
 import urllib3
+import json
 
 # 将函数注册为群成员增加通知处理器
 
@@ -35,10 +36,9 @@ def get_tiktok():
     headers = {
         'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.146 Safari/537.36'
     }
-    r = session.get(url, headers=headers)
-    sel = '#text'
-    s = r.html.find(sel)
-    c = s[0].text
+    r = session.get(url, headers=headers,verify=False)
+    print(str(r.html))
+    c = json.load(r.html)
 
     video_info = c['videoList'][random.randint(0, 10)]
     video_title = video_info['title']
