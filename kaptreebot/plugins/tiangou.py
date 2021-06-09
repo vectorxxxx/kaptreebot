@@ -52,6 +52,7 @@ def get_qingshi():
 # ============每日情话============
 qinghua = on_command('每日情话', priority=2)
 
+
 @qinghua.handle()
 async def qinghua_(bot: Bot, event: Event):
     if event.get_user_id != event.self_id:
@@ -65,12 +66,19 @@ async def qinghua_(bot: Bot, event: Event):
             message=str1
         )
 
+
 # 情话
 def get_qinhua():
-    url = 'https://api.lovelive.tools/api/SweetNothings/1/Serialization/Text?genderType=M'
+    urls = [
+        'https://api.lovelive.tools/api/SweetNothings/1/Serialization/Text?genderType=M',
+        'https://api.ghser.com/qinghua']
+    url = urls[random.randint(0, len(urls) - 1)]
+    print(url)
     res = requests.get(url)
     print('情话:', res.text)
     return str(res.text)
+
+
 # 土味
 def get_saylove():
     url = tianxing_api + 'saylove/index?key=' + tianxing_key2
@@ -81,9 +89,32 @@ def get_saylove():
     result = ''
     for news in c['newslist']:
         result += news['content']
-        res = result.replace('<br>','\n').replace('<br/>','\n')
+        res = result.replace('<br>', '\n').replace('<br/>', '\n')
         print(res)
         return res
+
+
+# ============每日骚话============
+saohua = on_command('每日骚话', priority=2)
+
+
+@saohua.handle()
+async def saohua_(bot: Bot, event: Event):
+    if event.get_user_id != event.self_id:
+        str1 = get_saohua()
+        await bot.send(
+            event=event,
+            message=str1
+        )
+
+
+def get_saohua():
+    urls = ['https://api.ghser.com/saohua/']
+    url = urls[random.randint(0, len(urls) - 1)]
+    print(url)
+    res = requests.get(url)
+    print('骚话:', res.text)
+    return str(res.text)
 
 
 # ============绿茶============
@@ -97,6 +128,7 @@ async def lvcha_(bot: Bot, event: Event):
             event=event,
             message=get_lvcha()
         )
+
 
 def get_lvcha():
     url = 'https://api.lovelive.tools/api/SweetNothings/1/Serialization/Text?genderType=F'
@@ -144,4 +176,4 @@ def get_new2():
     s = r.html.find(sel)
     str1 = s[0].text
     print('情感语录2:', str1)
-    return str1        
+    return str1
