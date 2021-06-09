@@ -21,7 +21,8 @@ async def dailypic_(bot: Bot, event: Event, state: dict):
     if event.get_user_id != event.self_id:
         await bot.send(
             event=event,
-            message=MessageSegment.image(file=get_dailypic())
+            message=MessageSegment.image(get_dailypic()),
+            at_sender=True
         )
 
 
@@ -35,7 +36,7 @@ def get_dailypic():
     }
     res = requests.get(url, headers=headers, verify=False)
     c = res.url
-    return str(c)
+    return c
 
 
 # ============古风============
@@ -47,7 +48,8 @@ async def gf_(bot: Bot, event: Event, state: dict):
     if event.get_user_id != event.self_id:
         await bot.send(
             event=event,
-            message=MessageSegment.image(get_gf())
+            message=MessageSegment.image(get_gf()),
+            at_sender=True
         )
 
 
@@ -60,7 +62,7 @@ def get_gf():
     }
     res = requests.get(url, headers=headers, verify=False)
     c = res.url
-    return str(c)
+    return c
 
 
 # ============setu============
@@ -72,7 +74,8 @@ async def st_(bot: Bot, event: Event, state: dict):
     if event.get_user_id != event.self_id:
         await bot.send(
             event=event,
-            message=MessageSegment.image(get_setu())
+            message=MessageSegment.image(get_setu()),
+            at_sender=True
         )
 
 
@@ -97,7 +100,7 @@ def get_setu():
     }
     res = requests.get(url, headers=headers, verify=False)
     c = res.url
-    return str(c)
+    return c
 
 
 # ============二次元============
@@ -109,7 +112,8 @@ async def acgn_(bot: Bot, event: Event, state: dict):
     if event.get_user_id != event.self_id:
         await bot.send(
             event=event,
-            message=MessageSegment.image(get_acgn())
+            message=MessageSegment.image(get_acgn()),
+            at_sender=True
         )
 
 
@@ -132,7 +136,7 @@ def get_acgn():
     }
     res = requests.get(url, headers=headers, verify=False)
     c = res.url
-    return str(c)
+    return c
 
 
 # ============二次元头像============
@@ -144,7 +148,8 @@ async def acgn_head_(bot: Bot, event: Event, state: dict):
     if event.get_user_id != event.self_id:
         await bot.send(
             event=event,
-            message=MessageSegment.image(get_acgn_head())
+            message=MessageSegment.image(get_acgn_head()),
+            at_sender=True
         )
 
 
@@ -157,7 +162,7 @@ def get_acgn_head():
     }
     res = requests.get(url, headers=headers, verify=False)
     c = res.url
-    return str(c)
+    return c
 
 
 # ============R18============
@@ -169,7 +174,8 @@ async def R18_(bot: Bot, event: Event, state: dict):
     if event.get_user_id != event.self_id:
         await bot.send(
             event=event,
-            message=MessageSegment.image(get_R18())
+            message=MessageSegment.image(get_R18()),
+            at_sender=True
         )
 
 
@@ -182,8 +188,7 @@ def get_R18():
     }
     res = requests.get(url, headers=headers, verify=False)
     c = res.url
-    print(c)
-    return str(c)
+    return c
 
 
 # ============MC酱============
@@ -195,7 +200,8 @@ async def mcpo(bot: Bot, event: Event, state: dict):
     if event.get_user_id != event.self_id:
         await bot.send(
             event=event,
-            message=MessageSegment.image(get_mc())
+            message=MessageSegment.image(get_mc()),
+            at_sender=True
         )
 
 
@@ -209,7 +215,7 @@ def get_mc():
     }
     res = requests.get(url, headers=headers, verify=False)
     c = res.url
-    return str(c)
+    return c
 
 
 # ============猫娘============
@@ -221,7 +227,8 @@ async def cat_(bot: Bot, event: Event, state: dict):
     if event.get_user_id != event.self_id:
         await bot.send(
             event=event,
-            message=MessageSegment.image(get_cat())
+            message=MessageSegment.image(get_cat()),
+            at_sender=True
         )
 
 
@@ -234,4 +241,4 @@ def get_cat():
     }
     res = requests.get(url, headers=headers, verify=False)
     c = res.url
-    return str(c)
+    return c
