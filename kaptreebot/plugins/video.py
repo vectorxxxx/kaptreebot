@@ -33,10 +33,14 @@ def get_kuaishou():
     headers = {
         'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36 Edg/91.0.864.41'
     }
-    r = session.get(url, headers=headers, verify=False)
-    video_url = r.url
-    print(video_url)
-    return MessageSegment.video(file=str(video_url))
+
+    try:
+        r = session.get(url, headers=headers, verify=False)
+        video_url = r.url
+        print(video_url)
+        return MessageSegment.video(file=str(video_url))
+    except Exception:
+        return '小撸怡情，大撸伤身，要适度哦~'
 
 
 # ============小姐姐视频============
