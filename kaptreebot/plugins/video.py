@@ -5,7 +5,12 @@ from aiocqhttp import MessageSegment
 import requests
 import json
 import random
+import urllib3
+import urllib.parse
 
+# 将函数注册为群成员增加通知处理器
+
+urllib3.disable_warnings()
 
 error_info = '没有查询到呢~'
 
@@ -28,9 +33,11 @@ async def wzpic_(bot: Bot, event: Event):
 
 def get_tiktok():
     url = 'http://c.3g.163.com/nc/video/home/0-10.html'
-    res = requests.get(url)
-    print(res.content)
-    c = json.load(res.content)
+    res = requests.get(url,verify=False)
+    print('content=',str(res.content))
+    c = json.loads(res.content)
+    print('json=',str(c))
+
     video_info = c['videoList'][random.randint(0, 10)]
     video_title = video_info['title']
     video_url = video_info['mp4_url']
