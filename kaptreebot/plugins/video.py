@@ -40,7 +40,7 @@ def get_tiktok():
     print(str(r.text))
     c = json.loads(r.text)
 
-    video_info = c['videoList'][random.randint(0, 10)]
+    video_info = c['videoList'][0][random.randint(0, 10)]
     video_title = video_info['title']
     video_url = video_info['mp4_url']
     result = video_title + '\n'
