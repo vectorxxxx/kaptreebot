@@ -21,7 +21,7 @@ async def dailypic_(bot: Bot, event: Event, state: dict):
     if event.get_user_id != event.self_id:
         await bot.send(
             event=event,
-            message=MessageSegment.image(get_dailypic())
+            message=MessageSegment.image(file=get_dailypic())
         )
 
 
@@ -35,7 +35,7 @@ def get_dailypic():
     }
     res = requests.get(url, headers=headers, verify=False)
     c = res.url
-    return c
+    return str(c)
 
 
 # ============古风============
@@ -60,7 +60,7 @@ def get_gf():
     }
     res = requests.get(url, headers=headers, verify=False)
     c = res.url
-    return c
+    return str(c)
 
 
 # ============setu============
@@ -97,7 +97,7 @@ def get_setu():
     }
     res = requests.get(url, headers=headers, verify=False)
     c = res.url
-    return c
+    return str(c)
 
 
 # ============二次元============
@@ -132,7 +132,7 @@ def get_acgn():
     }
     res = requests.get(url, headers=headers, verify=False)
     c = res.url
-    return c
+    return str(c)
 
 
 # ============二次元头像============
@@ -157,7 +157,7 @@ def get_acgn_head():
     }
     res = requests.get(url, headers=headers, verify=False)
     c = res.url
-    return c
+    return str(c)
 
 
 # ============R18============
@@ -183,7 +183,7 @@ def get_R18():
     res = requests.get(url, headers=headers, verify=False)
     c = res.url
     print(c)
-    return c
+    return str(c)
 
 
 # ============MC酱============
@@ -209,7 +209,7 @@ def get_mc():
     }
     res = requests.get(url, headers=headers, verify=False)
     c = res.url
-    return c
+    return str(c)
 
 
 # ============猫娘============
@@ -234,4 +234,4 @@ def get_cat():
     }
     res = requests.get(url, headers=headers, verify=False)
     c = res.url
-    return c
+    return str(c)
