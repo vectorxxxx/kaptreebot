@@ -52,7 +52,7 @@ async def get_zaoan_img():
     resultpath = 'file:///'+filepath + '/' + sample
     print('resultpath=' + resultpath)
     sst = MessageSegment.image(file=str(resultpath))
-    return sst
+    return str(sst)
 
 
 def get_zaoan():
@@ -124,7 +124,7 @@ def get_drink_tea_img():
     resultpath = 'file:///'+filepath + '/' + sample
     print('resultpath=' + resultpath)
     sst = MessageSegment.image(file=str(resultpath))
-    return sst
+    return str(sst)
 
 
 # ===========晚安===========
@@ -153,7 +153,7 @@ def get_wanan_img():
     resultpath = 'file:///'+filepath + '/' + sample
     print('resultpath=' + resultpath)
     sst = MessageSegment.image(file=str(resultpath))
-    return sst
+    return str(sst)
 
 
 def get_wanan():
