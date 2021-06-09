@@ -38,7 +38,11 @@ def get_kuaishou():
         r = session.get(url, headers=headers, verify=False)
         video_url = r.url
         print(video_url)
-        return MessageSegment.video(file=str(video_url))
+        video = MessageSegment.video(file=str(video_url))
+        if video is not None:
+            return video
+        else:
+            return '小撸怡情，大撸伤身，要适度哦~'
     except Exception:
         return '小撸怡情，大撸伤身，要适度哦~'
 
