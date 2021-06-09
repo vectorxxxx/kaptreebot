@@ -3,6 +3,8 @@ import random
 import os
 import nonebot
 import requests
+import base64
+import io
 from aiocqhttp import MessageSegment
 from nonebot import require
 from commons import property
@@ -52,7 +54,12 @@ async def get_zaoan_img():
     resultpath = 'file:///'+filepath + '/' + sample
     print('resultpath=' + resultpath)
     sst = MessageSegment.image(file=str(resultpath))
-    return sst
+    # 转二进制流
+    buf = io.BytesIO()
+    sst.save(buf, format=sample[sample.rindex('.') + 1])
+    heximage = base64.b64encode(sst.getvalue())
+    qrb64 = f'[CQ:image,file=base64://{heximage.decode()}]'
+    return qrb64
 
 
 def get_zaoan():
