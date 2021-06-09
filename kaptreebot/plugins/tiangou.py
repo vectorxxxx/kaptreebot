@@ -8,6 +8,10 @@ import requests
 import random
 import json
 import os
+import urllib3
+
+
+urllib3.disable_warnings()
 
 # 要操作的properties文件的路径
 file_path = os.getcwd() + '/properties/cheat/others.properties'
@@ -72,9 +76,13 @@ def get_qinhua():
     urls = [
         'https://api.lovelive.tools/api/SweetNothings/1/Serialization/Text?genderType=M',
         'https://api.ghser.com/qinghua']
-    url = urls[random.randint(0, len(urls) - 1)]
+    url = urls[random.randint(0, len(urls))]
     print(url)
-    res = requests.get(url)
+    session = HTMLSession()
+    headers = {
+        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.146 Safari/537.36'
+    }
+    res = session.get(url, headers=headers, verify=False)
     print('情话:', res.text)
     return str(res.text)
 
@@ -110,9 +118,13 @@ async def saohua_(bot: Bot, event: Event):
 
 def get_saohua():
     urls = ['https://api.ghser.com/saohua/']
-    url = urls[random.randint(0, len(urls) - 1)]
+    url = urls[random.randint(0, len(urls))]
     print(url)
-    res = requests.get(url)
+    session = HTMLSession()
+    headers = {
+        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.146 Safari/537.36'
+    }
+    res = session.get(url, headers=headers, verify=False)
     print('骚话:', res.text)
     return str(res.text)
 

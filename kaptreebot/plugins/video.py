@@ -35,7 +35,7 @@ def get_kuaishou():
     }
     r = session.get(url, headers=headers, verify=False)
     video_url = r.text
-    print(video_url)
+    # print(video_url)
     return MessageSegment.video(file=str(video_url))
 
 
@@ -64,5 +64,5 @@ def get_sister():
     }
     r = session.get(url, headers=headers, verify=False)
     video_url = r.text
-    print(video_url)
+    # print(video_url)
     return MessageSegment.video(file=str(video_url))

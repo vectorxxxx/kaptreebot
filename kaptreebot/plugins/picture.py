@@ -26,7 +26,6 @@ async def dailypic_(bot: Bot, event: Event, state: dict):
 
 
 def get_dailypic():
-    urllib3.disable_warnings()
     urls = ['https://cdn.seovx.com/?mom=302',
             'https://api.btstu.cn/sjbz/api.php']
     url = urls[random.randint(0, len(urls))]
@@ -53,7 +52,6 @@ async def gf_(bot: Bot, event: Event, state: dict):
 
 
 def get_gf():
-    urllib3.disable_warnings()
     urls = ['https://cdn.seovx.com/ha/?mom=302']
     url = urls[random.randint(0, len(urls))]
     print(url)
@@ -79,7 +77,6 @@ async def st_(bot: Bot, event: Event, state: dict):
 
 
 def get_setu():
-    urllib3.disable_warnings()
     urls = ['https://api.vvhan.com/api/mobil.girl',
             'https://api.vvhan.com/api/girl',
             'https://api.r10086.com/%E5%B0%91%E5%A5%B3%E5%86%99%E7%9C%9F1.php',
@@ -117,7 +114,6 @@ async def acgn_(bot: Bot, event: Event, state: dict):
 
 
 def get_acgn():
-    urllib3.disable_warnings()
     urls = ['https://api.ixiaowai.cn/api/api.php',
             'http://api.mtyqx.cn/api/random.php',
             'https://img.xjh.me/random_img.php',
@@ -153,7 +149,6 @@ async def acgn_head_(bot: Bot, event: Event, state: dict):
 
 
 def get_acgn_head():
-    urllib3.disable_warnings()
     urls = ['https://api.yimian.xyz/img?type=head']
     url = urls[random.randint(0, len(urls))]
     print(url)
@@ -179,7 +174,6 @@ async def R18_(bot: Bot, event: Event, state: dict):
 
 
 def get_R18():
-    urllib3.disable_warnings()
     urls = ['https://api.yimian.xyz/img/?type=koino&R18=true']
     url = urls[random.randint(0, len(urls))]
     print(url)
@@ -206,7 +200,6 @@ async def mcpo(bot: Bot, event: Event, state: dict):
 
 
 def get_mc():
-    urllib3.disable_warnings()
     urls = ['https://api.ixiaowai.cn/mcapi/mcapi.php',
             'https://acg.yanwz.cn/menhera/api.php']
     url = urls[random.randint(0, len(urls))]
@@ -234,7 +227,6 @@ async def cat_(bot: Bot, event: Event, state: dict):
 
 
 def get_cat():
-    urllib3.disable_warnings()
     urls = ['https://api.r10086.com/%E7%8C%AB%E5%A8%981.php']
     url = urls[random.randint(0, len(urls))]
     print(url)
