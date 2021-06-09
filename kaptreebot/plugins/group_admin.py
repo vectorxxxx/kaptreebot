@@ -23,8 +23,9 @@ urllib3.disable_warnings()
 
 # 获取头像
 def get_tx(qq):
+    print('qq='+qq)
     url = 'https://api.ghser.com/qq/?get=%s' % str(qq)
-    res = requests.get(url, verify=False)
+    res = requests.get(url.encode('utf-8'), verify=False)
     print(res.history)
     print('res.content='+str(res.content))
     c = json.loads(res.content)
@@ -36,8 +37,9 @@ def get_tx(qq):
 
 # 获取昵称
 def get_name(qq):
+    print('qq='+qq)
     url = 'https://api.ghser.com/qq/?get==%s' % str(qq)
-    res = requests.get(url,verify=False)
+    res = requests.get(url.encode('utf-8'),verify=False)
     print(res.history)
     print('res.content='+str(res.content))
     c = json.loads(res.content)
