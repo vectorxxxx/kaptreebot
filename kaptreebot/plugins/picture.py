@@ -28,7 +28,7 @@ async def dailypic_(bot: Bot, event: Event, state: dict):
 def get_dailypic():
     urls = ['https://cdn.seovx.com/?mom=302',
             'https://api.btstu.cn/sjbz/api.php']
-    url = urls[random.randint(0, len(urls))]
+    url = urls[random.randint(0, len(urls) - 1)]
     print(url)
     headers = {
         'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.146 Safari/537.36'
@@ -53,7 +53,7 @@ async def gf_(bot: Bot, event: Event, state: dict):
 
 def get_gf():
     urls = ['https://cdn.seovx.com/ha/?mom=302']
-    url = urls[random.randint(0, len(urls))]
+    url = urls[random.randint(0, len(urls) - 1)]
     print(url)
     headers = {
         'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.146 Safari/537.36'
@@ -90,7 +90,7 @@ def get_setu():
             'https://api.r10086.com/%E6%9E%81%E5%93%81%E7%BE%8E%E5%A5%B3%E5%9B%BE%E7%89%87.php',
             'https://api.r10086.com/%E6%97%A5%E6%9C%ACCOS%E4%B8%AD%E5%9B%BDCOS.php'
             ]
-    url = urls[random.randint(0, len(urls))]
+    url = urls[random.randint(0, len(urls) - 1)]
     print(url)
     headers = {
         'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.146 Safari/537.36'
@@ -125,7 +125,7 @@ def get_acgn():
             'https://api.vvhan.com/api/acgimg',
             'https://api.yimian.xyz/img?type=moe',
             'https://cdn.seovx.com/d/?mom=302']
-    url = urls[random.randint(0, len(urls))]
+    url = urls[random.randint(0, len(urls) - 1)]
     print(url)
     headers = {
         'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.146 Safari/537.36'
@@ -150,7 +150,7 @@ async def acgn_head_(bot: Bot, event: Event, state: dict):
 
 def get_acgn_head():
     urls = ['https://api.yimian.xyz/img?type=head']
-    url = urls[random.randint(0, len(urls))]
+    url = urls[random.randint(0, len(urls) - 1)]
     print(url)
     headers = {
         'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.146 Safari/537.36'
@@ -175,7 +175,7 @@ async def R18_(bot: Bot, event: Event, state: dict):
 
 def get_R18():
     urls = ['https://api.yimian.xyz/img/?type=koino&R18=true']
-    url = urls[random.randint(0, len(urls))]
+    url = urls[random.randint(0, len(urls) - 1)]
     print(url)
     headers = {
         'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.146 Safari/537.36'
@@ -202,7 +202,7 @@ async def mcpo(bot: Bot, event: Event, state: dict):
 def get_mc():
     urls = ['https://api.ixiaowai.cn/mcapi/mcapi.php',
             'https://acg.yanwz.cn/menhera/api.php']
-    url = urls[random.randint(0, len(urls))]
+    url = urls[random.randint(0, len(urls) - 1)]
     print(url)
     headers = {
         'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.146 Safari/537.36'
@@ -228,7 +228,7 @@ async def cat_(bot: Bot, event: Event, state: dict):
 
 def get_cat():
     urls = ['https://api.r10086.com/%E7%8C%AB%E5%A8%981.php']
-    url = urls[random.randint(0, len(urls))]
+    url = urls[random.randint(0, len(urls) - 1)]
     print(url)
     headers = {
         'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.146 Safari/537.36'

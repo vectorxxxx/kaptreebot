@@ -76,7 +76,7 @@ def get_qinhua():
     urls = [
         'https://api.lovelive.tools/api/SweetNothings/1/Serialization/Text?genderType=M',
         'https://api.ghser.com/qinghua']
-    url = urls[random.randint(0, len(urls))]
+    url = urls[random.randint(0, len(urls) - 1)]
     print(url)
     session = HTMLSession()
     headers = {
@@ -118,7 +118,7 @@ async def saohua_(bot: Bot, event: Event):
 
 def get_saohua():
     urls = ['https://api.ghser.com/saohua/']
-    url = urls[random.randint(0, len(urls))]
+    url = urls[random.randint(0, len(urls) - 1)]
     print(url)
     session = HTMLSession()
     headers = {
