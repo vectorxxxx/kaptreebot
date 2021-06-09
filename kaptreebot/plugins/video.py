@@ -35,33 +35,33 @@ def get_kuaishou():
     }
     r = session.get(url, headers=headers, verify=False)
     video_url = r.content
-    # print(video_url)
+    print(video_url)
     return MessageSegment.video(file=str(video_url))
 
 
 # ============小姐姐视频============
-sister = on_command('小姐姐视频', priority=2)
+# sister = on_command('小姐姐视频', priority=2)
 
 
-@sister.handle()
-async def sister_(bot: Bot, event: Event):
-    if event.get_user_id != event.self_id:
-        video_r = get_sister()
-        await bot.send(
-            event=event,
-            message=video_r
-        )
+# @sister.handle()
+# async def sister_(bot: Bot, event: Event):
+#     if event.get_user_id != event.self_id:
+#         video_r = get_sister()
+#         await bot.send(
+#             event=event,
+#             message=video_r
+#         )
 
 
-def get_sister():
-    urls = ['https://api.r10086.com/%E8%88%9E%E8%B9%88%E8%A7%86%E9%A2%91.php']
-    url = urls[random.randint(0, len(urls))]
-    print(url)
-    session = HTMLSession()
-    headers = {
-        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36 Edg/91.0.864.41'
-    }
-    r = session.get(url, headers=headers, verify=False)
-    video_url = r.content
-    # print(video_url)
-    return MessageSegment.video(file=str(video_url))
+# def get_sister():
+#     urls = ['https://api.r10086.com/%E8%88%9E%E8%B9%88%E8%A7%86%E9%A2%91.php']
+#     url = urls[random.randint(0, len(urls))]
+#     print(url)
+#     session = HTMLSession()
+#     headers = {
+#         'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36 Edg/91.0.864.41'
+#     }
+#     r = session.get(url, headers=headers, verify=False)
+#     video_url = r.content
+#     # print(video_url)
+#     return MessageSegment.video(file=str(video_url))
