@@ -10,13 +10,34 @@ from aiocqhttp import MessageSegment
 import pandas as pd
 import os
 import random
+import requests
+import json
 
 chehui_tome = pd.read_csv('file:///' + os.getcwd() + '/data/pokeme/chehui_tome.txt',
                           sep=' ', encoding='utf-8')
 
 # 将函数注册为群成员增加通知处理器
 
-# 入群提醒
+
+# 获取头像
+def get_tx(qq):
+    url = 'https://api.ghser.com/tx?qq=' + qq
+    res = requests.get(url)
+    c = json.loads(res.text)
+    return c
+
+# 获取昵称
+def get_name(qq):
+    url = 'https://api.ghser.com/qq/?get=' + qq
+    res = requests.get(url)
+    c = json.loads(res.text)
+    if not c['success']:
+        return ''
+    name = c['name']
+    print(name)
+    return name
+
+# =========入群提醒=========
 increase = on_notice()
 
 @increase.handle()
@@ -24,6 +45,7 @@ async def increase(bot: Bot, event: GroupIncreaseNoticeEvent):
     if event.get_user_id != event.self_id:
         hello_img_path = 'file:///'+os.getcwd()+'/data/img/hello.gif'
         msg = '哇~是新的rbq！\n'
+        msg += get_tx(event.get_user_id) + '\n'
         msg += '欢迎呀，很高兴为您服务呦~\n'
         msg += '博客皮肤有什么问题，可以先查看查看手册：\n'
         msg += 'https://www.yuque.com/awescnb/user/tmpomo\n'
@@ -35,21 +57,27 @@ async def increase(bot: Bot, event: GroupIncreaseNoticeEvent):
         )
 
 
-# 退群提醒
+# =========退群提醒=========
 decrease = on_notice()
 
 
 @decrease.handle()
 async def decrease(bot: Bot, event: GroupDecreaseNoticeEvent):
     if event.get_user_id != event.self_id:
-        msg = '离开了，好难过~'
+        msg = ''
+        name = get_name(event.get_user_id)
+        if name != '':
+            msg += '[CQ:at,qq="' + name + '"]'
+        else:
+            msg += '[CQ:at,qq="' + event.get_user_id + '"]'
+        msg += '离开了，好难过~\n'
+        msg += get_tx(event.get_user_id) + '\n'        
         await bot.send(
             event=event,
-            message=msg,
-            at_sender=True
+            message=msg
         )
 
-# 上传提醒
+# =========上传提醒=========
 upload = on_notice()
 
 
@@ -94,7 +122,7 @@ def judge_file_format(filename):
     return subfix
 
 
-# 撤回提醒
+# =========撤回提醒=========
 ch = pd.read_csv('file:///' + os.getcwd() + '/data/pokeme/chehui.txt',
                  sep=' ', encoding='utf-8')
 
@@ -151,6 +179,7 @@ def randomFile(fileDir):
     return samples[0]
 
 
+# =========红包提醒=========
 regbag = on_notice()
 
 

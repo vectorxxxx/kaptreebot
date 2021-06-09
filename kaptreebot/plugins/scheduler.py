@@ -46,7 +46,7 @@ async def good_morning():
             )
 
 
-async def get_zaoan_img():
+def get_zaoan_img():
     filepath = os.getcwd()+'/data/zaoan'
     if not os.path.exists(filepath):
         return ''
@@ -54,12 +54,7 @@ async def get_zaoan_img():
     resultpath = 'file:///'+filepath + '/' + sample
     print('resultpath=' + resultpath)
     sst = MessageSegment.image(file=str(resultpath))
-    # 转二进制流
-    buf = io.BytesIO()
-    sst.save(buf, format=sample[sample.rindex('.') + 1])
-    heximage = base64.b64encode(sst.getvalue())
-    qrb64 = f'[CQ:image,file=base64://{heximage.decode()}]'
-    return qrb64
+    return sst
 
 
 def get_zaoan():
