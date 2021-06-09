@@ -19,9 +19,10 @@ dailypic = on_command('每日一图', priority=2)
 @dailypic.handle()
 async def dailypic_(bot: Bot, event: Event, state: dict):
     if event.get_user_id != event.self_id:
+        msg = get_dailypic()
         await bot.send(
             event=event,
-            message=MessageSegment.image(get_dailypic()),
+            message=msg,
             at_sender=True
         )
 
@@ -35,8 +36,8 @@ def get_dailypic():
         'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36 Edg/91.0.864.41'
     }
     res = requests.get(url, headers=headers, verify=False)
-    c = res.url
-    return c
+    imgurl = res.url
+    return MessageSegment.image(imgurl)
 
 
 # ============古风============
@@ -46,9 +47,10 @@ gf = on_command('古风', priority=2)
 @gf.handle()
 async def gf_(bot: Bot, event: Event, state: dict):
     if event.get_user_id != event.self_id:
+        msg = get_gf()
         await bot.send(
             event=event,
-            message=MessageSegment.image(get_gf()),
+            message=msg,
             at_sender=True
         )
 
@@ -61,8 +63,8 @@ def get_gf():
         'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36 Edg/91.0.864.41'
     }
     res = requests.get(url, headers=headers, verify=False)
-    c = res.url
-    return c
+    imgurl = res.url
+    return MessageSegment.image(imgurl)
 
 
 # ============setu============
@@ -72,9 +74,10 @@ st = on_keyword(['setu', '涩图', '色图', '福利姬'], priority=2)
 @st.handle()
 async def st_(bot: Bot, event: Event, state: dict):
     if event.get_user_id != event.self_id:
+        msg = get_setu()
         await bot.send(
             event=event,
-            message=MessageSegment.image(get_setu()),
+            message=msg,
             at_sender=True
         )
 
@@ -99,8 +102,8 @@ def get_setu():
         'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36 Edg/91.0.864.41'
     }
     res = requests.get(url, headers=headers, verify=False)
-    c = res.url
-    return c
+    imgurl = res.url
+    return MessageSegment.image(imgurl)
 
 
 # ============二次元============
@@ -110,9 +113,10 @@ acgn = on_command('二次元', aliases={'萝莉'}, priority=2)
 @acgn.handle()
 async def acgn_(bot: Bot, event: Event, state: dict):
     if event.get_user_id != event.self_id:
+        msg = get_acgn()
         await bot.send(
             event=event,
-            message=MessageSegment.image(get_acgn()),
+            message=msg,
             at_sender=True
         )
 
@@ -135,8 +139,8 @@ def get_acgn():
         'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36 Edg/91.0.864.41'
     }
     res = requests.get(url, headers=headers, verify=False)
-    c = res.url
-    return c
+    imgurl = res.url
+    return MessageSegment.image(imgurl)
 
 
 # ============二次元头像============
@@ -146,9 +150,10 @@ acgn_head = on_command('二次元头像', priority=2)
 @acgn_head.handle()
 async def acgn_head_(bot: Bot, event: Event, state: dict):
     if event.get_user_id != event.self_id:
+        msg = get_acgn_head()
         await bot.send(
             event=event,
-            message=MessageSegment.image(get_acgn_head()),
+            message=msg,
             at_sender=True
         )
 
@@ -161,8 +166,8 @@ def get_acgn_head():
         'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36 Edg/91.0.864.41'
     }
     res = requests.get(url, headers=headers, verify=False)
-    c = res.url
-    return c
+    imgurl = res.url
+    return MessageSegment.image(imgurl)
 
 
 # ============R18============
@@ -172,9 +177,10 @@ R18 = on_keyword(['r18', 'R18'], priority=2)
 @R18.handle()
 async def R18_(bot: Bot, event: Event, state: dict):
     if event.get_user_id != event.self_id:
+        msg = get_R18()
         await bot.send(
             event=event,
-            message=MessageSegment.image(get_R18()),
+            message=msg,
             at_sender=True
         )
 
@@ -187,8 +193,8 @@ def get_R18():
         'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36 Edg/91.0.864.41'
     }
     res = requests.get(url, headers=headers, verify=False)
-    c = res.url
-    return c
+    imgurl = res.url
+    return MessageSegment.image(imgurl)
 
 
 # ============MC酱============
@@ -196,11 +202,12 @@ mc = on_keyword(['mc表情包', 'MC酱', 'Mc酱', 'mC酱', "mc酱"], priority=2)
 
 
 @mc.handle()
-async def mcpo(bot: Bot, event: Event, state: dict):
+async def mc_(bot: Bot, event: Event, state: dict):
     if event.get_user_id != event.self_id:
+        msg = get_mc()
         await bot.send(
             event=event,
-            message=MessageSegment.image(get_mc()),
+            message=msg,
             at_sender=True
         )
 
@@ -214,8 +221,8 @@ def get_mc():
         'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36 Edg/91.0.864.41'
     }
     res = requests.get(url, headers=headers, verify=False)
-    c = res.url
-    return c
+    imgurl = res.url
+    return MessageSegment.image(imgurl)
 
 
 # ============猫娘============
@@ -225,9 +232,10 @@ cat = on_keyword(['猫娘'], priority=2)
 @cat.handle()
 async def cat_(bot: Bot, event: Event, state: dict):
     if event.get_user_id != event.self_id:
+        msg = get_cat()
         await bot.send(
             event=event,
-            message=MessageSegment.image(get_cat()),
+            message=msg,
             at_sender=True
         )
 
@@ -240,5 +248,5 @@ def get_cat():
         'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36 Edg/91.0.864.41'
     }
     res = requests.get(url, headers=headers, verify=False)
-    c = res.url
-    return c
+    imgurl = res.url
+    return MessageSegment.image(imgurl)
