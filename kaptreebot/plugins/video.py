@@ -29,7 +29,8 @@ async def wzpic_(bot: Bot, event: Event):
 def get_tiktok():
     url = 'http://c.3g.163.com/nc/video/home/0-10.html'
     res = requests.get(url)
-    c = json.load(res)
+    print(res.content)
+    c = json.load(res.content)
     video_info = c['videoList'][random.randint(0, 10)]
     video_title = video_info['title']
     video_url = video_info['mp4_url']
