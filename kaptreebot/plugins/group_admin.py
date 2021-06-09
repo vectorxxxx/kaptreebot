@@ -25,8 +25,8 @@ def get_tx(qq):
     urllib3.disable_warnings()
     url = 'https://api.ghser.com/qq/?get=' + str(qq)
     res = requests.get(url, verify=False)
-    print('res.html='+str(res.html))
-    c = json.loads(res.data)
+    print('res.content='+str(res.content))
+    c = json.loads(res.content)
     if not c['success']:
         return ''
     imgurl = c['imgurl']
@@ -38,8 +38,8 @@ def get_name(qq):
     urllib3.disable_warnings()
     url = 'https://api.ghser.com/qq/?get=' + str(qq)
     res = requests.get(url,verify=False)
-    print('res.html='+str(res.html))
-    c = json.loads(res.html)
+    print('res.content='+str(res.content))
+    c = json.loads(res.content)
     if not c['success']:
         return ''
     name = c['name']
