@@ -1,6 +1,6 @@
 from nonebot.permission import SUPERUSER
 import requests
-from nonebot import on_command
+from nonebot import on_command, on_keyword
 from nonebot.rule import to_me
 from nonebot.adapters.cqhttp import Bot, Event
 import random
@@ -13,7 +13,7 @@ urllib3.disable_warnings()
 
 
 # ============每日一图============
-dailypic = on_command(['每日一图'], priority=2)
+dailypic = on_command('每日一图', priority=2)
 
 
 @dailypic.handle()
@@ -40,7 +40,7 @@ def get_dailypic():
 
 
 # ============古风============
-gf = on_command(['古风'], priority=2)
+gf = on_command('古风', priority=2)
 
 
 @gf.handle()
@@ -66,7 +66,7 @@ def get_gf():
 
 
 # ============setu============
-st = on_command(['setu', '涩图', '色图', '福利姬'], priority=2)
+st = on_keyword(['setu', '涩图', '色图', '福利姬'], priority=2)
 
 
 @st.handle()
@@ -104,7 +104,7 @@ def get_setu():
 
 
 # ============二次元============
-acgn = on_command(['二次元', '萝莉'], priority=2)
+acgn = on_command('二次元', aliases={'萝莉'}, priority=2)
 
 
 @acgn.handle()
@@ -140,7 +140,7 @@ def get_acgn():
 
 
 # ============二次元头像============
-acgn_head = on_command(['二次元头像'], priority=2)
+acgn_head = on_command('二次元头像', priority=2)
 
 
 @acgn_head.handle()
@@ -166,7 +166,7 @@ def get_acgn_head():
 
 
 # ============R18============
-R18 = on_command(['r18', 'R18'], priority=2)
+R18 = on_keyword(['r18', 'R18'], priority=2)
 
 
 @R18.handle()
@@ -192,7 +192,7 @@ def get_R18():
 
 
 # ============MC酱============
-mc = on_command(['mc表情包', 'MC酱', 'Mc酱', 'mC酱', "mc酱"], priority=2)
+mc = on_keyword(['mc表情包', 'MC酱', 'Mc酱', 'mC酱', "mc酱"], priority=2)
 
 
 @mc.handle()
@@ -220,7 +220,7 @@ def get_mc():
 
 
 # ============猫娘============
-cat = on_command(['猫娘'], priority=2)
+cat = on_keyword(['猫娘'], priority=2)
 
 
 @cat.handle()
