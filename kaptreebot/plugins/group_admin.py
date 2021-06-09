@@ -13,8 +13,7 @@ import random
 import requests
 import json
 import urllib3
-from urllib import quote
-from urllib import unquote
+import urllib.parse
 
 chehui_tome = pd.read_csv('file:///' + os.getcwd() + '/data/pokeme/chehui_tome.txt',
                           sep=' ', encoding='utf-8')
@@ -43,7 +42,7 @@ def get_name(qq):
     c = json.loads(res.content)
     if not c['success']:
         return ''
-    name = unquote(c['name'])
+    name = urllib.parse.unquote(c['name'])
     print(name)
     return name
 
