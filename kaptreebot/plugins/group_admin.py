@@ -78,7 +78,7 @@ decrease = on_notice()
 async def decrease(bot: Bot, event: GroupDecreaseNoticeEvent):
     if event.get_user_id != event.self_id:
         name = get_name(str(event.user_id))
-        msg = '[CQ:at,qq=' + str(event.user_id) + ']\n'
+        msg = '[CQ:at,qq=' + str(event.user_id) + ']'
         msg += '离开了，好难过~\n'
         msg += '昵称：' + str(name) + '\n'
         msg += get_tx(str(event.user_id)) + '\n'        
