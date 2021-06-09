@@ -22,8 +22,7 @@ async def dailypic_(bot: Bot, event: Event, state: dict):
         msg = get_dailypic()
         await bot.send(
             event=event,
-            message=msg,
-            at_sender=True
+            message=msg
         )
 
 
@@ -50,8 +49,7 @@ async def gf_(bot: Bot, event: Event, state: dict):
         msg = get_gf()
         await bot.send(
             event=event,
-            message=msg,
-            at_sender=True
+            message=msg
         )
 
 
@@ -77,8 +75,7 @@ async def st_(bot: Bot, event: Event, state: dict):
         msg = get_setu()
         await bot.send(
             event=event,
-            message=msg,
-            at_sender=True
+            message=msg
         )
 
 
@@ -116,8 +113,7 @@ async def acgn_(bot: Bot, event: Event, state: dict):
         msg = get_acgn()
         await bot.send(
             event=event,
-            message=msg,
-            at_sender=True
+            message=msg
         )
 
 
@@ -153,8 +149,7 @@ async def acgn_head_(bot: Bot, event: Event, state: dict):
         msg = get_acgn_head()
         await bot.send(
             event=event,
-            message=msg,
-            at_sender=True
+            message=msg
         )
 
 
@@ -180,8 +175,7 @@ async def R18_(bot: Bot, event: Event, state: dict):
         msg = get_R18()
         await bot.send(
             event=event,
-            message=msg,
-            at_sender=True
+            message=msg
         )
 
 
@@ -207,8 +201,7 @@ async def mc_(bot: Bot, event: Event, state: dict):
         msg = get_mc()
         await bot.send(
             event=event,
-            message=msg,
-            at_sender=True
+            message=msg
         )
 
 
@@ -235,8 +228,7 @@ async def cat_(bot: Bot, event: Event, state: dict):
         msg = get_cat()
         await bot.send(
             event=event,
-            message=msg,
-            at_sender=True
+            message=msg
         )
 
 
