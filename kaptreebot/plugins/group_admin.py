@@ -24,7 +24,8 @@ urllib3.disable_warnings()
 
 # 获取头像
 def get_tx(qq):
-    url = 'https://api.ghser.com/qq/?get=%s' % str(qq)
+    print('qq=',qq)
+    url = 'https://api.ghser.com/qq/?get=%s' % qq
     res = requests.get(url, verify=False)
     print('res.content='+str(res.content))
     c = json.loads(res.content)
@@ -36,7 +37,8 @@ def get_tx(qq):
 
 # 获取昵称
 def get_name(qq):
-    url = 'https://api.ghser.com/qq/?get==%s' % str(qq)
+    print('qq=',qq)
+    url = 'https://api.ghser.com/qq/?get==%s' % qq
     res = requests.get(url,verify=False)
     print('res.content='+str(res.content))
     c = json.loads(res.content)
@@ -54,7 +56,7 @@ async def increase(bot: Bot, event: GroupIncreaseNoticeEvent):
     if event.get_user_id != event.self_id:
         hello_img_path = 'file:///'+os.getcwd()+'/data/img/hello.gif'
         msg = '哇~是新的rbq！\n'
-        msg += get_tx(event.user_id) + '\n'
+        msg += get_tx(str(event.user_id)) + '\n'
         msg += '欢迎呀，很高兴为您服务呦~\n'
         msg += '博客皮肤有什么问题，可以先查看查看手册：\n'
         msg += 'https://www.yuque.com/awescnb/user/tmpomo\n'
@@ -74,13 +76,13 @@ decrease = on_notice()
 async def decrease(bot: Bot, event: GroupDecreaseNoticeEvent):
     if event.get_user_id != event.self_id:
         msg = ''
-        name = get_name(event.user_id)
+        name = get_name(str(event.user_id))
         if name != '':
             msg += '[CQ:at,qq="' + name + '"]'
         else:
             msg += '[CQ:at,qq="' + str(event.user_id) + '"]'
         msg += '离开了，好难过~\n'
-        msg += get_tx(event.get_user_id) + '\n'        
+        msg += get_tx(str(event.user_id)) + '\n'        
         await bot.send(
             event=event,
             message=msg
