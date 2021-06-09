@@ -52,7 +52,7 @@ async def get_zaoan_img():
     resultpath = 'file:///'+filepath + '/' + sample
     print('resultpath=' + resultpath)
     sst = MessageSegment.image(file=str(resultpath))
-    return str(sst)
+    return sst
 
 
 def get_zaoan():
@@ -73,10 +73,10 @@ def get_zaoan():
 async def daily_news():
     (bot,) = nonebot.get_bots().values()
     if bot is not None:
-        daily_news = get_daily_news()
+        dailynews = get_daily_news()
         if daily_news == '':
             return
-        msg = '早报速递：\n' + daily_news
+        msg = '早报速递：\n' + dailynews
         for group_id in group_id_greetings_list.split(','):
             await bot.send_msg(
                 message_type="group",
@@ -124,7 +124,7 @@ def get_drink_tea_img():
     resultpath = 'file:///'+filepath + '/' + sample
     print('resultpath=' + resultpath)
     sst = MessageSegment.image(file=str(resultpath))
-    return str(sst)
+    return sst
 
 
 # ===========晚安===========
@@ -153,7 +153,7 @@ def get_wanan_img():
     resultpath = 'file:///'+filepath + '/' + sample
     print('resultpath=' + resultpath)
     sst = MessageSegment.image(file=str(resultpath))
-    return str(sst)
+    return sst
 
 
 def get_wanan():
