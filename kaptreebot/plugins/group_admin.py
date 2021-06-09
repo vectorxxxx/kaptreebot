@@ -24,28 +24,30 @@ urllib3.disable_warnings()
 
 # 获取头像
 def get_tx(qq):
-    print('qq=',qq)
+    print('tx——qq=',qq)
     url = 'https://api.ghser.com/qq/?get=%s' % qq
     res = requests.get(url, verify=False)
-    print('res.content='+str(res.content))
+    print('tx——res.content='+str(res.content))
     c = json.loads(res.content)
+    print('tx——json=',str(c))
     if not c['success']:
         return ''
     imgurl = c['imgurl']
-    print(imgurl)
+    print('imgurl=',imgurl)
     return MessageSegment.image(imgurl)
 
 # 获取昵称
 def get_name(qq):
-    print('qq=',qq)
+    print('name——qq=',qq)
     url = 'https://api.ghser.com/qq/?get=%s' % qq
     res = requests.get(url,verify=False)
-    print('res.content='+str(res.content))
+    print('name——res.content='+str(res.content))
     c = json.loads(res.content)
+    print('name——json=',str(c))
     if not c['success']:
         return ''
     name = urllib.parse.unquote(c['name'])
-    print(name)
+    print('name=',name)
     return name
 
 # =========入群提醒=========
