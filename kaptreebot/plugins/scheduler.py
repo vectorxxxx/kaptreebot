@@ -11,13 +11,16 @@ from commons import property
 
 # 要操作的properties文件的路径
 file_path = os.getcwd() + '/properties/cheat/others.properties'
-scheduler_path = os.getcwd() + '/properties/cheat/scheduler.properties'
 # 读取文件
 props = property.parse(file_path)
 tianxing_api = props.get('tianxing_api')
 tianxing_api2 = props.get('tianxing_api2')
 tianxing_key2 = props.get('tianxing_key2')
-group_id_greetings_list = props.get('group_id_greetings_list')
+
+# 定时任务配置
+scheduler_path = os.getcwd() + '/properties/cheat/scheduler.properties'
+scheduler_props = property.parse(scheduler_path)
+group_id_greetings_list = scheduler_props.get('group_id_greetings_list')
 
 
 # 深度学习过程中，需要制作训练集和验证集、测试集
@@ -128,7 +131,7 @@ def get_lunch_img():
 # ===========饮茶===========
 
 
-@scheduler.scheduled_job('cron', hour='15', minute='0', id='drink_tea')
+@scheduler.scheduled_job('cron', hour='15', minute='10', id='drink_tea')
 async def drink_tea():
     (bot,) = nonebot.get_bots().values()
     if bot is not None:

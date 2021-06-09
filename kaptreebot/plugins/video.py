@@ -14,8 +14,8 @@ urllib3.disable_warnings()
 error_info = '没有查询到呢~'
 
 
-# ============抖音视频榜============
-tiktok = on_command('抖音', aliases={'抖音热榜', '抖音视频', '抖音短视频'}, priority=2)
+# ============网易短视频============
+tiktok = on_command('网易短视频', priority=2)
 
 
 @tiktok.handle()
@@ -40,8 +40,8 @@ def get_tiktok():
     c = json.loads(r.text)
 
     video_list = c['videoList']
-    print(str(video_list))
     video_info = video_list[random.randint(0, 10)]
+    print(str(video_info))
     video_title = video_info['title']
     video_url = video_info['mp4_url']
     result = video_title + '\n'
