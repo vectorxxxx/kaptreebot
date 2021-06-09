@@ -25,6 +25,7 @@ urllib3.disable_warnings()
 def get_tx(qq):
     url = 'https://api.ghser.com/qq/?get=%s' % str(qq)
     res = requests.get(url, verify=False)
+    print(res.history)
     print('res.content='+str(res.content))
     c = json.loads(res.content)
     if not c['success']:
@@ -37,6 +38,7 @@ def get_tx(qq):
 def get_name(qq):
     url = 'https://api.ghser.com/qq/?get==%s' % str(qq)
     res = requests.get(url,verify=False)
+    print(res.history)
     print('res.content='+str(res.content))
     c = json.loads(res.content)
     if not c['success']:
