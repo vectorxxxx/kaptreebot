@@ -31,7 +31,7 @@ def get_dailypic():
     url = urls[random.randint(0, len(urls) - 1)]
     print(url)
     headers = {
-        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.146 Safari/537.36'
+        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36 Edg/91.0.864.41'
     }
     res = requests.get(url, headers=headers, verify=False)
     c = res.url
@@ -56,7 +56,7 @@ def get_gf():
     url = urls[random.randint(0, len(urls) - 1)]
     print(url)
     headers = {
-        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.146 Safari/537.36'
+        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36 Edg/91.0.864.41'
     }
     res = requests.get(url, headers=headers, verify=False)
     c = res.url
@@ -93,7 +93,7 @@ def get_setu():
     url = urls[random.randint(0, len(urls) - 1)]
     print(url)
     headers = {
-        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.146 Safari/537.36'
+        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36 Edg/91.0.864.41'
     }
     res = requests.get(url, headers=headers, verify=False)
     c = res.url
@@ -128,7 +128,7 @@ def get_acgn():
     url = urls[random.randint(0, len(urls) - 1)]
     print(url)
     headers = {
-        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.146 Safari/537.36'
+        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36 Edg/91.0.864.41'
     }
     res = requests.get(url, headers=headers, verify=False)
     c = res.url
@@ -153,7 +153,7 @@ def get_acgn_head():
     url = urls[random.randint(0, len(urls) - 1)]
     print(url)
     headers = {
-        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.146 Safari/537.36'
+        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36 Edg/91.0.864.41'
     }
     res = requests.get(url, headers=headers, verify=False)
     c = res.url
@@ -178,7 +178,7 @@ def get_R18():
     url = urls[random.randint(0, len(urls) - 1)]
     print(url)
     headers = {
-        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.146 Safari/537.36'
+        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36 Edg/91.0.864.41'
     }
     res = requests.get(url, headers=headers, verify=False)
     c = res.url
@@ -205,7 +205,7 @@ def get_mc():
     url = urls[random.randint(0, len(urls) - 1)]
     print(url)
     headers = {
-        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.146 Safari/537.36'
+        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36 Edg/91.0.864.41'
     }
     res = requests.get(url, headers=headers, verify=False)
     c = res.url
@@ -231,7 +231,7 @@ def get_cat():
     url = urls[random.randint(0, len(urls) - 1)]
     print(url)
     headers = {
-        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.146 Safari/537.36'
+        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36 Edg/91.0.864.41'
     }
     res = requests.get(url, headers=headers, verify=False)
     c = res.url
