@@ -131,12 +131,12 @@ def get_lunch_img():
 # ===========饮茶===========
 
 
-@scheduler.scheduled_job('cron', hour='15', minute='30', id='drink_tea')
+@scheduler.scheduled_job('cron', hour='15', minute='00', id='drink_tea')
 async def drink_tea():
     (bot,) = nonebot.get_bots().values()
     if bot is not None:
         msg = '[CQ:at,qq="全体人员"] \n'
-        msg += '喂！三点几啦！饮茶先啦~\n'
+        msg += '喂！三点几啦！饮茶先~\n'
         msg += get_drink_tea_img()
         for group_id in group_id_greetings_list.split(','):
             await bot.send_msg(
