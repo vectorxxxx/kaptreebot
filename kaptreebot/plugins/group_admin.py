@@ -6,10 +6,12 @@ from nonebot.adapters.cqhttp.event import GroupDecreaseNoticeEvent
 from nonebot.adapters.cqhttp.event import GroupRecallNoticeEvent
 from nonebot.adapters.cqhttp.event import LuckyKingNotifyEvent
 from aiocqhttp import MessageSegment
+from requests_html import HTMLSession
 
 import pandas as pd
 import os
 import random
+from pydantic.errors import UrlError
 import requests
 import json
 import urllib3
@@ -24,10 +26,16 @@ chehui_tome = pd.read_csv('file:///' + os.getcwd() + '/data/pokeme/chehui_tome.t
 def get_tx(qq):
     urllib3.disable_warnings()
     url = 'http://q1.qlogo.cn/g?b=qq&nk=%s&s=640' % str(qq)
-    res = requests.get(url, verify=False)
-    print('res.content='+str(res.content))
-    print(imgurl)
-    return MessageSegment.image(res.content)
+    session = HTMLSession()
+    headers = {
+        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.146 Safari/537.36'
+    }
+    r = session.get(url, headers=headers, verify=False)
+    sel = '#text'
+    s = r.html.find(sel)
+    str1 = s[0].text
+    print('res.content='+str1)
+    return MessageSegment.image(str1)
 
 # 获取昵称
 def get_name(qq):
