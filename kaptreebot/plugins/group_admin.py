@@ -23,7 +23,6 @@ chehui_tome = pd.read_csv('file:///' + os.getcwd() + '/data/pokeme/chehui_tome.t
 def get_tx(qq):
     url = 'https://api.ghser.com/qq/?get=' + str(qq)
     res = requests.get(url,verify=False)
-    print('res='+res)
     print('res.text='+res.text)
     print('res.html='+res.html)
 
@@ -38,7 +37,6 @@ def get_tx(qq):
 def get_name(qq):
     url = 'https://api.ghser.com/qq/?get=' + str(qq)
     res = requests.get(url,verify=False)
-    print('res='+res)
     print('res.text='+res.text)
     print('res.html='+res.html)
     c = json.loads(res.html)
