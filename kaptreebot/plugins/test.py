@@ -97,3 +97,8 @@ table.add_row(['8', '王者', '王者图片/语音'])
 table.add_row(['9', '注意', '群聊@我或/'])
 table.add_row(['10', '更多', '请体验触发'])
 print(str(table))
+
+url = 'https://ks.ghser.com/'
+res = requests.get(url)
+text = res.text
+print(text)
