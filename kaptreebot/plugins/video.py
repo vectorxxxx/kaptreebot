@@ -37,10 +37,11 @@ def get_tiktok():
         'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.146 Safari/537.36'
     }
     r = session.get(url, headers=headers,verify=False)
-    print(str(r.text))
     c = json.loads(r.text)
 
-    video_info = c['videoList'][0][random.randint(0, 10)]
+    video_list = c['videoList']
+    print(str(video_list))
+    video_info = video_list[random.randint(0, 10)]
     video_title = video_info['title']
     video_url = video_info['mp4_url']
     result = video_title + '\n'
