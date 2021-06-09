@@ -21,7 +21,7 @@ async def dailypic_(bot: Bot, event: Event, state: dict):
     if event.get_user_id != event.self_id:
         await bot.send(
             event=event,
-            message=MessageSegment.image(get_dailypic()),
+            message=MessageSegment.image(get_dailypic())
         )
 
 
@@ -47,7 +47,7 @@ async def gf_(bot: Bot, event: Event, state: dict):
     if event.get_user_id != event.self_id:
         await bot.send(
             event=event,
-            message=MessageSegment.image(get_gf()),
+            message=MessageSegment.image(get_gf())
         )
 
 
@@ -72,7 +72,7 @@ async def st_(bot: Bot, event: Event, state: dict):
     if event.get_user_id != event.self_id:
         await bot.send(
             event=event,
-            message=MessageSegment.image(get_setu()),
+            message=MessageSegment.image(get_setu())
         )
 
 
@@ -109,7 +109,7 @@ async def acgn_(bot: Bot, event: Event, state: dict):
     if event.get_user_id != event.self_id:
         await bot.send(
             event=event,
-            message=MessageSegment.image(get_acgn()),
+            message=MessageSegment.image(get_acgn())
         )
 
 
@@ -144,7 +144,7 @@ async def acgn_head_(bot: Bot, event: Event, state: dict):
     if event.get_user_id != event.self_id:
         await bot.send(
             event=event,
-            message=MessageSegment.image(get_acgn_head()),
+            message=MessageSegment.image(get_acgn_head())
         )
 
 
@@ -169,7 +169,7 @@ async def R18_(bot: Bot, event: Event, state: dict):
     if event.get_user_id != event.self_id:
         await bot.send(
             event=event,
-            message=MessageSegment.image(get_R18()),
+            message=MessageSegment.image(get_R18())
         )
 
 
@@ -194,8 +194,7 @@ async def mcpo(bot: Bot, event: Event, state: dict):
     if event.get_user_id != event.self_id:
         await bot.send(
             event=event,
-            message=MessageSegment.image(get_mc()),
-            at_sender=True
+            message=MessageSegment.image(get_mc())
         )
 
 
@@ -221,8 +220,7 @@ async def cat_(bot: Bot, event: Event, state: dict):
     if event.get_user_id != event.self_id:
         await bot.send(
             event=event,
-            message=MessageSegment.image(get_cat()),
-            at_sender=True
+            message=MessageSegment.image(get_cat())
         )
 
 
