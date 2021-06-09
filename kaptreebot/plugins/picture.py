@@ -182,6 +182,7 @@ def get_R18():
     }
     res = requests.get(url, headers=headers, verify=False)
     c = res.url
+    print(c)
     return c
 
 
