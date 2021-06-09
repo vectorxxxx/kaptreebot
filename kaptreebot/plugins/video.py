@@ -1,4 +1,5 @@
-from nonebot import on_command,to_me
+from nonebot import on_command
+from nonebot.rule import to_me
 from nonebot.permission import SUPERUSER
 from nonebot.adapters.cqhttp import Bot, Event
 from aiocqhttp import MessageSegment
@@ -11,7 +12,7 @@ error_info = '没有查询到呢~'
 
 
 # ============抖音视频榜============
-tiktok = on_command('抖音', aliases={'抖音热榜', '抖音视频', '抖音短视频'}, priority=2)
+tiktok = on_command('抖音', aliases={'抖音热榜', '抖音视频', '抖音短视频'}, rule=to_me, priority=2)
 
 
 @tiktok.handle()
