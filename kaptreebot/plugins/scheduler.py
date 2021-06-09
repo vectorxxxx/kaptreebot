@@ -50,7 +50,7 @@ async def good_morning():
 
 
 def get_zaoan_img():
-    filepath = os.getcwd()+'/data/zaoan'
+    filepath = os.getcwd()+'/data/img/zaoan'
     if not os.path.exists(filepath):
         return ''
     sample = randomFile(filepath)
@@ -131,7 +131,7 @@ def get_lunch_img():
 # ===========饮茶===========
 
 
-@scheduler.scheduled_job('cron', hour='15', minute='10', id='drink_tea')
+@scheduler.scheduled_job('cron', hour='15', minute='30', id='drink_tea')
 async def drink_tea():
     (bot,) = nonebot.get_bots().values()
     if bot is not None:
@@ -147,7 +147,7 @@ async def drink_tea():
 
 
 def get_drink_tea_img():
-    filepath = os.getcwd()+'/data/drinktea'
+    filepath = os.getcwd()+'/data/img/drinktea'
     if not os.path.exists(filepath):
         return ''
     sample = randomFile(filepath)
@@ -174,7 +174,7 @@ async def off_duty():
 
 
 def get_offduty_img():
-    filepath = os.getcwd()+'/data/offduty'
+    filepath = os.getcwd()+'/data/img/offduty'
     if not os.path.exists(filepath):
         return ''
     sample = randomFile(filepath)
@@ -203,7 +203,7 @@ async def good_night():
 
 
 def get_wanan_img():
-    filepath = os.getcwd()+'/data/wanan'
+    filepath = os.getcwd()+'/data/img/wanan'
     if not os.path.exists(filepath):
         return ''
     sample = randomFile(filepath)
