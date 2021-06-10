@@ -158,10 +158,10 @@ def get_bulletin():
         return error_info
     result = ''
     for i,val in enumerate(c['newslist']):
-        result += 'Top ' + str(i + 1) + '：', val['title'] + '\n'
+        result += 'Top ' + str(i + 1) + '：' + val['title'] + '\n'
     res = result.replace('<br>', '\n').replace('<br/>', '\n')[:-2]
     print(res)
-    return result
+    return res
 
 
 # ============互联网资讯============
