@@ -127,7 +127,8 @@ def get_lunch_img():
     sample = randomFile(filepath)
     resultpath = 'file:///'+filepath + '/' + sample
     print(resultpath)
-    return resultpath
+    sst = MessageSegment.image(file=str(resultpath))
+    return sst
 
 # ===========饮茶===========
 
