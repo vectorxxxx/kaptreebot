@@ -158,8 +158,8 @@ def get_bulletin():
     result = ''
     for news in c['newslist']:
         result += '@' + news['mtime'] + '\n'
-        result += '#' + news['title'] + '\n\n'
-    res = result.replace('<br>', '\n').replace('<br/>', '\n')[:-4]
+        result += '#' + news['title'] + '\n'
+    res = result.replace('<br>', '\n').replace('<br/>', '\n')[:-2]
     print(res)
     return res
 
