@@ -29,7 +29,7 @@ async def _(bot: Bot, event: PokeNotifyEvent):
                 at_sender=True
             )
         else:
-            msg = MessageSegment.poke(id_=event.get_user_id)
+            msg = MessageSegment.poke(type_='poke', id_=event.get_user_id)
             await bot.send(
                 event=event,
                 message=msg
