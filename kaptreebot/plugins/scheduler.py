@@ -98,9 +98,8 @@ def get_daily_news():
     if c['code'] != 200:
         return ''
     result = ''
-    for news in c['newslist']:
-        result += '@' + news['mtime'] + '\n'
-        result += '#' + news['title'] + '\n'
+    for i,val in enumerate(c['newslist']):
+        result += 'Top ' + str(i + 1) + '：', val['title'] + '\n'
     res = result.replace('<br>', '\n').replace('<br/>', '\n')[:-2]
     print(res)
     return res

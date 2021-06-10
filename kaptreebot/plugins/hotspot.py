@@ -152,16 +152,16 @@ def get_bulletin():
     url = tianxing_api2 + 'bulletin/index?key=' + tianxing_key
     res = requests.get(url)
     c = json.loads(res.text)
+    print(str(c))
     if c['code'] != 200:
         print(c['code'])
         return error_info
     result = ''
-    for news in c['newslist']:
-        result += '@' + news['mtime'] + '\n'
-        result += '#' + news['title'] + '\n'
+    for i,val in enumerate(c['newslist']):
+        result += 'Top ' + str(i + 1) + '：', val['title'] + '\n'
     res = result.replace('<br>', '\n').replace('<br/>', '\n')[:-2]
     print(res)
-    return res
+    return result
 
 
 # ============互联网资讯============
@@ -183,6 +183,7 @@ def get_internet():
     url = tianxing_api2 + 'internet/index?key=' + tianxing_key2
     res = requests.get(url)
     c = json.loads(res.text)
+    print(str(c))
     if c['code'] != 200:
         print(c['code'])
         return error_info
