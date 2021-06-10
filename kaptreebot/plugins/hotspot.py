@@ -152,7 +152,6 @@ def get_bulletin():
     url = tianxing_api2 + 'bulletin/index?key=' + tianxing_key
     res = requests.get(url)
     c = json.loads(res.text)
-    print(str(c))
     if c['code'] != 200:
         print(c['code'])
         return error_info
@@ -184,7 +183,6 @@ def get_internet():
     url = tianxing_api2 + 'internet/index?key=' + tianxing_key2
     res = requests.get(url)
     c = json.loads(res.text)
-    print(str(c))
     if c['code'] != 200:
         print(c['code'])
         return error_info
