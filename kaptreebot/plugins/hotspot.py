@@ -157,11 +157,12 @@ def get_bulletin():
         print(c['code'])
         return error_info
     result = ''
-    for index, value in c['newslist']:
-        result += 'Top ' + str(index + 1) + '：' + value['title'] + '\n'
-    res = result.replace('<br>', '\n').replace('<br/>', '\n')[:-2]
+    for news in c['newslist']:
+        result += '@' + news['mtime'] + '\n'
+        result += '#' + news['title'] + '\n\n'
+    res = result.replace('<br>', '\n').replace('<br/>', '\n')[:-4]
     print(res)
-    return result
+    return res
 
 
 # ============互联网资讯============

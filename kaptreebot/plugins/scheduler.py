@@ -15,6 +15,7 @@ file_path = os.getcwd() + '/properties/cheat/others.properties'
 props = property.parse(file_path)
 tianxing_api = props.get('tianxing_api')
 tianxing_api2 = props.get('tianxing_api2')
+tianxing_key = props.get('tianxing_key')
 tianxing_key2 = props.get('tianxing_key2')
 
 # 定时任务配置
@@ -91,17 +92,18 @@ async def daily_news():
 
 
 def get_daily_news():
-    url = tianxing_api2 + 'bulletin/index?key=' + tianxing_key2
+    url = tianxing_api2 + 'bulletin/index?key=' + tianxing_key
     res = requests.get(url)
     c = json.loads(res.text)
     if c['code'] != 200:
         return ''
     result = ''
-    for news, index in c['newslist']:
-        result += 'Top ' + str(index + 1) + '：' + news['title'] + '\n'
-    res = result.replace('<br>', '\n').replace('<br/>', '\n')[:-2]
+    for news in c['newslist']:
+        result += '@' + news['mtime'] + '\n'
+        result += '#' + news['title'] + '\n\n'
+    res = result.replace('<br>', '\n').replace('<br/>', '\n')[:-4]
     print(res)
-    return result
+    return res
 
 
 # ===========干饭===========
