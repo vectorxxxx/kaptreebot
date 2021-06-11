@@ -6,7 +6,7 @@ from aiocqhttp import MessageSegment
 import requests
 import random
 import json
-import os 
+import os
 
 kiss = ['么么哒', '不要这样嘛!', '你好讨厌哦!', '你好坏哦，欺负人家，哼！', '不要酱紫嘛', '一天没和你聊天，就觉得哪里不对劲！', '快亲亲人家啦!!', '不理你了，真讨厌。', '人家不要了啦!', '你今天有没有想念人家呀!',
         '别这样啦，人家是个女孩子嘛!', '(✿◡‿◡)', '(*/ω＼*)', 'つ﹏⊂', 'ヾ(≧O≦)〃嗷~', '(>▽<)，好呀', '恶心心', 'mu--a', '可以教我写代码吗', '记得AK比赛哦', '能AK比赛吗？']
@@ -159,7 +159,7 @@ async def master_(bot: Bot, event: Event, state: dict):
 
 
 # ===========膜拜大佬===========
-mobai = on_command('膜拜大佬', aliases={'膜拜'},  priority=2)
+mobai = on_keyword(['膜拜大佬', '膜拜'],  priority=2)
 
 
 @mobai.handle()
@@ -184,4 +184,4 @@ def get_mobai():
 def randomFile(fileDir):
     pathDir = os.listdir(fileDir)  # 取图片的原始路径
     samples = random.sample(pathDir, 1)  # 随机选取picknumber数量的样本图片
-    return samples[0]    
+    return samples[0]
