@@ -9,6 +9,8 @@ import random
 
 pk = pd.read_csv('file:///' + os.getcwd() + '/data/pokeme/poke.txt',
                  sep=' ', encoding='utf-8')
+chehui_tome = pd.read_csv('file:///' + os.getcwd() + '/data/pokeme/chehui_tome.txt',
+                          sep=' ', encoding='utf-8')
 
 pre = 0
 poke = on_notice()
@@ -38,3 +40,10 @@ def get_picture():
     resultpath = 'file:///'+filepath + '/' + sample
     print(resultpath)
     return resultpath                
+
+
+# 深度学习过程中，需要制作训练集和验证集、测试集
+def randomFile(fileDir):
+    pathDir = os.listdir(fileDir)  # 取图片的原始路径
+    samples = random.sample(pathDir, 1)  # 随机选取picknumber数量的样本图片
+    return samples[0]    
