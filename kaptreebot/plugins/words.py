@@ -154,3 +154,25 @@ master = on_keyword(['闭嘴', '别说话了', '少说话多做事', '别说废�
 @master.handle()
 async def master_(bot: Bot, event: Event, state: dict):
     pass
+
+
+# ===========膜拜大佬===========
+mobai = on_command('膜拜大佬', aliases={'膜拜'},  priority=2)
+
+
+@mobai.handle()
+async def mobai_(bot: Bot, event: Event):
+    if event.get_user_id != event.self_id:
+        pic = get_mobai()
+        await bot.send(
+            event=event,
+            message=MessageSegment.image(pic),
+        )
+
+
+def get_mobai():
+    filepath = os.getcwd()+'/data/img/mobai'
+    sample = randomFile(filepath)
+    resultpath = 'file:///'+filepath + '/' + sample
+    print(resultpath)
+    return resultpath
