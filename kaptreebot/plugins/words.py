@@ -2,6 +2,7 @@ from requests_html import HTMLSession
 from nonebot import on_command, on_keyword
 from nonebot.permission import SUPERUSER
 from nonebot.adapters.cqhttp import Bot, Event
+from aiocqhttp import MessageSegment
 import requests
 import random
 import json
