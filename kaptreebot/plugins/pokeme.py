@@ -29,7 +29,7 @@ async def _(bot: Bot, event: PokeNotifyEvent):
                 at_sender=True
             )
         else:
-            msg = '[CQ:poke,qq=' + event.get_user_id + ']'
+            msg = '[CQ:poke,qq=' + str(event.user_id) + ']'
             await bot.send(
                 event=event,
                 message=msg
