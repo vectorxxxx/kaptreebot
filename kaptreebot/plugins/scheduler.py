@@ -39,7 +39,7 @@ scheduler = require('nonebot_plugin_apscheduler').scheduler
 async def good_morning():
     (bot,) = nonebot.get_bots().values()
     if bot is not None:
-        msg = '[CQ:at,qq="全体人员"] \n'
+        msg = '[CQ:at,qq=all,name=全体人员] \n'
         msg += get_zaoan_img() + '\n'
         msg += get_zaoan()
         for group_id in group_id_greetings_list.split(','):
@@ -113,7 +113,7 @@ async def eat_lunch():
         lunchimg = get_lunch_img()
         if lunchimg == '':
             return
-        msg = '[CQ:at,qq="全体人员"]\n' + lunchimg
+        msg = '[CQ:at,qq=all,name=全体人员]\n' + lunchimg
         for group_id in group_id_greetings_list.split(','):
             await bot.send_msg(
                 message_type="group",
@@ -137,7 +137,7 @@ def get_lunch_img():
 async def drink_tea():
     (bot,) = nonebot.get_bots().values()
     if bot is not None:
-        msg = '[CQ:at,qq="全体人员"] \n'
+        msg = '[CQ:at,qq=all,name=全体人员] \n'
         msg += '喂！三点几啦！饮茶先~\n'
         msg += get_drink_tea_img()
         for group_id in group_id_greetings_list.split(','):
@@ -166,7 +166,7 @@ def get_drink_tea_img():
 async def off_duty():
     (bot,) = nonebot.get_bots().values()
     if bot is not None:
-        msg = '[CQ:at,qq="全体人员"] \n' + get_offduty_img() 
+        msg = '[CQ:at,qq=all,name=全体人员] \n' + get_offduty_img() 
         for group_id in group_id_greetings_list.split(','):
             await bot.send_msg(
                 message_type="group",
@@ -193,7 +193,7 @@ def get_offduty_img():
 async def good_night():
     (bot,) = nonebot.get_bots().values()
     if bot is not None:
-        msg = '[CQ:at,qq="全体人员"] \n'
+        msg = '[CQ:at,qq=all,name=全体人员] \n'
         msg += get_wanan_img() + '\n'
         msg += get_wanan()
         for group_id in group_id_greetings_list.split(','):
