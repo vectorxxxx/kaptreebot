@@ -22,9 +22,19 @@ async def _(bot: Bot, event: PokeNotifyEvent):
         if ran_int == 0:
             k = (random.randint(1, 10000)) % len(pk)
             msg = pk.loc[k]['poke']
-            print(msg)
-            await bot.send(
-                event=event,
-                message=msg,
-                at_sender=True
-            )
+        else:
+            msg = MessageSegment.image(get_picture())
+        print(msg)
+        await bot.send(
+            event=event,
+            message=msg,
+            at_sender=True
+        )    
+
+
+def get_picture():
+    filepath = os.getcwd()+'/data/img/chehui_tome'
+    sample = randomFile(filepath)
+    resultpath = 'file:///'+filepath + '/' + sample
+    print(resultpath)
+    return resultpath                
