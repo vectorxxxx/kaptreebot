@@ -60,18 +60,9 @@ async def increase(bot: Bot, event: GroupIncreaseNoticeEvent):
         msg = '哇~是新的rbq！\n'
         msg += get_tx(str(event.user_id)) + '\n'
         msg += '欢迎呀，很高兴为您服务呦~\n'
-        msg += '博客皮肤有什么问题，可以先查看手册：'
-        await bot.send(
-            event=event,
-            message=msg,
-            at_sender=True
-        )
-        msg = '[CQ:share,url=https://www.yuque.com/awescnb/user/tmpomo,title=awescnb]'
-        await bot.send(
-            event=event,
-            message=msg
-        )
-        msg = '另外，如果需要其他的服务，可以对我说“help”\n'
+        msg += '博客皮肤有什么问题，可以先查看手册：\n'
+        msg += '<a href="https://www.yuque.com/awescnb/user/tmpomo">awescnb</a>\n'
+        msg += '另外，如果需要其他的服务，可以对我说“help”\n'
         await bot.send(
             event=event,
             message=msg,
