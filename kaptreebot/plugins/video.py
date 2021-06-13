@@ -32,14 +32,14 @@ async def xiaojj_(bot: Bot, event: Event):
 
 
 def get_xiaojj():
-    ram_num = random.randint(0, 2)
+    ram_num = random.randint(0, 1)
     if ram_num == 0:
-        get_rewu()
+        get_kuaishou()
     else:
-        get_xiaojj()
+        get_rewu()
 
 
-def get_xiaojj():
+def get_kuaishou():
     print('快手小姐姐')
     url = 'https://ks.ghser.com/video.php'
     session = HTMLSession()
