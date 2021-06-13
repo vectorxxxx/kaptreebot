@@ -32,11 +32,11 @@ async def xiaojj_(bot: Bot, event: Event):
 
 
 def get_xiaojj():
-    ram_num = random.randint(0, 1)
+    ram_num = random.randint(0, 2)
     if ram_num == 0:
-        get_xiaojj()
-    elif ram_num == 1:
         get_rewu()
+    else:
+        get_xiaojj()
 
 
 def get_xiaojj():
