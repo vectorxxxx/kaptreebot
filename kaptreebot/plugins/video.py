@@ -34,9 +34,9 @@ async def xiaojj_(bot: Bot, event: Event):
 def get_xiaojj():
     ram_num = random.randint(0, 1)
     if ram_num == 0:
-        get_kuaishou()
+        return get_kuaishou()
     else:
-        get_rewu()
+        return get_rewu()
 
 
 def get_kuaishou():
