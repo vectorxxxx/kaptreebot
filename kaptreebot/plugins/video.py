@@ -68,7 +68,7 @@ def get_rewu():
         r = session.get(url, headers=headers, verify=False)
         selector = etree.HTML(r.content)
         video_url = selector.xpath('//*[@id="video"]/@src')
-        video_url = r.url
+        print(video_url)
         return get_video(video_url)
     except Exception:
         return error_info
