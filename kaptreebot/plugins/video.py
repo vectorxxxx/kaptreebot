@@ -4,22 +4,25 @@ from nonebot.adapters.cqhttp import Bot, Event
 from aiocqhttp import MessageSegment
 from requests_html import HTMLSession
 from lxml import etree
+from urllib import request
+from urllib.error import HTTPError, URLError
 import random
 import urllib3
 
-# 将函数注册为群成员增加通知处理器
 
 urllib3.disable_warnings()
+
+opener = request.build_opener()
 
 error_info = '小撸怡情，大撸伤身，要适度哦~'
 
 
 # ============快手小姐姐============
-kuaishou = on_command('小姐姐', priority=2)
+xiaojj = on_command('小姐姐', priority=2)
 
 
-@kuaishou.handle()
-async def kuaishou_(bot: Bot, event: Event):
+@xiaojj.handle()
+async def xiaojj_(bot: Bot, event: Event):
     if event.get_user_id != event.self_id:
         video_r = get_xiaojj()
         await bot.send(
@@ -31,12 +34,12 @@ async def kuaishou_(bot: Bot, event: Event):
 def get_xiaojj():
     ram_num = random.randint(0, 1)
     if ram_num == 0:
-        get_kuaishou()
+        get_xiaojj()
     elif ram_num == 1:
         get_rewu()
 
 
-def get_kuaishou():
+def get_xiaojj():
     print('快手小姐姐')
     url = 'https://ks.ghser.com/video.php'
     session = HTMLSession()
@@ -48,11 +51,7 @@ def get_kuaishou():
         r = session.get(url, headers=headers, verify=False)
         video_url = r.url
         print(video_url)
-        video = MessageSegment.video(file=str(video_url))
-        if video is not None:
-            return video
-        else:
-            return error_info
+        return get_video(video_url)
     except Exception:
         return error_info
 
@@ -69,10 +68,21 @@ def get_rewu():
         r = session.get(url, headers=headers, verify=False)
         selector = etree.HTML(r.content)
         video_url = selector.xpath('//*[@id="video"]/@src')
+        video_url = r.url
+        return get_video(video_url)
+    except Exception:
+        return error_info
+
+
+def get_video(video_url):
+    try:
+        opener.open(video_url)
         video = MessageSegment.video(file=str(video_url))
         if video is not None:
             return video
         else:
             return error_info
+    except (HTTPError, URLError) as e:
+        return error_info
     except Exception:
         return error_info
