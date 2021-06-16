@@ -99,7 +99,7 @@ def get_daily_news():
         return ''
     result = ''
     for i,val in enumerate(c['newslist']):
-        result += str(i + 1) + '、：' + val['title'] + '\n'
+        result += str(i + 1) + '、' + val['title'] + '\n'
     res = result.replace('<br>', '\n').replace('<br/>', '\n')[:-2]
     print(res)
     return res
